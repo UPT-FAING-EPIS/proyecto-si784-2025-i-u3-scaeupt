@@ -1,0 +1,151 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pyWeb_ScaeUPT
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Configurar Azure CLI
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: |
+          {
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+    # Crear recursos para el estado de Terraform si no existen
+    - name: Create Terraform State Resources
+      run: |
+        # Verificar si el grupo de recursos existe, si no, crearlo
+        if ! az group show --name terraform-state-rg &>/dev/null; then
+          az group create --name terraform-state-rg --location eastus
+        fi
+        
+        # Verificar si la cuenta de almacenamiento existe, si no, crearla
+        if ! az storage account show --name tfstatescaeupt --resource-group terraform-state-rg &>/dev/null; then
+          az storage account create --resource-group terraform-state-rg \
+                                   --name tfstatescaeupt \
+                                   --sku Standard_LRS \
+                                   --encryption-services blob
+        fi
+        
+        # Obtener la clave de la cuenta de almacenamiento
+        STORAGE_KEY=$(az storage account keys list --resource-group terraform-state-rg \
+                                                 --account-name tfstatescaeupt \
+                                                 --query [0].value -o tsv)
+        
+        # Verificar si el contenedor existe, si no, crearlo
+        if ! az storage container show --name tfstate --account-name tfstatescaeupt --account-key "$STORAGE_KEY" &>/dev/null; then
+          az storage container create --name tfstate \
+                                     --account-name tfstatescaeupt \
+                                     --account-key "$STORAGE_KEY"
+        fi
+        
+        # Guardar la clave como variable de entorno para Terraform
+        echo "STORAGE_KEY=$STORAGE_KEY" >> $GITHUB_ENV
+
+    # Crear ACR si no existe
+    - name: Create Azure Container Registry if not exists
+      run: |
+        if ! az acr show --name scaeuptacr --resource-group scae-upt-rg &>/dev/null; then
+          # Si el grupo de recursos no existe, crearlo
+          if ! az group show --name scae-upt-rg &>/dev/null; then
+            az group create --name scae-upt-rg --location eastus
+          fi
+          
+          # Crear ACR
+          az acr create --resource-group scae-upt-rg \
+                       --name scaeuptacr \
+                       --sku Basic \
+                       --admin-enabled true
+        fi
+        
+        # Obtener credenciales del ACR
+        ACR_USERNAME=$(az acr credential show --name scaeuptacr --query username -o tsv)
+        ACR_PASSWORD=$(az acr credential show --name scaeuptacr --query "passwords[0].value" -o tsv)
+        
+        # Guardar credenciales como variables de entorno
+        echo "ACR_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
+        echo "ACR_PASSWORD=$ACR_PASSWORD" >> $GITHUB_ENV
+
+    # Login al ACR
+    - name: Login to Azure Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: scaeuptacr.azurecr.io
+        username: ${{ env.ACR_USERNAME }}
+        password: ${{ env.ACR_PASSWORD }}
+
+    # Construir y publicar la imagen Docker
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: |
+          scaeuptacr.azurecr.io/pyweb-scaeupt:${{ github.sha }}
+          scaeuptacr.azurecr.io/pyweb-scaeupt:latest
+
+    # Configurar Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0
+
+    # Inicializar Terraform
+    - name: Terraform Init
+      run: |
+        cd terraform
+        terraform init \
+          -backend-config="resource_group_name=terraform-state-rg" \
+          -backend-config="storage_account_name=tfstatescaeupt" \
+          -backend-config="container_name=tfstate" \
+          -backend-config="key=terraform.tfstate" \
+          -backend-config="access_key=${{ env.STORAGE_KEY }}"
+
+    # Planificar Terraform
+    - name: Terraform Plan
+      run: |
+        cd terraform
+        terraform plan \
+          -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+          -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+          -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}" \
+          -var="acr_username=${{ env.ACR_USERNAME }}" \
+          -var="acr_password=${{ env.ACR_PASSWORD }}" \
+          -var="mysql_connection_string=${{ secrets.MYSQL_CONNECTION_STRING }}" \
+          -var="google_client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
+          -var="google_client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
+          -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
+          -var="docker_image_tag=${{ github.sha }}" \
+          -out=tfplan
+
+    # Aplicar Terraform
+    - name: Terraform Apply
+      run: |
+        cd terraform
+        terraform apply -auto-approve tfplan
+
+    # Mostrar la URL de la aplicación
+    - name: Show App URL
+      run: |
+        cd terraform
+        echo "La aplicación se ha desplegado en: $(terraform output -raw app_url)"

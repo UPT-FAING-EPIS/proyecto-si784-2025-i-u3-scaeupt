@@ -1,7 +1,6 @@
 {
   "ContentRoots": [
-    "/src/wwwroot/",
-    "/src/obj/Debug/net8.0/scopedcss/bundle/"
+    "/src/wwwroot/"
   ],
   "Root": {
     "Children": {
@@ -14,26 +13,42 @@
               "SubPath": "css/site.css"
             },
             "Patterns": null
+          },
+          "styles.css": {
+            "Children": null,
+            "Asset": {
+              "ContentRootIndex": 0,
+              "SubPath": "css/styles.css"
+            },
+            "Patterns": null
           }
         },
         "Asset": null,
         "Patterns": null
       },
-      "upt.ico": {
+      "favicon.ico": {
         "Children": null,
         "Asset": {
           "ContentRootIndex": 0,
-          "SubPath": "upt.ico"
+          "SubPath": "favicon.ico"
+        },
+        "Patterns": null
+      },
+      "index.html": {
+        "Children": null,
+        "Asset": {
+          "ContentRootIndex": 0,
+          "SubPath": "index.html"
         },
         "Patterns": null
       },
       "js": {
         "Children": {
-          "site.js": {
+          "script.v2.js": {
             "Children": null,
             "Asset": {
               "ContentRootIndex": 0,
-              "SubPath": "js/site.js"
+              "SubPath": "js/script.v2.js"
             },
             "Patterns": null
           }
@@ -557,11 +572,11 @@
         "Asset": null,
         "Patterns": null
       },
-      "pyWeb_ScaeUPT.styles.css": {
+      "upt.ico": {
         "Children": null,
         "Asset": {
-          "ContentRootIndex": 1,
-          "SubPath": "pyWeb_ScaeUPT.styles.css"
+          "ContentRootIndex": 0,
+          "SubPath": "upt.ico"
         },
         "Patterns": null
       }

@@ -249,11 +249,5 @@ namespace pyWeb_ScaeUPT.Controllers
             }
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        [HttpGet("error")]
-        public IActionResult Error()
-        {
-            return StatusCode(500, new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
