@@ -377,7 +377,7 @@ body::-webkit-scrollbar {
     background: var(--upt-white);
     border-radius: 24px;
     padding: 32px;
-    max-width: 400px;
+    max-width: 440px;
     width: 100%;
     text-align: center;
     transform: scale(0.8) translateY(40px);
@@ -404,6 +404,7 @@ body::-webkit-scrollbar {
 
 .modal-header {
     display: flex;
+    margin-left: 82px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
@@ -412,6 +413,7 @@ body::-webkit-scrollbar {
 .modal-controls {
     display: flex;
     gap: 8px;
+    margin: 0 -10px 40px 0px;
 }
 
 .control-btn {
@@ -548,16 +550,20 @@ body::-webkit-scrollbar {
 }
 
 .qr-info {
+    text-align: center;
     background: var(--upt-light);
     color: var(--upt-dark);
     padding: 16px;
     border-radius: 12px;
     font-size: 14px;
     margin-top: 16px;
-    max-width: 300px;
+    margin-bottom: 20px;
+    width: 300px;
 }
 
 .modal-overlay.maximized .qr-info {
+
+    width: 400px;
     max-width: 500px;
 }
 

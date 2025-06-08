@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UyowYLrrjETM+xyHDCODajKbul/Hy3KZIz0oQVtopyw=",
+  "Hash": "II4ewASUpmSSc6g9ou/te34qXsCWWeMVWCickmOp3+Y=",
   "Source": "pyWeb_ScaeUPT",
   "BasePath": "_content/pyWeb_ScaeUPT",
   "Mode": "Default",
@@ -93,12 +93,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\wwwroot\\js\\generateQR.js",
+      "Identity": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\wwwroot\\js\\script.v2.js",
       "SourceId": "pyWeb_ScaeUPT",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\wwwroot\\",
       "BasePath": "_content/pyWeb_ScaeUPT",
-      "RelativePath": "js/generateQR.js",
+      "RelativePath": "js/script.v2.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -109,7 +109,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\generateQR.js"
+      "OriginalItemSpec": "wwwroot\\js\\script.v2.js"
     },
     {
       "Identity": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
