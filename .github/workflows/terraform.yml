@@ -1,0 +1,185 @@
+name: Deploy to Azure App Service with Terraform
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pyWeb_ScaeUPT
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Azure Login
+      run: |
+        az logout || true
+        az login --service-principal \
+          --username "${{ secrets.AZURE_CLIENT_ID }}" \
+          --password "${{ secrets.AZURE_CLIENT_SECRET }}" \
+          --tenant "${{ secrets.AZURE_TENANT_ID }}"
+        
+        az account set --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        echo "AZURE_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+    
+    - name: Setup Terraform Backend Resources
+      run: |
+        echo "Setting up Terraform backend resources..."
+        
+        # Crear resource group para el estado de Terraform
+        if ! az group show --name terraform-state-rg --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" &>/dev/null; then
+          echo "Creating terraform state resource group..."
+          az group create --name terraform-state-rg --location eastus --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        fi
+        
+        # Crear storage account para el estado
+        if ! az storage account show --name tfstatescaeupt --resource-group terraform-state-rg --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" &>/dev/null; then
+          echo "Creating terraform state storage account..."
+          az storage account create \
+            --resource-group terraform-state-rg \
+            --name tfstatescaeupt \
+            --sku Standard_LRS \
+            --encryption-services blob \
+            --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+        fi
+        
+        # Obtener la clave de storage
+        STORAGE_KEY=$(az storage account keys list \
+          --resource-group terraform-state-rg \
+          --account-name tfstatescaeupt \
+          --subscription "${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          --query [0].value -o tsv)
+        
+        # Crear contenedor para el estado
+        if ! az storage container show --name tfstate --account-name tfstatescaeupt --account-key "$STORAGE_KEY" &>/dev/null; then
+          echo "Creating terraform state container..."
+          az storage container create \
+            --name tfstate \
+            --account-name tfstatescaeupt \
+            --account-key "$STORAGE_KEY"
+        fi
+        
+        echo "STORAGE_KEY=$STORAGE_KEY" >> $GITHUB_ENV
+          
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0
+    - name: Terraform Init
+      run: |
+        cd terraform
+        terraform init \
+          -backend-config="resource_group_name=terraform-state-rg" \
+          -backend-config="storage_account_name=tfstatescaeupt" \
+          -backend-config="container_name=tfstate" \
+          -backend-config="key=terraform.tfstate" \
+          -backend-config="access_key=${{ env.STORAGE_KEY }}"
+
+    - name: Terraform Plan
+      run: |
+        cd terraform
+        terraform plan \
+          -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+          -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+          -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}" \
+          -var="mysql_connection_string=${{ secrets.MYSQL_CONNECTION_STRING }}" \
+          -var="google_client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
+          -var="google_client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
+          -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
+          -var="docker_image_tag=${{ github.sha }}" \
+          -out=tfplan
+
+    - name: Terraform Apply
+      run: |
+        ACR_NAME="scaeuptacr"
+        RG_NAME="scae-upt-rg"
+        APP_NAME="scae-upt-app"
+        ACR_USERNAME=$(az acr credential show --name "$ACR_NAME" --query username -o tsv)
+        ACR_PASSWORD=$(az acr credential show --name "$ACR_NAME" --query "passwords[0].value" -o tsv)
+        ACR_LOGIN_SERVER=$(az acr show --name "$ACR_NAME" --query loginServer -o tsv)
+        APP_URL=$(az webapp show --name "$APP_NAME" --resource-group "$RG_NAME" --query defaultHostName -o tsv)
+        APP_URL="https://$APP_URL"
+
+        echo "APP_URL=$APP_URL" >> $GITHUB_ENV
+        echo "ACR_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
+        echo "ACR_PASSWORD=$ACR_PASSWORD" >> $GITHUB_ENV
+        echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
+
+    - name: Print variables
+      run: |
+        echo "Usuario: $ACR_USERNAME"
+        echo "Login Server: $ACR_LOGIN_SERVER"
+
+        
+    - name: Login to Azure Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.ACR_LOGIN_SERVER }}
+        username: ${{ env.ACR_USERNAME }}
+        password: ${{ env.ACR_PASSWORD }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./pyWeb_ScaeUPT
+        file: ./pyWeb_ScaeUPT/Dockerfile
+        push: true
+        tags: |
+          ${{ env.ACR_LOGIN_SERVER }}/pyweb-scaeupt:${{ github.sha }}
+          ${{ env.ACR_LOGIN_SERVER }}/pyweb-scaeupt:latest
+
+    - name: Update App Service with new image
+      run: |
+        cd terraform
+        # Aplicar nuevamente para actualizar la imagen de Docker
+        terraform apply -auto-approve \
+          -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}" \
+          -var="tenant_id=${{ secrets.AZURE_TENANT_ID }}" \
+          -var="client_id=${{ secrets.AZURE_CLIENT_ID }}" \
+          -var="client_secret=${{ secrets.AZURE_CLIENT_SECRET }}" \
+          -var="mysql_connection_string=${{ secrets.MYSQL_CONNECTION_STRING }}" \
+          -var="google_client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
+          -var="google_client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
+          -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
+          -var="docker_image_tag=${{ github.sha }}"
+        
+    - name: Show App URL
+      run: |
+        cd terraform
+        echo "🚀 La aplicación se ha desplegado en: ${{ env.APP_URL }}"
+    - name: Crear Deployment con link
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { owner, repo } = context.repo;
+
+          const deployment = await github.rest.repos.createDeployment({
+            owner,
+            repo,
+            ref: context.sha,
+            required_contexts: [],
+            environment: 'production',
+            description: 'Desplegado en Azure App Service con Terraform',
+            auto_merge: false
+          });
+
+          await github.rest.repos.createDeploymentStatus({
+            owner,
+            repo,
+            deployment_id: deployment.data.id,
+            state: 'success',
+            environment: 'production',
+            environment_url: process.env.APP_URL,
+            description: 'App disponible en Azure'
+          });
+      env:
+        APP_URL: ${{ env.APP_URL }}

@@ -40,18 +40,6 @@ variable "docker_image_tag" {
   default     = "latest"
 }
 
-variable "acr_username" {
-  description = "Nombre de usuario del ACR"
-  type        = string
-  sensitive   = true
-}
-
-variable "acr_password" {
-  description = "Contraseña del ACR"
-  type        = string
-  sensitive   = true
-}
-
 variable "mysql_connection_string" {
   description = "Cadena de conexión a MySQL"
   type        = string

@@ -97,9 +97,14 @@ namespace pyWeb_ScaeUPT.Controllers
 
                 // Para este ejemplo, usaremos el DNI (Id_Persona) como dato a encriptar
                 string dniToEncrypt = estudiante.Id_Persona;
+
+                // Generar un token encriptado con el DNI y la fecha/hora actual de lima
+                // string dataToEncrypt = $"{dniToEncrypt}|{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
                 
-                // Generar un token encriptado con el DNI y la fecha/hora actual
-                string dataToEncrypt = $"{dniToEncrypt}|{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
+                var limaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
+                var limaTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, limaTimeZone);
+                string dataToEncrypt = $"{dniToEncrypt}|{limaTime.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
+
                 string encryptedToken = EncryptData(dataToEncrypt);
 
                 // Crear o actualizar el registro en la tabla de tokens
@@ -111,7 +116,6 @@ namespace pyWeb_ScaeUPT.Controllers
                 }
                 else
                 {
-                    // Crear nuevo token
                     _dbContext.token.Add(new tokenModel
                     {
                         DNI_token = dniToEncrypt,
@@ -124,10 +128,9 @@ namespace pyWeb_ScaeUPT.Controllers
                 // Generar el código QR
                 string qrCodeBase64 = GenerateQRCodeBase64(encryptedToken);
 
-                // Devolver la información necesaria para mostrar en el frontend
                 return Ok(new { 
                     success = true, 
-                    timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                    timestamp = limaTime.ToString("dd/MM/yyyy HH:mm:ss"),
                     qrData = encryptedToken,
                     qrCodeBase64 = qrCodeBase64
                 });
