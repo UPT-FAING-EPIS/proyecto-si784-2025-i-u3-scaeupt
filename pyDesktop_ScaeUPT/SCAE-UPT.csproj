@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SCAE_UPT</RootNamespace>
+    <AssemblyName>SCAE-UPT</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.30.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Protobuf.3.30.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.1.3.8\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.8.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Compression.LZ4.Streams.1.3.8\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MySql.Data, Version=9.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>packages\MySql.Data.9.3.0\lib\net462\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.8.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZstdSharp, Version=0.8.5.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>packages\ZstdSharp.Port.0.8.5\lib\net462\ZstdSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.10\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.10.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.10\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\clsConfigConexion.cs" />
+    <Compile Include="Entidad\clsEntidadRegistro.cs" />
+    <Compile Include="Entidad\clsEntidadRegistroVisitante.cs" />
+    <Compile Include="Entidad\clsEntidadUsuarioRegistro.cs" />
+    <Compile Include="Entidad\clsEntidadVisitante.cs" />
+    <Compile Include="Presentacion\frmAdministrarUpetino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmAdministrarUpetino.Designer.cs">
+      <DependentUpon>frmAdministrarUpetino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmAdministrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmAdministrarUsuario.Designer.cs">
+      <DependentUpon>frmAdministrarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmHistorialUpetino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmHistorialUpetino.Designer.cs">
+      <DependentUpon>frmHistorialUpetino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmHistorialVisitante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmHistorialVisitante.Designer.cs">
+      <DependentUpon>frmHistorialVisitante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmLoginGuardiania.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmLoginGuardiania.Designer.cs">
+      <DependentUpon>frmLoginGuardiania.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Negocio\clsNegocioEmpleado.cs" />
+    <Compile Include="Negocio\clsNegocioPersona.cs" />
+    <Compile Include="Negocio\clsNegocioRegistro.cs" />
+    <Compile Include="Negocio\clsNegocioRegistroVisitante.cs" />
+    <Compile Include="Negocio\clsNegocioTarjeta.cs" />
+    <Compile Include="Negocio\clsNegocioUsuario.cs" />
+    <Compile Include="Negocio\clsNegocioUsuarioRegistro.cs" />
+    <Compile Include="Negocio\clsNegocioVisitante.cs" />
+    <Compile Include="Presentacion\frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmPrincipal.Designer.cs">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmRegistrarUpetino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmRegistrarUpetino.Designer.cs">
+      <DependentUpon>frmRegistrarUpetino.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmRegistroVisitante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmRegistroVisitante.Designer.cs">
+      <DependentUpon>frmRegistroVisitante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentacion\frmHistorialUpetino.resx">
+      <DependentUpon>frmHistorialUpetino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmHistorialVisitante.resx">
+      <DependentUpon>frmHistorialVisitante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmLoginGuardiania.resx">
+      <DependentUpon>frmLoginGuardiania.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmPrincipal.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmRegistrarUpetino.resx">
+      <DependentUpon>frmRegistrarUpetino.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmRegistroVisitante.resx">
+      <DependentUpon>frmRegistroVisitante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Recursos\aCancelar.png" />
+    <Content Include="Recursos\accept.png" />
+    <Content Include="Recursos\add.png" />
+    <Content Include="Recursos\aEditar.png" />
+    <Content Include="Recursos\aEliminar.png" />
+    <Content Include="Recursos\aGuardar.png" />
+    <Content Include="Recursos\aNuevo.png" />
+    <Content Include="Recursos\application.png" />
+    <Content Include="Recursos\applications.png" />
+    <Content Include="Recursos\application_add.png" />
+    <Content Include="Recursos\application_edit.png" />
+    <Content Include="Recursos\application_lock.png" />
+    <Content Include="Recursos\application_next.png" />
+    <Content Include="Recursos\application_remove.png" />
+    <Content Include="Recursos\application_up.png" />
+    <Content Include="Recursos\archive.png" />
+    <Content Include="Recursos\aSalir.png" />
+    <Content Include="Recursos\attachment.png" />
+    <Content Include="Recursos\back.png" />
+    <Content Include="Recursos\blog_post.png" />
+    <Content Include="Recursos\blog_post_accept.png" />
+    <Content Include="Recursos\blog_post_delete.png" />
+    <Content Include="Recursos\blog_post_edit.png" />
+    <Content Include="Recursos\busca1.png" />
+    <Content Include="Recursos\busca2.png" />
+    <Content Include="Recursos\calculator.png" />
+    <Content Include="Recursos\calculator_accept.png" />
+    <Content Include="Recursos\calculator_add.png" />
+    <Content Include="Recursos\calculator_remove.png" />
+    <Content Include="Recursos\calendar_date.png" />
+    <Content Include="Recursos\calendar_empty.png" />
+    <Content Include="Recursos\cd.png" />
+    <Content Include="Recursos\cd_accept.png" />
+    <Content Include="Recursos\cd_add.png" />
+    <Content Include="Recursos\cd_down.png" />
+    <Content Include="Recursos\cd_remove.png" />
+    <Content Include="Recursos\chart.png" />
+    <Content Include="Recursos\chart_accept.png" />
+    <Content Include="Recursos\chart_add.png" />
+    <Content Include="Recursos\chart_remove.png" />
+    <Content Include="Recursos\clock.png" />
+    <Content Include="Recursos\comment.png" />
+    <Content Include="Recursos\comments.png" />
+    <Content Include="Recursos\comments_add.png" />
+    <Content Include="Recursos\comments_remove.png" />
+    <Content Include="Recursos\comment_add.png" />
+    <Content Include="Recursos\comment_edit.png" />
+    <Content Include="Recursos\comment_remove.png" />
+    <Content Include="Recursos\community_users.png" />
+    <Content Include="Recursos\computer.png" />
+    <Content Include="Recursos\computers.png" />
+    <Content Include="Recursos\computer_accept.png" />
+    <Content Include="Recursos\computer_remove.png" />
+    <Content Include="Recursos\database.png" />
+    <Content Include="Recursos\database_accept.png" />
+    <Content Include="Recursos\database_add.png" />
+    <Content Include="Recursos\database_down.png" />
+    <Content Include="Recursos\database_lock.png" />
+    <Content Include="Recursos\database_next.png" />
+    <Content Include="Recursos\database_previous.png" />
+    <Content Include="Recursos\database_process.png" />
+    <Content Include="Recursos\database_remove.png" />
+    <Content Include="Recursos\database_search.png" />
+    <Content Include="Recursos\database_up.png" />
+    <Content Include="Recursos\down.png" />
+    <Content Include="Recursos\eject.png" />
+    <Content Include="Recursos\eliminar1.png" />
+    <Content Include="Recursos\eliminar2.png" />
+    <Content Include="Recursos\exportar1.png" />
+    <Content Include="Recursos\exportar2.png" />
+    <Content Include="Recursos\fast_forward.png" />
+    <Content Include="Recursos\favorite.png" />
+    <Content Include="Recursos\favorite_add.png" />
+    <Content Include="Recursos\favorite_remove.png" />
+    <Content Include="Recursos\finalizar1.png" />
+    <Content Include="Recursos\finalizar2.png" />
+    <Content Include="Recursos\folder.png" />
+    <Content Include="Recursos\folder_accept.png" />
+    <Content Include="Recursos\folder_add.png" />
+    <Content Include="Recursos\folder_down.png" />
+    <Content Include="Recursos\folder_edit.png" />
+    <Content Include="Recursos\folder_full.png" />
+    <Content Include="Recursos\folder_full_accept.png" />
+    <Content Include="Recursos\folder_full_add.png" />
+    <Content Include="Recursos\folder_full_delete.png" />
+    <Content Include="Recursos\folder_next.png" />
+    <Content Include="Recursos\folder_previous.png" />
+    <Content Include="Recursos\folder_process.png" />
+    <Content Include="Recursos\folder_remove.png" />
+    <Content Include="Recursos\folder_up.png" />
+    <Content Include="Recursos\fondo.jpg" />
+    <Content Include="Recursos\forward_new_mail.png" />
+    <Content Include="Recursos\GestionarProveedor.png" />
+    <Content Include="Recursos\gestionarusuario.png" />
+    <Content Include="Recursos\help.png" />
+    <Content Include="Recursos\home.png" />
+    <Content Include="Recursos\home_next.png" />
+    <Content Include="Recursos\html_page_accept.png" />
+    <Content Include="Recursos\html_page_warning.png" />
+    <Content Include="Recursos\image.png" />
+    <Content Include="Recursos\image_add.png" />
+    <Content Include="Recursos\image_edit.png" />
+    <Content Include="Recursos\image_lock.png" />
+    <Content Include="Recursos\image_multi.png" />
+    <Content Include="Recursos\image_next.png" />
+    <Content Include="Recursos\image_remove.png" />
+    <Content Include="Recursos\image_up.png" />
+    <Content Include="Recursos\info.png" />
+    <Content Include="Recursos\informe1.png" />
+    <Content Include="Recursos\informe2.png" />
+    <Content Include="Recursos\listarnivel.png" />
+    <Content Include="Recursos\ListarPedido1.png" />
+    <Content Include="Recursos\ListarPedido11.png" />
+    <Content Include="Recursos\listarpersona.png" />
+    <Content Include="Recursos\ListarProveedor.png" />
+    <Content Include="Recursos\listarusuario.png" />
+    <Content Include="Recursos\lock.png" />
+    <Content Include="Recursos\lock_disabled.png" />
+    <Content Include="Recursos\lock_off.png" />
+    <Content Include="Recursos\lock_off_disabled.png" />
+    <Content Include="Recursos\login.jpg" />
+    <Content Include="Recursos\login1.jpg" />
+    <Content Include="Recursos\login2.png" />
+    <Content Include="Recursos\login3.jpg" />
+    <Content Include="Recursos\login4.jpg" />
+    <Content Include="Recursos\LogoScan.jpg" />
+    <Content Include="Recursos\mail.png" />
+    <Content Include="Recursos\mail_accept.png" />
+    <Content Include="Recursos\mail_add.png" />
+    <Content Include="Recursos\mail_edit.png" />
+    <Content Include="Recursos\mail_next.png" />
+    <Content Include="Recursos\mail_remove.png" />
+    <Content Include="Recursos\movie_track.png" />
+    <Content Include="Recursos\movie_track_add.png" />
+    <Content Include="Recursos\movie_track_next.png" />
+    <Content Include="Recursos\movie_track_remove.png" />
+    <Content Include="Recursos\next.png" />
+    <Content Include="Recursos\notes_edit.png" />
+    <Content Include="Recursos\note_accept.png" />
+    <Content Include="Recursos\note_add.png" />
+    <Content Include="Recursos\note_edit.png" />
+    <Content Include="Recursos\note_remove.png" />
+    <Content Include="Recursos\page.png" />
+    <Content Include="Recursos\page_accept.png" />
+    <Content Include="Recursos\page_add.png" />
+    <Content Include="Recursos\page_down.png" />
+    <Content Include="Recursos\page_edit.png" />
+    <Content Include="Recursos\page_next.png" />
+    <Content Include="Recursos\page_previous.png" />
+    <Content Include="Recursos\page_process.png" />
+    <Content Include="Recursos\page_remove.png" />
+    <Content Include="Recursos\page_search.png" />
+    <Content Include="Recursos\page_swap.png" />
+    <Content Include="Recursos\page_up.png" />
+    <Content Include="Recursos\pause.png" />
+    <Content Include="Recursos\pdf.png" />
+    <Content Include="Recursos\play.png" />
+    <Content Include="Recursos\printer.png" />
+    <Content Include="Recursos\printer_search.png" />
+    <Content Include="Recursos\process.png" />
+    <Content Include="Recursos\process_accept.png" />
+    <Content Include="Recursos\process_add.png" />
+    <Content Include="Recursos\process_remove.png" />
+    <Content Include="Recursos\record.png" />
+    <Content Include="Recursos\refrescar1.png" />
+    <Content Include="Recursos\remove.png" />
+    <Content Include="Recursos\repeat.png" />
+    <Content Include="Recursos\rewind.png" />
+    <Content Include="Recursos\rss.png" />
+    <Content Include="Recursos\rss_add.png" />
+    <Content Include="Recursos\rss_edit.png" />
+    <Content Include="Recursos\rss_next.png" />
+    <Content Include="Recursos\rss_remove.png" />
+    <Content Include="Recursos\Save.png" />
+    <Content Include="Recursos\Save1.png" />
+    <Content Include="Recursos\Save2.png" />
+    <Content Include="Recursos\Save_mirror.png" />
+    <None Include="Recursos\scanqr.jpg" />
+    <Content Include="Recursos\search.png" />
+    <Content Include="Recursos\search_add.png" />
+    <Content Include="Recursos\Search_mirror.png" />
+    <Content Include="Recursos\search_remove.png" />
+    <Content Include="Recursos\she_user.png" />
+    <Content Include="Recursos\she_users.png" />
+    <Content Include="Recursos\she_user_accept.png" />
+    <Content Include="Recursos\she_user_add.png" />
+    <Content Include="Recursos\she_user_comment.png" />
+    <Content Include="Recursos\she_user_remove.png" />
+    <Content Include="Recursos\shopping_cart.png" />
+    <Content Include="Recursos\shopping_cart_accept.png" />
+    <Content Include="Recursos\shopping_cart_down.png" />
+    <Content Include="Recursos\shopping_cart_remove.png" />
+    <Content Include="Recursos\shopping_cart_up.png" />
+    <Content Include="Recursos\skip_backward.png" />
+    <Content Include="Recursos\skip_forward.png" />
+    <Content Include="Recursos\sound.png" />
+    <Content Include="Recursos\sound_off.png" />
+    <Content Include="Recursos\sound_on.png" />
+    <Content Include="Recursos\stop.png" />
+    <Content Include="Recursos\Uninstall.png" />
+    <Content Include="Recursos\Uninstall_mirror.png" />
+    <Content Include="Recursos\up.png" />
+    <Content Include="Recursos\user.png" />
+    <Content Include="Recursos\users.png" />
+    <Content Include="Recursos\user_accept.png" />
+    <Content Include="Recursos\user_add.png" />
+    <Content Include="Recursos\user_comment.png" />
+    <Content Include="Recursos\user_comments.png" />
+    <Content Include="Recursos\user_has_new_email.png" />
+    <Content Include="Recursos\user_remove.png" />
+    <Content Include="Recursos\video_favorite.png" />
+    <Content Include="Recursos\warning.png" />
+    <Content Include="Recursos\window.png" />
+    <Content Include="Recursos\windows.png" />
+    <Content Include="Recursos\window_add.png" />
+    <Content Include="Recursos\window_edit.png" />
+    <Content Include="Recursos\window_lock.png" />
+    <Content Include="Recursos\window_next.png" />
+    <Content Include="Recursos\window_remove.png" />
+    <Content Include="Recursos\window_up.png" />
+    <Content Include="Recursos\word.png" />
+    <None Include="Resources\qr-code-scanner-line-design-single-isolated-icon-KH90CH.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

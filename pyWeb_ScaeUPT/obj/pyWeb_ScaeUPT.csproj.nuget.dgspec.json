@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {}
+    "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {
+    "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+        "projectUniqueName": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
         "projectName": "pyWeb_ScaeUPT",
-        "projectPath": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\obj\\",
+        "projectPath": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+        "packagesPath": "C:\\Users\\playg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\playg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -93,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

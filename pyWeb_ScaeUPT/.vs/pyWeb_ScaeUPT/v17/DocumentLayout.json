@@ -1,21 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\",
+  "WorkspaceRootPath": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\dockerfile||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:dockerfile||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\pyweb_scaeupt.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\pyweb_scaeupt.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:pyweb_scaeupt.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\models\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:models\\tokenmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\models\\estudiantemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:models\\estudiantemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,53 +54,131 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
               "RelativeToolTip": "Dockerfile",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-09T07:44:37.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T07:44:28.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T07:43:25.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "tokenModel.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Models\\tokenModel.cs",
+              "RelativeDocumentMoniker": "Models\\tokenModel.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Models\\tokenModel.cs",
+              "RelativeToolTip": "Models\\tokenModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T07:43:23.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "estudianteModel.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Models\\estudianteModel.cs",
+              "RelativeDocumentMoniker": "Models\\estudianteModel.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Models\\estudianteModel.cs",
+              "RelativeToolTip": "Models\\estudianteModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T07:43:21.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T07:43:15.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T07:43:10.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-06-08T20:21:06.39Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAACIAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-08T20:16:43.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-08T20:16:43.753Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "pyWeb_ScaeUPT",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
               "RelativeDocumentMoniker": "pyWeb_ScaeUPT.csproj",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
               "RelativeToolTip": "pyWeb_ScaeUPT.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-06-08T20:16:41.845Z",
@@ -80,16 +186,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AQIAAOYAAAAAAAAAAAAvwPoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T20:10:45.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-08T20:10:45.684Z"
             }
           ]
         }

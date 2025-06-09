@@ -1,0 +1,99 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\pyweb_scaeupt.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:pyweb_scaeupt.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|c:\\users\\administrator\\desktop\\calidad y prueba de software\\proyecto uii\\proyecto-si784-2025-i-u2-scae-upt\\pyweb_scaeupt\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC60C3F-E141-450D-823D-EF2680406B02}|pyWeb_ScaeUPT.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-08T20:21:06.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-08T20:16:43.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "pyWeb_ScaeUPT",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+              "RelativeDocumentMoniker": "pyWeb_ScaeUPT.csproj",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+              "RelativeToolTip": "pyWeb_ScaeUPT.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-08T20:16:41.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Calidad y Prueba de Software\\Proyecto UII\\proyecto-si784-2025-i-u2-scae-upt\\pyWeb_ScaeUPT\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAOYAAAAAAAAAAAAvwPoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T20:10:45.684Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
