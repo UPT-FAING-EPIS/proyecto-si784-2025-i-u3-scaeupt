@@ -4,11 +4,36 @@ env:
   DOTNET_VERSION_TOOL: '6.0' # la versión de .NET para agregar compatibilidad con .NET 6
 on: push
 jobs:
+  build-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: pyDesktop_ScaeUPT
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Configurando la versión de NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Actualizar DocFx y dll2mmd  
+      run: |
+        dotnet tool update -g docfx
+        dotnet tool update -g dll2mmd
+    - name: Restore packages
+      run: msbuild SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
+    - name: Generar diagrama de clases con dll2mmd
+      run: |
+        dll2mmd -f bin/Release/SCAE-UPT.dll -o clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
+        cat clases.md
   build-and-deploy-docs:
     runs-on: ubuntu-latest
     defaults:
-      run:
-        working-directory: WebApp
+        run:
+          working-directory: WebApp
+    needs: build-windows
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -20,18 +45,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION_TOOL }}
-    - name: Actualizar DocFx y dll2mmd  
-      run: |
-        dotnet tool update -g docfx
-        dotnet tool update -g dll2mmd
-    - name: Restore packages
-      run: |
-        dotnet restore ./../pyDesktop_ScaeUPT/SCAE-UPT.sln
-        dotnet build ./../pyDesktop_ScaeUPT/SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
-    - name: Generar diagrama de clases con dll2mmd
-      run: |
-        ls ./../pyDesktop_ScaeUPT/bin/Release
-        dll2mmd -f ./../pyDesktop_ScaeUPT/bin/Release/SCAE-UPT.dll -o clases.md
     - name: Build WebApp
       working-directory: WebApp
       run: |
