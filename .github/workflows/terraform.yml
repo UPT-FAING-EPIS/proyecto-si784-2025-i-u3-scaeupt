@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: pyWeb_ScaeUPT
+        working-directory: WebApp/pyWeb_ScaeUPT
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -129,8 +129,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: ./pyWeb_ScaeUPT
-        file: ./pyWeb_ScaeUPT/Dockerfile
+        context: ./WebApp/pyWeb_ScaeUPT
+        file: ./WebApp/pyWeb_ScaeUPT/Dockerfile
         push: true
         tags: |
           ${{ env.ACR_LOGIN_SERVER }}/pyweb-scaeupt:${{ github.sha }}
