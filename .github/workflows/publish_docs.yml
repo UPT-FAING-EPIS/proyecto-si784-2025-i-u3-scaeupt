@@ -5,7 +5,7 @@ env:
 on: push
 jobs:
   build-and-deploy-docs:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: WebApp
@@ -20,21 +20,18 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION_TOOL }}
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
     - name: Actualizar DocFx y dll2mmd  
       run: |
         dotnet tool update -g docfx
         dotnet tool update -g dll2mmd
     - name: Restore packages
       run: |
-        nuget restore ../pyDesktop_ScaeUPT/SCAE-UPT.sln
-    - name: Build project
-      run: |
-        msbuild ../pyDesktop_ScaeUPT/SCAE-UPT.csproj /p:Configuration=Release /p:Platform="Any CPU"
+        dotnet restore ./../pyDesktop_ScaeUPT/SCAE-UPT.sln
+        dotnet build ./../pyDesktop_ScaeUPT/SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
     - name: Generar diagrama de clases con dll2mmd
       run: |
-        dll2mmd -f ../pyDesktop_ScaeUPT/bin/Release/SCAE-UPT.dll -o clases.md
+        ls ./../pyDesktop_ScaeUPT/bin/Release
+        dll2mmd -f ./../pyDesktop_ScaeUPT/bin/Release/SCAE-UPT.dll -o clases.md
     - name: Build WebApp
       working-directory: WebApp
       run: |
