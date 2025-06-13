@@ -1,4 +1,4 @@
-name: Actividad - 4 | Test unitarias y Reporte de Cobertura 
+name: Test unitarias y Reporte de Cobertura 
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
 on: push

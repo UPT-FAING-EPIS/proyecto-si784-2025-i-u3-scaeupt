@@ -26,8 +26,13 @@ jobs:
       run: msbuild SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
     - name: Generar diagrama de clases con dll2mmd
       run: |
-        dll2mmd -f bin/Release/SCAE-UPT.dll -o --clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
+        dll2mmd -f bin/Release/SCAE-UPT.dll -o clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
         cat clases.md
+    - name: Upload class diagram
+      uses: actions/upload-artifact@v4
+      with:
+        name: class-diagram
+        path: pyDesktop_ScaeUPT/clases.md
   build-and-deploy-docs:
     runs-on: ubuntu-latest
     defaults:
@@ -37,6 +42,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Download class diagram
+      uses: actions/download-artifact@v4
+      with:
+        name: class-diagram
+        path: pyDesktop_ScaeUPT
     - name: Configurando la versión de NET
       uses: actions/setup-dotnet@v4
       with:
