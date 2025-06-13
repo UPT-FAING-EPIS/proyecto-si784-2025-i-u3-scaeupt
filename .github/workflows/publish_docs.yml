@@ -46,7 +46,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: class-diagram
-        path: pyDesktop_ScaeUPT
+        path: WebApp
     - name: Configurando la versión de NET
       uses: actions/setup-dotnet@v4
       with:
@@ -153,7 +153,7 @@ jobs:
 
         ## [Documentacion de Clases, atributos y métodos](docs/pyWeb_ScaeUPT.html)
 
-        ## [Diagrama de Clases](./../pyDesktop_ScaeUPT/clases.md)
+        ## [Diagrama de Clases](clases.md)
         EOF
     - name: Generar documentación
       run: |
