@@ -10,6 +10,8 @@ using System.Text.Json;
 using pyWeb_ScaeUPT.Models;
 using pyWeb_ScaeUPT.Data;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace pyWeb_ScaeUPT.Controllers
 {
     [ApiController]
@@ -81,6 +83,7 @@ namespace pyWeb_ScaeUPT.Controllers
         }
 
         [HttpGet("validate")]
+        [Authorize]
         public IActionResult ValidateToken()
         {
             // Este endpoint simplemente valida que el token JWT sea válido
@@ -103,7 +106,7 @@ namespace pyWeb_ScaeUPT.Controllers
                 }
 
                 var content = await response.Content.ReadAsStringAsync();
-                _logger.LogInformation($"Google token response: {content}");
+                //_logger.LogInformation($"Google token response: {content}");
                 
                 var options = new JsonSerializerOptions
                 {

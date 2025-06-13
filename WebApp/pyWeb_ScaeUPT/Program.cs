@@ -94,5 +94,5 @@ app.MapFallbackToFile("index.html"); //para malass reedirecciones
 
 app.Run();
 
-// ✅ Hacer la clase Program accesible para las pruebas
+// Program accesible para las pruebas
 public partial class Program { }

@@ -101,8 +101,18 @@ namespace pyWeb_ScaeUPT.Controllers
                 // Generar un token encriptado con el DNI y la fecha/hora actual de lima
                 // string dataToEncrypt = $"{dniToEncrypt}|{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
                 
-                var limaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
-                var limaTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, limaTimeZone);
+                DateTime limaTime;
+                try
+                {
+                    var limaTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
+                    limaTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, limaTimeZone);
+                }
+                catch (TimeZoneNotFoundException)
+                {
+                    // Fallback para entornos de prueba donde la zona horaria puede no estar disponible
+                    limaTime = DateTime.UtcNow.AddHours(-5); // UTC-5 para Lima
+                }
+                
                 string dataToEncrypt = $"{dniToEncrypt}|{limaTime.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
 
                 string encryptedToken = EncryptData(dataToEncrypt);

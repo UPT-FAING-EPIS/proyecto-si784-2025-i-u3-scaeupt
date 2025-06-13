@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pyWeb_ScaeUPT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0edebad9f49e8bd4a8c68ce4527ed5415300774f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82701f6f081a5d1775d0e50e4201cbda1ac12587")]
 [assembly: System.Reflection.AssemblyProductAttribute("pyWeb_ScaeUPT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pyWeb_ScaeUPT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
