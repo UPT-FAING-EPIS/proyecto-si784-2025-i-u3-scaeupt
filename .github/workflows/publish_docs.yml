@@ -26,7 +26,7 @@ jobs:
       run: msbuild SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
     - name: Generar diagrama de clases con dll2mmd
       run: |
-        dll2mmd -f bin/Release/SCAE-UPT.dll -o clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
+        dll2mmd -f bin/Release/SCAE-UPT.dll -o --clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
         cat clases.md
   build-and-deploy-docs:
     runs-on: ubuntu-latest
@@ -45,6 +45,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION_TOOL }}
+    - name: Actualizar DocFx y dll2mmd  
+      run: |
+        dotnet tool update -g docfx
+        dotnet tool update -g dll2mmd
     - name: Build WebApp
       working-directory: WebApp
       run: |
@@ -139,7 +143,7 @@ jobs:
 
         ## [Documentacion de Clases, atributos y métodos](docs/pyWeb_ScaeUPT.html)
 
-        ## [Diagrama de Clases](clases.md)
+        ## [Diagrama de Clases](pyDesktop_ScaeUPT/clases.md)
         EOF
     - name: Generar documentación
       run: |
