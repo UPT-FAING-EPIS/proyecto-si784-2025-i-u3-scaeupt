@@ -57,7 +57,7 @@ namespace pyWeb_ScaeUPT.Controllers
 
                 if (usuario == null)
                 {
-                    return BadRequest("El correo no está registrado en el sistema");
+                    return BadRequest(new { error = "El correo no está registrado en el sistema" });
                 }
 
                 // Generar token JWT
@@ -86,8 +86,7 @@ namespace pyWeb_ScaeUPT.Controllers
         [Authorize]
         public IActionResult ValidateToken()
         {
-            // Este endpoint simplemente valida que el token JWT sea válido
-            // La validación se hace automáticamente por el middleware de autenticación
+            // validación se hace autoamticamente por el middleware de auth
             return Ok(new { valid = true });
         }
 

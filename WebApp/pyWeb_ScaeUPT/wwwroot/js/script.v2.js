@@ -83,6 +83,7 @@ function handleLogout() {
 function generateQR() {
     // Verificar si hay un token de autenticación
     const token = localStorage.getItem('authToken');
+    const button_generate_qr = document.getElementById('qr-button-generate');
     if (!token) {
         // Mostrar mensaje de error si no hay sesión
         const errorMessage = document.getElementById('errorMessage');
@@ -99,6 +100,10 @@ function generateQR() {
         const icon = qrButton.querySelector('.material-icons');
         if (icon) icon.textContent = 'hourglass_empty';
     }
+
+    button_generate_qr.disabled = true;
+    button_generate_qr.style.cursor = 'wait';
+    button_generate_qr.textContent = 'Tiempo de espera...';
 
     // Realizar solicitud al backend para generar el código QR
     fetchAuthenticatedAPI('/api/Home/generate-qr', { method: 'POST' })
@@ -143,12 +148,20 @@ function generateQR() {
             showModal('errorModal');
         })
         .finally(() => {
-            // Restaurar el botón
-            if (qrButton) {
-                qrButton.style.pointerEvents = 'auto';
-                const icon = qrButton.querySelector('.material-icons');
-                if (icon) icon.textContent = 'qr_code';
-            }
+
+            setTimeout(() => {
+             
+                if (qrButton) {
+                    button_generate_qr.disabled = false;
+                    button_generate_qr.style.cursor = 'pointer';
+                    button_generate_qr.textContent = 'REGENERAR';
+
+                    qrButton.style.pointerEvents = 'auto';
+                    const icon = qrButton.querySelector('.material-icons');
+                    if (icon) icon.textContent = 'qr_code';
+                }
+            }, 2500);
+
         });
 }
 

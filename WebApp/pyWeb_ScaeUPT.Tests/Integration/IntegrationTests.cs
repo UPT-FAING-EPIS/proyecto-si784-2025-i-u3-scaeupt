@@ -176,5 +176,6 @@ namespace pyWeb_ScaeUPT.Tests.Integration
             // Assert
             Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
+
     }
 }

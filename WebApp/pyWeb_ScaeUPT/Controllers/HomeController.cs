@@ -98,9 +98,7 @@ namespace pyWeb_ScaeUPT.Controllers
                 // Para este ejemplo, usaremos el DNI (Id_Persona) como dato a encriptar
                 string dniToEncrypt = estudiante.Id_Persona;
 
-                // Generar un token encriptado con el DNI y la fecha/hora actual de lima
-                // string dataToEncrypt = $"{dniToEncrypt}|{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
-                
+                // Generar timestamp con mayor precisión y GUID único
                 DateTime limaTime;
                 try
                 {
@@ -113,7 +111,13 @@ namespace pyWeb_ScaeUPT.Controllers
                     limaTime = DateTime.UtcNow.AddHours(-5); // UTC-5 para Lima
                 }
                 
-                string dataToEncrypt = $"{dniToEncrypt}|{limaTime.ToString("yyyy-MM-dd HH:mm:ss")}|{estudiante.Matricula}";
+                // Generar un GUID único y timestamp con milisegundos para garantizar unicidad
+                string uniqueId = Guid.NewGuid().ToString("N")[..8]; // Usar solo los primeros 8 caracteres del GUID
+                string preciseTimestamp = limaTime.ToString("yyyy-MM-dd HH:mm:ss.fff"); // Incluir milisegundos
+                long unixTimestamp = ((DateTimeOffset)limaTime).ToUnixTimeMilliseconds(); // Timestamp Unix en milisegundos
+                
+                // Crear datos únicos para encriptar
+                string dataToEncrypt = $"{dniToEncrypt}|{preciseTimestamp}|{estudiante.Matricula}|{uniqueId}|{unixTimestamp}";
 
                 string encryptedToken = EncryptData(dataToEncrypt);
 

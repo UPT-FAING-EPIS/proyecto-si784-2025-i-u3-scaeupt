@@ -78,6 +78,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/api/Home/error");
     app.UseHsts();
+
 }
 
 app.UseHttpsRedirection();
