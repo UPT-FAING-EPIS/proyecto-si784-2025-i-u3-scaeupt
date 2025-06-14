@@ -34,16 +34,9 @@ jobs:
     - name: Generate Semgrep HTML Report
       if: always()
       run: |
-        pip install semgrep
-        semgrep --config=auto --json --output=semgrep-results.json WebApp/ || true
-        # Convertir JSON a HTML (necesitarás un script personalizado o usar jq)
+        pip install --upgrade semgrep
         mkdir -p semgrep-report
-        echo '<html><head><title>Semgrep Security Report</title></head><body>' > semgrep-report/index.html
-        echo '<h1>Semgrep Security Analysis Results</h1>' >> semgrep-report/index.html
-        echo '<pre>' >> semgrep-report/index.html
-        cat semgrep-results.json >> semgrep-report/index.html
-        echo '</pre></body></html>' >> semgrep-report/index.html
-        
+        semgrep scan --config=p/default --output-format=html --output=semgrep-report/index.html WebApp/ || true
     - name: Deploy Semgrep report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v4
