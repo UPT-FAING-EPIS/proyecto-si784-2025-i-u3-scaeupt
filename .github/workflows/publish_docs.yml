@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: pyDesktop_ScaeUPT
+        working-directory: DesktopApp/pyDesktop_ScaeUPT
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
         dotnet tool update -g docfx
         dotnet tool update -g dll2mmd
     - name: Restore packages
-      run: msbuild SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
+      run: msbuild ./../SCAE-UPT.sln /p:Configuration=Release /p:Platform="Any CPU" /p:OutputType=Library
     - name: Generar diagrama de clases con dll2mmd
       run: |
         dll2mmd -f bin/Release/SCAE-UPT.dll -o clases.md -ns SCAE_UPT.Entidad SCAE_UPT.Negocio SCAE_UPT.Config
@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: class-diagram
-        path: pyDesktop_ScaeUPT/clases.md
+        path: DesktopApp/pyDesktop_ScaeUPT/clases.md
   build-and-deploy-docs:
     runs-on: ubuntu-latest
     defaults:
