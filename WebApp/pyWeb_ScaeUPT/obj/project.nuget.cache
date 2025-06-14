@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XsRVyppsW90ZTYbuXmN+ZMH0y9z72uchDp/jXo+RJ89n4E93kRZzDSCFLprWtm7D4Sv9X90arLBKirTTLPcbkA==",
+  "dgSpecHash": "99bCKsP8BihKYBzo3CI3NlQ+9dM5zwrB3KiL6QloPQv8ymy4MJ7NIGUfs1JZQP3bNBbQezV43Tpimflcc9tHMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\dotnetenv\\3.1.1\\dotnetenv.3.1.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",

@@ -129,3 +129,47 @@ C:\Users\Administrator\Desktop\ga\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb
 C:\Users\Administrator\Desktop\ga\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.pdb
 C:\Users\Administrator\Desktop\ga\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\ga\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\ref\pyWeb_ScaeUPT.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\appsettings.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.staticwebassets.runtime.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.exe
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.deps.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.runtimeconfig.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\pyWeb_ScaeUPT.pdb
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\QRCoder.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\Sprache.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.sourcelink.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets\msbuild.pyWeb_ScaeUPT.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets\msbuild.build.pyWeb_ScaeUPT.props
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.pyWeb_ScaeUPT.props
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.pyWeb_ScaeUPT.props
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\scopedcss\bundle\pyWeb_ScaeUPT.styles.css
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_Sc.F0A515AC.Up2Date
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\refint\pyWeb_ScaeUPT.dll
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.pdb
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\pyWeb_ScaeUPT.genruntimeconfig.cache
+C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT\obj\Debug\net8.0\ref\pyWeb_ScaeUPT.dll

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {}
+    "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {
+    "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
         "projectName": "pyWeb_ScaeUPT",
-        "projectPath": "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\pyWeb_ScaeUPT.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Desktop\\ga\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\WebApp\\pyWeb_ScaeUPT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
