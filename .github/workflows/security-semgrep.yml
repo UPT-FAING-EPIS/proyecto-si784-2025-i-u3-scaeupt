@@ -1,0 +1,54 @@
+name: Semgrep Code Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    name: Semgrep Security Scan
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Semgrep
+      id: semgrep
+      uses: semgrep/semgrep-action@v1
+      with:
+        config: >
+          p/security-audit
+          p/secrets
+          p/csharp
+          p/dotnet
+        generateSarif: "1"
+        
+    - name: Upload Semgrep results to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: semgrep.sarif
+        
+    - name: Generate Semgrep HTML Report
+      if: always()
+      run: |
+        pip install semgrep
+        semgrep --config=auto --json --output=semgrep-results.json WebApp/ || true
+        # Convertir JSON a HTML (necesitarás un script personalizado o usar jq)
+        mkdir -p semgrep-report
+        echo '<html><head><title>Semgrep Security Report</title></head><body>' > semgrep-report/index.html
+        echo '<h1>Semgrep Security Analysis Results</h1>' >> semgrep-report/index.html
+        echo '<pre>' >> semgrep-report/index.html
+        cat semgrep-results.json >> semgrep-report/index.html
+        echo '</pre></body></html>' >> semgrep-report/index.html
+        
+    - name: Deploy Semgrep report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: semgrep-report
+        destination_dir: ReporteSemgrep
+        keep_files: true

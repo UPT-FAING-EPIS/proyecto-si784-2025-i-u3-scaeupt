@@ -1,0 +1,37 @@
+name: Snyk Security Analysis
+
+env:
+  DOTNET_VERSION: '8.0' # la versión de .NET
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - uses: snyk/actions/setup@master
+    - name: Configurando la versión de NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Instalar Snyk to html
+      run: npm install snyk-to-html -g
+    - name: Snyk monitor
+      run: snyk code test --sarif-file-output=snyk.sarif --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: snyk.sarif
+    - name: Snyk a HTML
+      run: |
+        mkdir -p snyk-report
+        snyk test --json | snyk-to-html -o snyk-report/index.html
+    - name: Upload Snyk Report
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: snyk-report
+        destination_dir: ReporteSnyk
+        keep_files: true
