@@ -15,7 +15,7 @@ ArchitecturesInstallIn64BitMode=x64
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 
 [Files]
-Source: "..\DesktopApp\pyDesktop_ScaeUPT\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\pyDesktop_ScaeUPT\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\SCAE-UPT"; Filename: "{app}\SCAE-UPT.exe"
