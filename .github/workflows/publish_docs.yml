@@ -103,7 +103,8 @@ jobs:
                   "_site/**",
                   "Cobertura/index.html",
                   "Stryker/mutation-report.html",
-                  "docs/pyWeb_ScaeUPT.html"
+                  "docs/pyWeb_ScaeUPT.html",
+                  "ReporteBDD/index.html"
                 ]
               }
             ],
@@ -154,6 +155,8 @@ jobs:
         ## [Documentacion de Clases, atributos y métodos](docs/pyWeb_ScaeUPT.html)
 
         ## [Diagrama de Clases](clases.md)
+        
+        ## [Reporte BDD](ReporteBDD/index.html)
         EOF
     - name: Generar documentación
       run: |
