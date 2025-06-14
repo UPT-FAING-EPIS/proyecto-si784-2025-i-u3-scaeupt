@@ -294,6 +294,11 @@ namespace SCAE_UPT.Presentacion
             clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
             string tokenEncriptado = EscanearQR();
 
+            if(tokenEncriptado == null)
+            {
+                return;
+            }
+
             string tokenDesencriptado = DecryptData(tokenEncriptado);
 
             string[] tokenSeparado = tokenDesencriptado.Split('|');

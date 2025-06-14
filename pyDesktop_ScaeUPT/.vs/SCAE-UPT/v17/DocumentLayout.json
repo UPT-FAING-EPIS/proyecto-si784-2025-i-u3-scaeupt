@@ -1,46 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|c:\\users\\playg\\onedrive\\escritorio\\escritorio\\proyecto-arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\negocio\\clsnegocioregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:negocio\\clsnegocioregistro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\negocio\\clsnegocioregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:negocio\\clsnegocioregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\negocio\\clsnegociousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:negocio\\clsnegociousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\config\\clsconfigconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:config\\clsconfigconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|SCAE-UPT.csproj|solutionrelative:presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,125 +18,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmLoginGuardiania.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmLoginGuardiania.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T07:13:52.906Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frmPrincipal.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmPrincipal.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
-              "RelativeToolTip": "Presentacion\\frmPrincipal.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAcwGsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T07:11:47.778Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "frmPrincipal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmPrincipal.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T05:57:05.111Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmLoginGuardiania.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmLoginGuardiania.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
-              "RelativeToolTip": "Presentacion\\frmLoginGuardiania.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T05:55:39.478Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "clsNegocioRegistroVisitante.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioRegistroVisitante.cs",
-              "RelativeDocumentMoniker": "Negocio\\clsNegocioRegistroVisitante.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioRegistroVisitante.cs",
-              "RelativeToolTip": "Negocio\\clsNegocioRegistroVisitante.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAowGQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T04:08:05.064Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "clsNegocioRegistro.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioRegistro.cs",
-              "RelativeDocumentMoniker": "Negocio\\clsNegocioRegistro.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioRegistro.cs",
-              "RelativeToolTip": "Negocio\\clsNegocioRegistro.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAYwLcAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:57:34.273Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frmRegistrarUpetino.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeToolTip": "Presentacion\\frmRegistrarUpetino.cs",
-              "ViewState": "AgIAALAAAAAAAAAAAAAjwL0AAAAQAAAAAAAAAA==",
+              "Title": "frmLoginGuardiania.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeDocumentMoniker": "Presentacion\\frmLoginGuardiania.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeToolTip": "Presentacion\\frmLoginGuardiania.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAIwDUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:51:57.322Z",
+              "WhenOpened": "2025-06-14T04:41:08.847Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "clsConfigConexion.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
-              "RelativeDocumentMoniker": "Config\\clsConfigConexion.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
-              "RelativeToolTip": "Config\\clsConfigConexion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAANAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "frmLoginGuardiania.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeDocumentMoniker": "Presentacion\\frmLoginGuardiania.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ga\\vfiina solo test y 3 yaml\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-08T23:02:20.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "clsNegocioUsuario.cs",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioUsuario.cs",
-              "RelativeDocumentMoniker": "Negocio\\clsNegocioUsuario.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Negocio\\clsNegocioUsuario.cs",
-              "RelativeToolTip": "Negocio\\clsNegocioUsuario.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwDIAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T05:58:30.626Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frmRegistrarUpetino.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\proyecto-si784-2025-i-u2-scae-upt\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeDocumentMoniker": "Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\playg\\OneDrive\\Escritorio\\Escritorio\\Proyecto-Arquitectura\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\SCAE-UPT-C#\\SCAE-UPT-QR\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T03:47:18.499Z"
+              "WhenOpened": "2025-06-14T04:41:05.874Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }
