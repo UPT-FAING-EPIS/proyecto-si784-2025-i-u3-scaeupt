@@ -15,11 +15,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
 
+
+
+using Newtonsoft.Json;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
+using System.Drawing.Imaging;
+using System.Diagnostics;
+using System.Net.Http;
+
+
 namespace SCAE_UPT.Presentacion
 {
     public partial class frmRegistrarUpetino : Form
     {
-        
+
+
+        Emgu.CV.VideoCapture captura;
+        int camIndex = 0;
+        Emgu.CV.Mat frame = new Emgu.CV.Mat();
+        Emgu.CV.CascadeClassifier detectorRostro;
+        Rectangle marco;
+        byte[] fotoBytes, fotoCapturada;
+
+
         private readonly string _encryptionKey = "ScaeUPT2024SecretKey123456789012345";
         public frmRegistrarUpetino()
         {
@@ -50,7 +70,7 @@ namespace SCAE_UPT.Presentacion
                 objEntUsuarioRegistro.FechaHora_Salida = fechaHoraActual;
 
                 objNegUsuarioRegistro.MtdGuardarSalida(objEntUsuarioRegistro);
-
+            
             }
             else
             {
@@ -81,7 +101,7 @@ namespace SCAE_UPT.Presentacion
             this.Hide();
         }
 
-        private void RegistrarUpetino(string token)
+        private async void RegistrarUpetino(string token)
         {
             clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
 
@@ -106,13 +126,26 @@ namespace SCAE_UPT.Presentacion
                 string apellido = row["Apellido"].ToString();
                 string telefono = row["Telefono"].ToString();
 
-                byte[] fotoBytes = row["Foto"] as byte[];
+                fotoBytes = row["Foto"] as byte[];
 
                 txtNombre.Text = nombre;
                 txtApellido.Text = apellido;
-                MostrarFoto(fotoBytes);
+                MostrarFoto(fotoBytes,pcbFoto);
 
-                ProcesarRegistro(dni, telefono);
+                bool rostroVerificado = await VerificarRostrosAsync(fotoCapturada, fotoBytes);
+                    if (rostroVerificado)
+                    {
+                        ProcesarRegistro(dni, telefono);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede procesar el registro. El rostro no coincide con la persona registrada.", 
+                                    "Verificación fallida", 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Warning);
+                        // LimpiarTexto();
+                    }
+
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -197,7 +230,7 @@ namespace SCAE_UPT.Presentacion
             }
         }
 
-        private void MostrarFoto(byte[] fotoBytes)
+        private void MostrarFoto(byte[] fotoBytes, PictureBox pcb)
         {
             if (fotoBytes == null || fotoBytes.Length == 0)
                 return;
@@ -208,8 +241,8 @@ namespace SCAE_UPT.Presentacion
                 {
                     var image = Image.FromStream(ms);
                     var scaledImage = new Bitmap(image, new Size(307, 249));
-                    pcbFoto.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pcbFoto.Image = scaledImage; // Usa tu PictureBox aquí
+                    pcb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pcb.Image = scaledImage;
                 }
                 catch (Exception ex)
                 {
@@ -316,6 +349,167 @@ namespace SCAE_UPT.Presentacion
 
             }
         }
+
+        private void btnCargarCamaras_Click(object sender, EventArgs e)
+        {
+            CargarCamaras();
+        }
+
+        private void btnPrenderCamara_Click(object sender, EventArgs e)
+        {
+            if (cmbCamaras.SelectedIndex >= 0)
+            {
+                camIndex = cmbCamaras.SelectedIndex;
+                captura = new Emgu.CV.VideoCapture(camIndex);
+                Application.Idle += MostrarFrame;
+            }
+            else
+            {
+                MessageBox.Show("Tiene que seleccionar una cámara");
+            }
+        }
+
+        private void btnCapturarFoto_Click(object sender, EventArgs e)
+        {
+            fotoCapturada  = CapturarImagen();
+            MostrarFoto(fotoCapturada,pcbFotoCapturada);
+        }
+
+        private void btnApagarCamara_Click(object sender, EventArgs e)
+        {
+            if (captura != null)
+            {
+                Application.Idle -= MostrarFrame;
+                captura.Dispose();
+                pcbCamara.Image = null;
+            }
+        }
+
+
+        private void CargarCamaras()
+        {
+            cmbCamaras.Items.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    var cap = new Emgu.CV.VideoCapture(i);
+                    if (cap.IsOpened)
+                    {
+                        cmbCamaras.Items.Add($"Cámara {i}");
+                        cap.Dispose();
+                    }
+                }
+                catch { }
+            }
+
+            if (cmbCamaras.Items.Count > 0)
+            {
+                cmbCamaras.SelectedIndex = 0;
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron cámaras.");
+            }
+        }
+
+        private void MostrarFrame(object sender, EventArgs e)
+        {
+            captura.Read(frame);
+            if (frame.IsEmpty) return;
+
+            Emgu.CV.Mat frameConGuia = frame.Clone();
+
+            // escala de grises para detectar rostro
+            using (var gray = frame.ToImage<Gray, byte>())
+            {
+                Rectangle[] rostros = detectorRostro.DetectMultiScale(gray, 1.1, 4);
+
+                // marco verde
+                CvInvoke.Rectangle(frameConGuia, marco, new MCvScalar(0, 255, 0), 2);
+
+                bool rostroDentro = false;
+
+                foreach (var r in rostros)
+                {
+                    CvInvoke.Rectangle(frameConGuia, r, new MCvScalar(255, 0, 0), 2); // dibuja el rostro detectado
+
+                    if (marco.Contains(r.Location) && marco.Contains(new System.Drawing.Point(r.Right, r.Bottom)))
+                    {
+                        rostroDentro = true;
+                        break;
+                    }
+                }
+
+                lblMensajeRostro.Text = rostroDentro ? "✅ Rostro alineado correctamente" : "❗Alinea tu rostro dentro del marco verde";
+            }
+
+            pcbCamara.Image?.Dispose();
+            pcbCamara.Image = frameConGuia.ToImage<Bgr, byte>().ToBitmap();
+
+        }
+
+        public byte[] CapturarImagen()
+        {
+            if (frame.IsEmpty)
+            {
+                MessageBox.Show("No hay imagen para capturar.");
+                return null;
+            }
+
+            Bitmap bmp = frame.ToImage<Bgr, byte>().ToBitmap();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bmp.Save(ms, ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+
+        private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var payload = new
+                    {
+                        img1 = Convert.ToBase64String(foto1),
+                        img2 = Convert.ToBase64String(foto2)
+                    };
+
+                    var content = new StringContent(
+                        JsonConvert.SerializeObject(payload),
+                        Encoding.UTF8,
+                        "application/json"
+                    );
+
+                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
+                    response.EnsureSuccessStatusCode();
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    dynamic resultado = JsonConvert.DeserializeObject(json);
+
+                    string mensaje = resultado.resultado;
+                    bool rostroCoincide = mensaje == "COINCIDE";
+
+                    MessageBox.Show(
+                        rostroCoincide ? "✅ Rostro verificado con éxito" : "❌ Rostro no coincide",
+                        "Resultado",
+                        MessageBoxButtons.OK,
+                        rostroCoincide ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                    );
+
+                    return rostroCoincide;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar rostro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false; 
+            }
+        }
+
+
 
         public bool ValidarHora(string horaParametro)
         {
