@@ -1,8 +1,9 @@
 name: Reporte de Mutaciones con Stryker
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
-on: push
-
+# on: push
+on: 
+  workflow_dispatch:
 jobs:
   test-and-publish-coverage:
     runs-on: ubuntu-latest
