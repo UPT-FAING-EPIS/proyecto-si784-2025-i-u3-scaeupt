@@ -1,6 +1,12 @@
 # Outputs
 output "app_url" {
   value = "https://${azurerm_linux_web_app.main.default_hostname}"
+  description = "URL de la aplicación ASP.NET principal"
+}
+
+output "python_service_url" {
+  value = "https://${azurerm_linux_web_app.python_service.default_hostname}"
+  description = "URL del servicio Python de verificación facial"
 }
 
 output "acr_login_server" {

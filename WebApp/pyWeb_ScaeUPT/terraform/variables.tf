@@ -19,7 +19,13 @@ variable "app_name" {
 variable "app_service_sku" {
   description = "SKU del plan de App Service"
   type        = string
-  default     = "F1"  # Change B1 a F1 (plan gratuito)
+  default     = "F1"  # Cambiar de F1 a B1 (Basic)
+}
+
+variable "python_app_service_sku" {
+  description = "SKU del plan de App Service para Python"
+  type        = string
+  default     = "B2"  # Plan más robusto para el microservicio Python
 }
 
 variable "acr_name" {
@@ -36,6 +42,19 @@ variable "docker_image_name" {
 
 variable "docker_image_tag" {
   description = "Tag de la imagen Docker"
+  type        = string
+  default     = "latest"
+}
+
+# variables para servicio Python
+variable "python_docker_image_name" {
+  description = "Nombre de la imagen Docker para el servicio Python"
+  type        = string
+  default     = "python-verificador"
+}
+
+variable "python_docker_image_tag" {
+  description = "Tag de la imagen Docker para el servicio Python"
   type        = string
   default     = "latest"
 }
