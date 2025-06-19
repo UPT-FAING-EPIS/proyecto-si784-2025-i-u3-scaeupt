@@ -68,7 +68,7 @@ resource "azurerm_service_plan" "python" {
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   os_type             = "Linux"
-  sku_name            = var.python_app_service_sku  # Usar B2 o superior
+  sku_name            = "B2"
   
   tags = {
     environment = "production"
@@ -125,8 +125,11 @@ resource "azurerm_linux_web_app" "python_service" {
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   service_plan_id     = azurerm_service_plan.python.id
-  
   https_only = true
+
+  depends_on = [
+    azurerm_service_plan.python
+  ]
   
   site_config {
     always_on                         = true  # F1 plan no soporta always_on

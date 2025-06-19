@@ -245,23 +245,17 @@ jobs:
         ACR_NAME="scaeuptacr"
         RG_NAME="scae-upt-rg"
         APP_NAME="scae-upt-app"
-        PYTHON_APP_NAME="scae-upt-python-service"
-        
         ACR_USERNAME=$(az acr credential show --name "$ACR_NAME" --query username -o tsv)
         ACR_PASSWORD=$(az acr credential show --name "$ACR_NAME" --query "passwords[0].value" -o tsv)
         ACR_LOGIN_SERVER=$(az acr show --name "$ACR_NAME" --query loginServer -o tsv)
         APP_URL=$(az webapp show --name "$APP_NAME" --resource-group "$RG_NAME" --query defaultHostName -o tsv)
-        PYTHON_APP_URL=$(az webapp show --name "$PYTHON_APP_NAME" --resource-group "$RG_NAME" --query defaultHostName -o tsv)
-        
         APP_URL="https://$APP_URL"
-        PYTHON_APP_URL="https://$PYTHON_APP_URL"
 
         echo "APP_URL=$APP_URL" >> $GITHUB_ENV
-        echo "PYTHON_APP_URL=$PYTHON_APP_URL" >> $GITHUB_ENV
         echo "ACR_USERNAME=$ACR_USERNAME" >> $GITHUB_ENV
         echo "ACR_PASSWORD=$ACR_PASSWORD" >> $GITHUB_ENV
         echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
-        
+
     - name: Login to Azure Container Registry
       uses: docker/login-action@v2
       with:
@@ -289,6 +283,12 @@ jobs:
           ${{ env.ACR_LOGIN_SERVER }}/python-verificador:${{ github.sha }}
           ${{ env.ACR_LOGIN_SERVER }}/python-verificador:latest
 
+    - name: Import existing resources if needed
+      run: |
+        cd terraform
+        terraform import azurerm_service_plan.python "/subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/scae-upt-rg/providers/Microsoft.Web/serverfarms/scae-upt-python-plan" || echo "Resource doesn't exist or already imported"
+        continue-on-error: true
+
     - name: Apply Terraform with new images
       run: |
         cd terraform
@@ -303,7 +303,17 @@ jobs:
           -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
           -var="docker_image_tag=${{ github.sha }}" \
           -var="python_docker_image_tag=${{ github.sha }}"
+
+    - name: Get ACR Credentials for Python Service
+      run: |
+        RG_NAME="scae-upt-rg"
+        PYTHON_APP_NAME="scae-upt-python-service"
         
+        PYTHON_APP_URL=$(az webapp show --name "$PYTHON_APP_NAME" --resource-group "$RG_NAME" --query defaultHostName -o tsv)
+        PYTHON_APP_URL="https://$PYTHON_APP_URL"
+
+        echo "PYTHON_APP_URL=$PYTHON_APP_URL" >> $GITHUB_ENV
+
     - name: Show Deployment URLs
       run: |
         echo "🚀 Aplicación ASP.NET desplegada en: ${{ env.APP_URL }}"
