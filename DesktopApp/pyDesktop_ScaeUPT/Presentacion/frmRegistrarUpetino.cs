@@ -46,10 +46,20 @@ namespace SCAE_UPT.Presentacion
             InitializeComponent();
             ListarRegistroUpetino();
             LimpiarTexto();
+            cargarCuadroVerde();
             this.FormClosing += new FormClosingEventHandler(OnFormClosing);
         }
 
+        public void cargarCuadroVerde()
+        {
+            //detectorRostro = new Emgu.CV.CascadeClassifier("haarcascade_frontalface_default.xml");
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Recursos", "haarcascade_frontalface_default.xml");
+            detectorRostro = new Emgu.CV.CascadeClassifier(ruta);
+            marco = new Rectangle(220, 100, 200, 260); // x, y, 
 
+            captura = new Emgu.CV.VideoCapture(0); 
+            Application.Idle += MostrarFrame;
+        }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
@@ -91,7 +101,9 @@ namespace SCAE_UPT.Presentacion
         {
             txtApellido.Text = string.Empty;
             txtNombre.Text = string.Empty;
+            fotoCapturada = null;
             pcbFoto.Image = null;
+            pcbFotoCapturada.Image = null;
         }
 
         private void btnRetroceder_Click(object sender, EventArgs e)
@@ -311,7 +323,14 @@ namespace SCAE_UPT.Presentacion
                         BarcodeReader reader = new BarcodeReader();
                         var result = reader.Decode(bitmap);
 
-                        return result.Text;
+                        if (result != null)
+                        {
+                            return result.Text;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se detectó ningún código QR en la imagen.", "QR no encontrado");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -324,29 +343,34 @@ namespace SCAE_UPT.Presentacion
 
         private void btnEscanearQR_Click(object sender, EventArgs e)
         {
-            clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
-            string tokenEncriptado = EscanearQR();
-
-            if(tokenEncriptado == null)
-            {
-                return;
+            if (fotoCapturada == null) {
+                MessageBox.Show("No se ha capturado la foto, por favor hagalo.", "Rostro Captura");
             }
+            else {  
+                clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
+                string tokenEncriptado = EscanearQR();
 
-            string tokenDesencriptado = DecryptData(tokenEncriptado);
+                if(tokenEncriptado == null)
+                {
+                    return;
+                }
 
-            string[] tokenSeparado = tokenDesencriptado.Split('|');
+                string tokenDesencriptado = DecryptData(tokenEncriptado);
 
-            if (ValidarHora(tokenSeparado[1])==false)
-            {
-                MessageBox.Show("QR Expirado");
-                objNegRegistro.MtdEliminarToken(tokenSeparado[0]);
-                return;
-            }
+                string[] tokenSeparado = tokenDesencriptado.Split('|');
 
-            if (objNegRegistro.MtdCompararToken(tokenEncriptado, tokenSeparado[0]))
-            {
-                RegistrarUpetino(tokenSeparado[0]);
+                if (ValidarHora(tokenSeparado[1])==false)
+                {
+                    MessageBox.Show("QR Expirado");
+                    objNegRegistro.MtdEliminarToken(tokenSeparado[0]);
+                    return;
+                }
 
+                if (objNegRegistro.MtdCompararToken(tokenEncriptado, tokenSeparado[0]))
+                {
+                    RegistrarUpetino(tokenSeparado[0]);
+
+                }
             }
         }
 
@@ -483,7 +507,7 @@ namespace SCAE_UPT.Presentacion
                         "application/json"
                     );
 
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
+                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
                     response.EnsureSuccessStatusCode();
 
                     string json = await response.Content.ReadAsStringAsync();

@@ -465,6 +465,9 @@
     <Content Include="Recursos\window_remove.png" />
     <Content Include="Recursos\window_up.png" />
     <Content Include="Recursos\word.png" />
+    <Content Include="Recursos\haarcascade_frontalface_default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\qr-code-scanner-line-design-single-isolated-icon-KH90CH.jpg" />
   </ItemGroup>
   <ItemGroup>

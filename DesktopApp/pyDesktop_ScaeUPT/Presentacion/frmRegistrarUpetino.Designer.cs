@@ -223,6 +223,7 @@
             // 
             this.txtApellido.Location = new System.Drawing.Point(429, 32);
             this.txtApellido.Name = "txtApellido";
+            this.txtApellido.ReadOnly = true;
             this.txtApellido.Size = new System.Drawing.Size(188, 20);
             this.txtApellido.TabIndex = 8;
             // 
@@ -239,6 +240,7 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(230, 32);
             this.txtNombre.Name = "txtNombre";
+            this.txtNombre.ReadOnly = true;
             this.txtNombre.Size = new System.Drawing.Size(193, 20);
             this.txtNombre.TabIndex = 6;
             // 

@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\desktop\\desplegadoconpyton\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -39,10 +39,23 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmRegistrarUpetino.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "Title": "frmRegistrarUpetino.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
               "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "ViewState": "AQIAAEIBAAAAAAAAAAAjwFoBAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T16:18:50.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmRegistrarUpetino.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
               "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T16:24:21.656Z",
@@ -50,28 +63,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmRegistrarUpetino.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAASwJYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T16:18:50.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "frmPrincipal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\DesplegadoConPyton\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
               "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "..\\..\\..\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T09:54:36.667Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-06-14T09:54:36.667Z"
             }
           ]
         }
