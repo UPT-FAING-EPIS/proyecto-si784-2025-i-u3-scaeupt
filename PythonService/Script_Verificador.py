@@ -222,25 +222,33 @@ def calcular_ruido(gray_img):
     except:
         return 0.5
 
+
 def validar_metadata_imagen(image_data):
     """Valida metadatos de la imagen para detectar manipulación"""
     try:
         # Convertir bytes a PIL Image
         img = Image.open(io.BytesIO(image_data))
-        
+
         # Verificar formato
         if img.format not in ['JPEG', 'PNG']:
             return False, "Formato de imagen no válido"
-        
+
         # Verificar dimensiones mínimas
+        warning = None
         if img.width < 200 or img.height < 200:
-            return False, "Imagen muy pequeña"
-        
+            warning = "Imagen pequeña, los resultados pueden no ser confiables"
+            logger.warning(f"{warning} ({img.width}x{img.height}px)")
+
         # Verificar si tiene metadatos EXIF (fotos reales suelen tenerlos)
         has_exif = hasattr(img, '_getexif') and img._getexif() is not None
-        
-        return True, {"has_exif": has_exif, "format": img.format, "size": (img.width, img.height)}
-        
+
+        return True, {
+            "has_exif": has_exif,
+            "format": img.format,
+            "size": (img.width, img.height),
+            "warning": warning
+        }
+
     except Exception as e:
         return False, f"Error validando metadata: {e}"
 

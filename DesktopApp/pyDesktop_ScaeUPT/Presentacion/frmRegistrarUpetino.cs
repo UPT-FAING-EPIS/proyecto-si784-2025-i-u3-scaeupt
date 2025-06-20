@@ -99,11 +99,12 @@ namespace SCAE_UPT.Presentacion
 
         private void LimpiarTexto()
         {
+            /*
             txtApellido.Text = string.Empty;
             txtNombre.Text = string.Empty;
             fotoCapturada = null;
             pcbFoto.Image = null;
-            pcbFotoCapturada.Image = null;
+            pcbFotoCapturada.Image = null;*/
         }
 
         private void btnRetroceder_Click(object sender, EventArgs e)
@@ -343,12 +344,13 @@ namespace SCAE_UPT.Presentacion
 
         private void btnEscanearQR_Click(object sender, EventArgs e)
         {
+            /*
             if (fotoCapturada == null)
             {
                 MessageBox.Show("No se ha capturado la foto, por favor hagalo.", "Rostro Captura");
             }
             else
-            {
+            {*/
                 clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
                 string tokenEncriptado = EscanearQR();
 
@@ -377,7 +379,7 @@ namespace SCAE_UPT.Presentacion
                 {
                     MessageBox.Show("No hay un token generado");
                 }
-            }
+            //}
         }
 
         private void btnCargarCamaras_Click(object sender, EventArgs e)
@@ -401,7 +403,8 @@ namespace SCAE_UPT.Presentacion
 
         private void btnCapturarFoto_Click(object sender, EventArgs e)
         {
-            fotoCapturada = CapturarImagen();
+            fotoCapturada = fotoBytes;
+            //fotoCapturada = CapturarImagen();
             MostrarFoto(fotoCapturada, pcbFotoCapturada);
         }
 
@@ -495,7 +498,7 @@ namespace SCAE_UPT.Presentacion
             }
         }
 
-        private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
+        /*private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
         {
             try
             {
@@ -557,8 +560,73 @@ namespace SCAE_UPT.Presentacion
                 MessageBox.Show("Error al verificar rostro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-        }
+        }*/
 
+        private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var payload = new
+                    {
+                        img1 = "data:image/jpeg;base64," + Convert.ToBase64String(foto1),
+                        img2 = "data:image/jpeg;base64," + Convert.ToBase64String(foto2)
+                    };
+
+                    var content = new StringContent(
+                        JsonConvert.SerializeObject(payload),
+                        Encoding.UTF8,
+                        "application/json"
+                    );
+
+                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string errorJson = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"❌ Error al verificar rostro:\nCódigo: {(int)response.StatusCode} {response.StatusCode}\n\nDetalles: {errorJson}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    //response.EnsureSuccessStatusCode();
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    dynamic resultado = JsonConvert.DeserializeObject(json);
+
+                    string mensaje = resultado.resultado;
+                    bool rostroCoincide = false;
+
+                    if (mensaje == "COINCIDE")
+                    {
+                        MessageBox.Show("✅ Rostro verificado con éxito", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        rostroCoincide = true;
+                    }
+                    else if (mensaje == "SOSPECHOSA")
+                    {
+                        MessageBox.Show("⚠️ Rostro coincide pero imagen sospechosa", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        rostroCoincide = false;
+                    }
+                    else if (mensaje == "NO COINCIDE")
+                    {
+                        MessageBox.Show("❌ Rostro no coincide", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        rostroCoincide = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("❌ Respuesta inesperada del servidor: " + mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        rostroCoincide = false;
+                    }
+
+                    return rostroCoincide;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar rostro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
 
 
         public bool ValidarHora(string horaParametro)
