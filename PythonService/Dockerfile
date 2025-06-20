@@ -80,10 +80,22 @@ ENV CUDA_VISIBLE_DEVICES=""
 # Exponer el puerto 5000
 EXPOSE 5000
 
+
 # Crear usuario no-root para seguridad
 RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Crear home para appuser y asignar permisos
+RUN mkdir -p /home/appuser && chown -R appuser:appuser /home/appuser
+
+# Establecer HOME para evitar errores al crear carpetas como .deepface
+ENV HOME=/home/appuser
+
+# Asignar permisos al appuser para /app y /tmp
 RUN chown -R appuser:appuser /app /tmp/face_verification
+
 USER appuser
+
+
 
 # Health check para verificar que el servicio esté funcionando
 HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
