@@ -377,7 +377,7 @@ namespace SCAE_UPT.Presentacion
                 }
                 else
                 {
-                    MessageBox.Show("No hay un token generado");
+                    MessageBox.Show("El codigo QR ya fue usado");
                 }
             //}
         }
@@ -498,7 +498,8 @@ namespace SCAE_UPT.Presentacion
             }
         }
 
-        /*private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
+        /*
+        private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
         {
             try
             {
@@ -516,8 +517,13 @@ namespace SCAE_UPT.Presentacion
                         "application/json"
                     );
 
-                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
-                    response.EnsureSuccessStatusCode();
+                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string errorJson = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"❌ Error al verificar rostro:\nCódigo: {(int)response.StatusCode} {response.StatusCode}\n\nDetalles: {errorJson}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
 
                     string json = await response.Content.ReadAsStringAsync();
                     dynamic resultado = JsonConvert.DeserializeObject(json);
@@ -562,6 +568,7 @@ namespace SCAE_UPT.Presentacion
             }
         }*/
 
+
         private async Task<bool> VerificarRostrosAsync(byte[] foto1, byte[] foto2)
         {
             try
@@ -580,7 +587,7 @@ namespace SCAE_UPT.Presentacion
                         "application/json"
                     );
 
-                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
+                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
 
                     if (!response.IsSuccessStatusCode)
                     {

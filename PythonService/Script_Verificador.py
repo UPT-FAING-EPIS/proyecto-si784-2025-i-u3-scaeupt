@@ -65,13 +65,13 @@ def detectar_liveness(image_path):
         is_live = total_score > 0.6
         
         return is_live, {
-            "total_score": total_score,
-            "texture_score": texture_score,
-            "brightness_score": brightness_score,
-            "sharpness_score": sharpness_score,
-            "reflection_score": reflection_score,
-            "quality_score": quality_score,
-            "is_live": is_live
+            "total_score": float(total_score),  # Asegurar que sea float
+            "texture_score": float(texture_score),
+            "brightness_score": float(brightness_score),
+            "sharpness_score": float(sharpness_score),
+            "reflection_score": float(reflection_score),
+            "quality_score": float(quality_score),
+            "is_live": bool(is_live)  # Asegurar que sea bool
         }
         
     except Exception as e:
@@ -104,7 +104,7 @@ def calcular_textura_lbp(gray_img):
         uniformity = np.sum(hist ** 2) / (lbp.size ** 2)
         
         # Normalizar score (mayor uniformidad = menor probabilidad de ser real)
-        return min(1.0, 1.0 - uniformity * 10)
+        return float(min(1.0, 1.0 - uniformity * 10))
         
     except:
         return 0.5
@@ -123,7 +123,7 @@ def analizar_brillo_contraste(gray_img):
         
         contrast_score = min(1.0, std_brightness / 100.0)
         
-        return (brightness_score + contrast_score) / 2
+        return float((brightness_score + contrast_score) / 2)
         
     except:
         return 0.5
@@ -138,7 +138,7 @@ def calcular_nitidez(gray_img):
         # Normalizar (imágenes de pantalla suelen ser menos nítidas)
         normalized_sharpness = min(1.0, sharpness / 1000.0)
         
-        return normalized_sharpness
+        return float(normalized_sharpness)
         
     except:
         return 0.5
@@ -184,7 +184,7 @@ def analizar_calidad_imagen(img):
         
         quality_score = (jpeg_quality + (1.0 - noise_level) + resolution_score) / 3
         
-        return quality_score
+        return float(quality_score)
         
     except:
         return 0.5
@@ -205,7 +205,7 @@ def estimar_calidad_jpeg(img):
         # Estimar calidad basada en la suavidad de gradientes
         quality = 1.0 - min(1.0, np.std(magnitude) / 50.0)
         
-        return quality
+        return float(quality)
         
     except:
         return 0.5
@@ -217,11 +217,10 @@ def calcular_ruido(gray_img):
         laplacian = cv2.Laplacian(gray_img, cv2.CV_64F)
         noise_level = np.std(laplacian) / 100.0
         
-        return min(1.0, noise_level)
+        return float(min(1.0, noise_level))
         
     except:
         return 0.5
-
 
 def validar_metadata_imagen(image_data):
     """Valida metadatos de la imagen para detectar manipulación"""
@@ -243,9 +242,9 @@ def validar_metadata_imagen(image_data):
         has_exif = hasattr(img, '_getexif') and img._getexif() is not None
 
         return True, {
-            "has_exif": has_exif,
-            "format": img.format,
-            "size": (img.width, img.height),
+            "has_exif": "yes" if has_exif else "no", 
+            "format": img.format, 
+            "size": [int(img.width), int(img.height)],  # Asegurar que sean int
             "warning": warning
         }
 
@@ -323,12 +322,16 @@ def verificar():
                 # PASO 1: Detección de liveness en la imagen del usuario (img2)
                 is_live, liveness_info = detectar_liveness(f2.name)
                 
+                # Asegurar que liveness_info sea un dict válido
+                if not isinstance(liveness_info, dict):
+                    liveness_info = {"error": str(liveness_info), "total_score": 0.0}
+                
                 if not is_live:
                     return jsonify({
                         "resultado": "IMAGEN SOSPECHOSA",
                         "motivo": "La imagen del usuario no parece ser una foto real",
-                        "liveness_score": liveness_info.get("total_score", 0) if isinstance(liveness_info, dict) else 0,
-                        "detalles_liveness": liveness_info if isinstance(liveness_info, dict) else str(liveness_info)
+                        "liveness_score": float(liveness_info.get("total_score", 0)),
+                        "detalles_liveness": liveness_info
                     })
 
                 # PASO 2: Verificación facial solo si pasa el test de liveness
@@ -347,9 +350,9 @@ def verificar():
                     pass
 
             # Determinar resultado final
-            face_match = result["verified"]
-            confidence = result.get("distance", 0)
-            threshold = result.get("threshold", 0)
+            face_match = bool(result["verified"])
+            confidence = float(result.get("distance", 0))
+            threshold = float(result.get("threshold", 0))
             
             # Resultado final combinando verificación facial y liveness
             if face_match and is_live:
@@ -367,9 +370,9 @@ def verificar():
                     "threshold": threshold
                 },
                 "verificacion_liveness": {
-                    "es_imagen_real": is_live,
-                    "score": liveness_info.get("total_score", 0) if isinstance(liveness_info, dict) else 0,
-                    "detalles": liveness_info if isinstance(liveness_info, dict) else str(liveness_info)
+                    "es_imagen_real": bool(is_live),
+                    "score": float(liveness_info.get("total_score", 0)),
+                    "detalles": liveness_info
                 },
                 "metadata": {
                     "img1": metadata1_info,
@@ -417,13 +420,17 @@ def test_liveness():
             
             is_live, liveness_info = detectar_liveness(f.name)
             
+            # Asegurar que liveness_info sea un dict válido
+            if not isinstance(liveness_info, dict):
+                liveness_info = {"error": str(liveness_info), "total_score": 0.0}
+            
             try:
                 os.unlink(f.name)
             except:
                 pass
 
         return jsonify({
-            "es_imagen_real": is_live,
+            "es_imagen_real": "yes" if is_live else "no",
             "detalles_liveness": liveness_info,
             "metadata": metadata_info
         })
