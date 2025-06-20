@@ -1,7 +1,48 @@
+# Dependencias principales
 Flask==2.3.3
-deepface==0.0.79
-opencv-python==4.8.1.78
-tensorflow==2.13.0
-numpy==1.24.3
-Pillow==10.0.1
 gunicorn==21.2.0
+
+# Verificación facial y ML
+deepface==0.0.79
+tensorflow==2.13.0
+
+# Procesamiento de imágenes y computer vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+Pillow==10.0.1
+
+# Computación científica
+numpy==1.24.3
+scipy==1.11.4
+
+# Procesamiento de imágenes adicionales
+scikit-image==0.21.0
+imageio==2.31.5
+
+# Utilidades para análisis de imágenes
+matplotlib==3.7.2
+seaborn==0.12.2
+
+# Manipulación de datos
+pandas==2.0.3
+
+# Validación y parsing
+python-magic==0.4.27
+
+# Logging y monitoreo
+structlog==23.1.0
+colorlog==6.7.0
+
+# Seguridad y validación
+cryptography==41.0.7
+validators==0.22.0
+
+# Optimización de memoria
+psutil==5.9.6
+
+# HTTP client para health checks
+requests==2.31.0
+
+# Utilidades adicionales para procesamiento
+tqdm==4.66.1
+joblib==1.3.2

@@ -57,7 +57,7 @@ namespace SCAE_UPT.Presentacion
             detectorRostro = new Emgu.CV.CascadeClassifier(ruta);
             marco = new Rectangle(220, 100, 200, 260); // x, y, 
 
-            captura = new Emgu.CV.VideoCapture(0); 
+            captura = new Emgu.CV.VideoCapture(0);
             Application.Idle += MostrarFrame;
         }
 
@@ -80,7 +80,7 @@ namespace SCAE_UPT.Presentacion
                 objEntUsuarioRegistro.FechaHora_Salida = fechaHoraActual;
 
                 objNegUsuarioRegistro.MtdGuardarSalida(objEntUsuarioRegistro);
-            
+
             }
             else
             {
@@ -142,21 +142,21 @@ namespace SCAE_UPT.Presentacion
 
                 txtNombre.Text = nombre;
                 txtApellido.Text = apellido;
-                MostrarFoto(fotoBytes,pcbFoto);
+                MostrarFoto(fotoBytes, pcbFoto);
 
                 bool rostroVerificado = await VerificarRostrosAsync(fotoCapturada, fotoBytes);
-                    if (rostroVerificado)
-                    {
-                        ProcesarRegistro(dni, telefono);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se puede procesar el registro. El rostro no coincide con la persona registrada.", 
-                                    "Verificación fallida", 
-                                    MessageBoxButtons.OK, 
-                                    MessageBoxIcon.Warning);
-                        // LimpiarTexto();
-                    }
+                if (rostroVerificado)
+                {
+                    ProcesarRegistro(dni, telefono);
+                }
+                else
+                {
+                    MessageBox.Show("No se puede procesar el registro. El rostro no coincide con la persona registrada.",
+                                "Verificación fallida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                    LimpiarTexto();
+                }
 
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
@@ -303,7 +303,7 @@ namespace SCAE_UPT.Presentacion
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al desencriptar datos: "+ ex);
+                Console.WriteLine("Error al desencriptar datos: " + ex);
                 throw;
             }
         }
@@ -343,14 +343,16 @@ namespace SCAE_UPT.Presentacion
 
         private void btnEscanearQR_Click(object sender, EventArgs e)
         {
-            if (fotoCapturada == null) {
+            if (fotoCapturada == null)
+            {
                 MessageBox.Show("No se ha capturado la foto, por favor hagalo.", "Rostro Captura");
             }
-            else {  
+            else
+            {
                 clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
                 string tokenEncriptado = EscanearQR();
 
-                if(tokenEncriptado == null)
+                if (tokenEncriptado == null)
                 {
                     return;
                 }
@@ -359,7 +361,7 @@ namespace SCAE_UPT.Presentacion
 
                 string[] tokenSeparado = tokenDesencriptado.Split('|');
 
-                if (ValidarHora(tokenSeparado[1])==false)
+                if (ValidarHora(tokenSeparado[1]) == false)
                 {
                     MessageBox.Show("QR Expirado");
                     objNegRegistro.MtdEliminarToken(tokenSeparado[0]);
@@ -370,6 +372,10 @@ namespace SCAE_UPT.Presentacion
                 {
                     RegistrarUpetino(tokenSeparado[0]);
 
+                }
+                else
+                {
+                    MessageBox.Show("No hay un token generado");
                 }
             }
         }
@@ -395,8 +401,8 @@ namespace SCAE_UPT.Presentacion
 
         private void btnCapturarFoto_Click(object sender, EventArgs e)
         {
-            fotoCapturada  = CapturarImagen();
-            MostrarFoto(fotoCapturada,pcbFotoCapturada);
+            fotoCapturada = CapturarImagen();
+            MostrarFoto(fotoCapturada, pcbFotoCapturada);
         }
 
         private void btnApagarCamara_Click(object sender, EventArgs e)
@@ -514,14 +520,34 @@ namespace SCAE_UPT.Presentacion
                     dynamic resultado = JsonConvert.DeserializeObject(json);
 
                     string mensaje = resultado.resultado;
-                    bool rostroCoincide = mensaje == "COINCIDE";
+                    bool rostroCoincide=false;
 
-                    MessageBox.Show(
-                        rostroCoincide ? "✅ Rostro verificado con éxito" : "❌ Rostro no coincide",
-                        "Resultado",
-                        MessageBoxButtons.OK,
-                        rostroCoincide ? MessageBoxIcon.Information : MessageBoxIcon.Warning
-                    );
+                    if (mensaje == "VERIFICACION EXITOSA")
+                    {
+                        MessageBox.Show(
+                            "✅ Rostro verificado con éxito",
+                            "Resultado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                        rostroCoincide = true;
+                    }
+                    else if (mensaje == "COINCIDE PERO IMAGEN SOSPECHOSA")
+                    {
+                        MessageBox.Show(
+                            "⚠️ Rostro coincide pero sospechosamente",
+                            "Resultado",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        rostroCoincide = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("❌ Error al verificar rostro: " + mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        rostroCoincide = false;
+                    }
+
 
                     return rostroCoincide;
                 }
@@ -529,7 +555,7 @@ namespace SCAE_UPT.Presentacion
             catch (Exception ex)
             {
                 MessageBox.Show("Error al verificar rostro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false; 
+                return false;
             }
         }
 

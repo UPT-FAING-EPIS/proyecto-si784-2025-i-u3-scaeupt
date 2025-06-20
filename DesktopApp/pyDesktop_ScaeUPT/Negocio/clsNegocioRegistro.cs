@@ -154,7 +154,7 @@ namespace SCAE_UPT.Negocio
 
         public bool MtdCompararToken(string Token, string DNI)
         {
-            string sql = "SELECT TOKEN FROM tbtoken WHERE DNI_TOKEN = @DNI";
+            string sql = "SELECT TOKEN FROM tbtoken WHERE DNI_TOKEN = @DNI AND TOKEN=@token";
             MySqlConnection con = null;
             MySqlCommand cmd = null;
             MySqlDataReader reader = null;
@@ -164,6 +164,7 @@ namespace SCAE_UPT.Negocio
                 con = Conexion.GetConnection();
                 cmd = new MySqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@DNI", DNI);
+                cmd.Parameters.AddWithValue("@token", Token);
                 reader = cmd.ExecuteReader();
                 return reader.HasRows;
             }
@@ -181,7 +182,7 @@ namespace SCAE_UPT.Negocio
 
         public void MtdEliminarToken(string DNI)
         {
-            string sql = "UPDATE tbtoken SET TOKEN = 'a'  WHERE DNI_TOKEN = @DNI";
+            string sql = "UPDATE tbtoken SET TOKEN = 'a' WHERE DNI_TOKEN = @DNI";
             MySqlConnection con = null;
             MySqlCommand cmd = null;
 
