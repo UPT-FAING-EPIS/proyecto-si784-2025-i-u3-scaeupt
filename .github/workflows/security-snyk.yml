@@ -2,9 +2,7 @@ name: Snyk Security Analysis
 
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
-# on: push
-on: 
-  workflow_dispatch:
+on: push
 jobs:
   security:
     runs-on: ubuntu-latest

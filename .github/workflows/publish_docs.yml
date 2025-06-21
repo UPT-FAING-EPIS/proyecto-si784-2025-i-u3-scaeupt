@@ -2,9 +2,9 @@ name: Generar Documentacion con DocFx y Publicar
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
   DOTNET_VERSION_TOOL: '6.0' # la versión de .NET para agregar compatibilidad con .NET 6
-# on: push
-on: 
-  workflow_dispatch:
+on: push
+# on: 
+#   workflow_dispatch:
 jobs:
   build-windows:
     runs-on: windows-latest

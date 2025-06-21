@@ -1,9 +1,7 @@
 name: Test unitarias y Reporte de Cobertura 
 env:
   DOTNET_VERSION: '8.0' # la versión de .NET
-# on: push
-on: 
-  workflow_dispatch:
+on: push
 
 jobs:
   test-and-publish-coverage:

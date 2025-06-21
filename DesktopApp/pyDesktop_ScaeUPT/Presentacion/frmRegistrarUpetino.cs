@@ -99,12 +99,11 @@ namespace SCAE_UPT.Presentacion
 
         private void LimpiarTexto()
         {
-            /*
             txtApellido.Text = string.Empty;
             txtNombre.Text = string.Empty;
             fotoCapturada = null;
             pcbFoto.Image = null;
-            pcbFotoCapturada.Image = null;*/
+            pcbFotoCapturada.Image = null;
         }
 
         private void btnRetroceder_Click(object sender, EventArgs e)
@@ -145,7 +144,7 @@ namespace SCAE_UPT.Presentacion
                 txtApellido.Text = apellido;
                 MostrarFoto(fotoBytes, pcbFoto);
 
-                bool rostroVerificado = await VerificarRostrosAsync(fotoCapturada, fotoBytes);
+                bool rostroVerificado = await VerificarRostrosAsync(fotoBytes,fotoCapturada);
                 if (rostroVerificado)
                 {
                     ProcesarRegistro(dni, telefono);
@@ -344,13 +343,12 @@ namespace SCAE_UPT.Presentacion
 
         private void btnEscanearQR_Click(object sender, EventArgs e)
         {
-            /*
             if (fotoCapturada == null)
             {
                 MessageBox.Show("No se ha capturado la foto, por favor hagalo.", "Rostro Captura");
             }
             else
-            {*/
+            {
                 clsNegocioRegistro objNegRegistro = new clsNegocioRegistro();
                 string tokenEncriptado = EscanearQR();
 
@@ -379,7 +377,7 @@ namespace SCAE_UPT.Presentacion
                 {
                     MessageBox.Show("El codigo QR ya fue usado");
                 }
-            //}
+            }
         }
 
         private void btnCargarCamaras_Click(object sender, EventArgs e)
@@ -403,8 +401,7 @@ namespace SCAE_UPT.Presentacion
 
         private void btnCapturarFoto_Click(object sender, EventArgs e)
         {
-            fotoCapturada = fotoBytes;
-            //fotoCapturada = CapturarImagen();
+            fotoCapturada = CapturarImagen();
             MostrarFoto(fotoCapturada, pcbFotoCapturada);
         }
 
@@ -587,7 +584,7 @@ namespace SCAE_UPT.Presentacion
                         "application/json"
                     );
 
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
+                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
 
                     if (!response.IsSuccessStatusCode)
                     {

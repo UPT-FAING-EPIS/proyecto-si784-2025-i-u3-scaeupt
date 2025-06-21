@@ -49,6 +49,7 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnEscanearQR = new System.Windows.Forms.Button();
             this.dgvHistorialRegistroUpetino = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoCapturada)).BeginInit();
@@ -63,14 +64,14 @@
             this.panel1.Controls.Add(this.btnRetroceder);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(952, 65);
+            this.panel1.Size = new System.Drawing.Size(1087, 65);
             this.panel1.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(294, 17);
+            this.label1.Location = new System.Drawing.Point(418, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(332, 37);
             this.label1.TabIndex = 1;
@@ -88,6 +89,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.lblMensajeRostro);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.pcbFotoCapturada);
@@ -107,14 +109,14 @@
             this.panel2.Controls.Add(this.dgvHistorialRegistroUpetino);
             this.panel2.Location = new System.Drawing.Point(12, 83);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(952, 752);
+            this.panel2.Size = new System.Drawing.Size(1151, 874);
             this.panel2.TabIndex = 7;
             // 
             // lblMensajeRostro
             // 
             this.lblMensajeRostro.AutoSize = true;
             this.lblMensajeRostro.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensajeRostro.Location = new System.Drawing.Point(230, 438);
+            this.lblMensajeRostro.Location = new System.Drawing.Point(372, 511);
             this.lblMensajeRostro.Name = "lblMensajeRostro";
             this.lblMensajeRostro.Size = new System.Drawing.Size(329, 25);
             this.lblMensajeRostro.TabIndex = 19;
@@ -123,7 +125,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(704, 240);
+            this.label5.Location = new System.Drawing.Point(895, 240);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 18;
@@ -131,9 +133,9 @@
             // 
             // pcbFotoCapturada
             // 
-            this.pcbFotoCapturada.Location = new System.Drawing.Point(707, 256);
+            this.pcbFotoCapturada.Location = new System.Drawing.Point(907, 256);
             this.pcbFotoCapturada.Name = "pcbFotoCapturada";
-            this.pcbFotoCapturada.Size = new System.Drawing.Size(180, 190);
+            this.pcbFotoCapturada.Size = new System.Drawing.Size(219, 190);
             this.pcbFotoCapturada.TabIndex = 17;
             this.pcbFotoCapturada.TabStop = false;
             // 
@@ -189,14 +191,14 @@
             // 
             this.pcbCamara.Location = new System.Drawing.Point(227, 74);
             this.pcbCamara.Name = "pcbCamara";
-            this.pcbCamara.Size = new System.Drawing.Size(399, 356);
+            this.pcbCamara.Size = new System.Drawing.Size(662, 434);
             this.pcbCamara.TabIndex = 11;
             this.pcbCamara.TabStop = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(704, 16);
+            this.label2.Location = new System.Drawing.Point(895, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 13);
             this.label2.TabIndex = 10;
@@ -204,16 +206,16 @@
             // 
             // pcbFoto
             // 
-            this.pcbFoto.Location = new System.Drawing.Point(707, 32);
+            this.pcbFoto.Location = new System.Drawing.Point(907, 32);
             this.pcbFoto.Name = "pcbFoto";
-            this.pcbFoto.Size = new System.Drawing.Size(180, 190);
+            this.pcbFoto.Size = new System.Drawing.Size(219, 190);
             this.pcbFoto.TabIndex = 2;
             this.pcbFoto.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(426, 16);
+            this.label4.Location = new System.Drawing.Point(488, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 9;
@@ -221,7 +223,7 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(429, 32);
+            this.txtApellido.Location = new System.Drawing.Point(491, 32);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.ReadOnly = true;
             this.txtApellido.Size = new System.Drawing.Size(188, 20);
@@ -259,17 +261,26 @@
             this.dgvHistorialRegistroUpetino.AllowUserToAddRows = false;
             this.dgvHistorialRegistroUpetino.AllowUserToDeleteRows = false;
             this.dgvHistorialRegistroUpetino.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistorialRegistroUpetino.Location = new System.Drawing.Point(54, 475);
+            this.dgvHistorialRegistroUpetino.Location = new System.Drawing.Point(166, 606);
             this.dgvHistorialRegistroUpetino.Name = "dgvHistorialRegistroUpetino";
             this.dgvHistorialRegistroUpetino.ReadOnly = true;
             this.dgvHistorialRegistroUpetino.Size = new System.Drawing.Size(843, 247);
             this.dgvHistorialRegistroUpetino.TabIndex = 0;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(121, 584);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Ultimos registros";
+            // 
             // frmRegistrarUpetino
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 816);
+            this.ClientSize = new System.Drawing.Size(1164, 958);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "frmRegistrarUpetino";
@@ -309,5 +320,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pcbFotoCapturada;
         private System.Windows.Forms.Label lblMensajeRostro;
+        private System.Windows.Forms.Label label6;
     }
 }
