@@ -151,7 +151,7 @@ namespace SCAE_UPT.Presentacion
                 }
                 else
                 {
-                    MessageBox.Show("No se puede procesar el registro. El rostro no coincide con la persona registrada.",
+                    MessageBox.Show("No se puede procesar el registro.",
                                 "Verificación fallida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -606,12 +606,12 @@ namespace SCAE_UPT.Presentacion
                         MessageBox.Show("✅ Rostro verificado con éxito", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         rostroCoincide = true;
                     }
-                    else if (mensaje == "SOSPECHOSA")
+                    else if (mensaje == "IMAGEN_SOSPECHOSA")
                     {
                         MessageBox.Show("⚠️ Rostro coincide pero imagen sospechosa", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         rostroCoincide = false;
                     }
-                    else if (mensaje == "NO COINCIDE")
+                    else if (mensaje == "NO_COINCIDE")
                     {
                         MessageBox.Show("❌ Rostro no coincide", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         rostroCoincide = false;

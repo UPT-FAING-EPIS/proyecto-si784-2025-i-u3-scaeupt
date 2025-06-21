@@ -6,8 +6,10 @@ import os
 import logging
 import cv2
 import numpy as np
-from PIL import Image, ImageEnhance
+from PIL import Image
 import io
+from concurrent.futures import ThreadPoolExecutor
+import threading
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
@@ -15,274 +17,206 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-# Cargar modelo una sola vez al iniciar la aplicación
-logger.info("Cargando modelo Facenet...")
-try:
-    modelo = DeepFace.build_model("Facenet")
-    logger.info("Modelo cargado exitosamente")
-except Exception as e:
-    logger.error(f"Error al cargar modelo: {e}")
-    modelo = None
+# Variables globales para modelo y threadpool
+modelo = None
+executor = ThreadPoolExecutor(max_workers=2)
+modelo_lock = threading.Lock()
 
-def detectar_liveness(image_path):
-    """
-    Detecta si una imagen es 'viva' (foto real) o 'falsa' (pantalla, impresa)
-    usando múltiples técnicas de anti-spoofing
-    """
-    try:
-        # Leer imagen
-        img = cv2.imread(image_path)
-        if img is None:
-            return False, "No se pudo leer la imagen"
-        
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        
-        # 1. Análisis de textura usando Variación Local Binaria (LBP)
-        texture_score = calcular_textura_lbp(gray)
-        
-        # 2. Análisis de brillo y contraste
-        brightness_score = analizar_brillo_contraste(gray)
-        
-        # 3. Detección de bordes y nitidez
-        sharpness_score = calcular_nitidez(gray)
-        
-        # 4. Análisis de reflexión especular
-        reflection_score = detectar_reflexiones(img)
-        
-        # 5. Análisis de calidad de imagen
-        quality_score = analizar_calidad_imagen(img)
-        
-        # Calcular puntuación total
-        total_score = (
-            texture_score * 0.25 +
-            brightness_score * 0.20 +
-            sharpness_score * 0.20 +
-            reflection_score * 0.20 +
-            quality_score * 0.15
-        )
-        
-        # Umbral para determinar si es imagen viva
-        is_live = total_score > 0.6
-        
-        return is_live, {
-            "total_score": float(total_score),  # Asegurar que sea float
-            "texture_score": float(texture_score),
-            "brightness_score": float(brightness_score),
-            "sharpness_score": float(sharpness_score),
-            "reflection_score": float(reflection_score),
-            "quality_score": float(quality_score),
-            "is_live": bool(is_live)  # Asegurar que sea bool
-        }
-        
-    except Exception as e:
-        logger.error(f"Error en detección de liveness: {e}")
-        return False, f"Error: {e}"
+def cargar_modelo():
+    """Carga el modelo de forma lazy (solo cuando se necesita)"""
+    global modelo
+    if modelo is None:
+        with modelo_lock:
+            if modelo is None:  # Double-check locking
+                try:
+                    logger.info("Cargando modelo Facenet...")
+                    modelo = DeepFace.build_model("Facenet")
+                    logger.info("Modelo cargado exitosamente")
+                except Exception as e:
+                    logger.error(f"Error al cargar modelo: {e}")
+                    raise e
+    return modelo
 
-def calcular_textura_lbp(gray_img):
-    """Calcula la textura usando Local Binary Pattern"""
-    try:
-        # Implementación simple de LBP
-        rows, cols = gray_img.shape
-        lbp = np.zeros((rows-2, cols-2), dtype=np.uint8)
-        
-        for i in range(1, rows-1):
-            for j in range(1, cols-1):
-                center = gray_img[i, j]
-                code = 0
-                code |= (gray_img[i-1, j-1] >= center) << 7
-                code |= (gray_img[i-1, j] >= center) << 6
-                code |= (gray_img[i-1, j+1] >= center) << 5
-                code |= (gray_img[i, j+1] >= center) << 4
-                code |= (gray_img[i+1, j+1] >= center) << 3
-                code |= (gray_img[i+1, j] >= center) << 2
-                code |= (gray_img[i+1, j-1] >= center) << 1
-                code |= (gray_img[i, j-1] >= center) << 0
-                lbp[i-1, j-1] = code
-        
-        # Calcular histograma y uniformidad
-        hist = cv2.calcHist([lbp], [0], None, [256], [0, 256])
-        uniformity = np.sum(hist ** 2) / (lbp.size ** 2)
-        
-        # Normalizar score (mayor uniformidad = menor probabilidad de ser real)
-        return float(min(1.0, 1.0 - uniformity * 10))
-        
-    except:
-        return 0.5
-
-def analizar_brillo_contraste(gray_img):
-    """Analiza brillo y contraste para detectar pantallas"""
-    try:
-        mean_brightness = np.mean(gray_img)
-        std_brightness = np.std(gray_img)
-        
-        # Las fotos de pantalla tienden a tener brillo muy alto o muy bajo
-        # y menor variación de contraste
-        brightness_score = 1.0
-        if mean_brightness > 200 or mean_brightness < 50:
-            brightness_score *= 0.3
-        
-        contrast_score = min(1.0, std_brightness / 100.0)
-        
-        return float((brightness_score + contrast_score) / 2)
-        
-    except:
-        return 0.5
-
-def calcular_nitidez(gray_img):
-    """Calcula la nitidez de la imagen"""
-    try:
-        # Usar operador Laplaciano para detectar bordes
-        laplacian = cv2.Laplacian(gray_img, cv2.CV_64F)
-        sharpness = np.var(laplacian)
-        
-        # Normalizar (imágenes de pantalla suelen ser menos nítidas)
-        normalized_sharpness = min(1.0, sharpness / 1000.0)
-        
-        return float(normalized_sharpness)
-        
-    except:
-        return 0.5
-
-def detectar_reflexiones(img):
-    """Detecta reflexiones especulares típicas de pantallas"""
-    try:
-        # Convertir a HSV para mejor detección de brillo
-        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        v_channel = hsv[:, :, 2]
-        
-        # Detectar píxeles muy brillantes (posibles reflexiones)
-        bright_pixels = np.sum(v_channel > 240)
-        total_pixels = v_channel.size
-        
-        reflection_ratio = bright_pixels / total_pixels
-        
-        # Penalizar imágenes con muchas reflexiones
-        if reflection_ratio > 0.05:  # Más del 5% de píxeles muy brillantes
-            return 0.2
-        elif reflection_ratio > 0.02:  # Entre 2-5%
-            return 0.6
-        else:
-            return 1.0
+class LivenessDetector:
+    """Clase optimizada para detección de liveness"""
+    
+    @staticmethod
+    def detectar_liveness_rapido(image_path):
+        """
+        Versión optimizada de detección de liveness
+        Solo aplica los filtros más efectivos para reducir tiempo de procesamiento
+        """
+        try:
+            img = cv2.imread(image_path)
+            if img is None:
+                return False, {"error": "No se pudo leer la imagen", "total_score": 0.0}
             
-    except:
-        return 0.5
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            
+            # Solo usar los 3 filtros más efectivos para optimizar velocidad
+            # 1. Análisis de brillo y contraste (más rápido y efectivo)
+            brightness_score = LivenessDetector._analizar_brillo_contraste_rapido(gray)
+            
+            # 2. Detección de reflexiones especulares (detecta pantallas)
+            reflection_score = LivenessDetector._detectar_reflexiones_rapido(img)
+            
+            # 3. Análisis de nitidez (detecta fotos impresas)
+            sharpness_score = LivenessDetector._calcular_nitidez_rapido(gray)
+            
+            # Pesos ajustados para los 3 filtros principales
+            total_score = (
+                brightness_score * 0.4 +
+                reflection_score * 0.35 +
+                sharpness_score * 0.25
+            )
+            
+            # Umbral más permisivo pero efectivo
+            is_live = total_score > 0.55
+            
+            return is_live, {
+                "total_score": float(total_score),
+                "brightness_score": float(brightness_score),
+                "reflection_score": float(reflection_score),
+                "sharpness_score": float(sharpness_score),
+                "is_live": bool(is_live)
+            }
+            
+        except Exception as e:
+            logger.error(f"Error en detección de liveness: {e}")
+            return False, {"error": str(e), "total_score": 0.0}
 
-def analizar_calidad_imagen(img):
-    """Analiza la calidad general de la imagen"""
-    try:
-        # Calcular métricas de calidad
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        
-        # 1. Detectar compresión JPEG excesiva
-        jpeg_quality = estimar_calidad_jpeg(img)
-        
-        # 2. Analizar ruido
-        noise_level = calcular_ruido(gray)
-        
-        # 3. Resolución efectiva
-        resolution_score = min(1.0, (img.shape[0] * img.shape[1]) / (640 * 480))
-        
-        quality_score = (jpeg_quality + (1.0 - noise_level) + resolution_score) / 3
-        
-        return float(quality_score)
-        
-    except:
-        return 0.5
+    @staticmethod
+    def _analizar_brillo_contraste_rapido(gray_img):
+        """Versión optimizada del análisis de brillo y contraste"""
+        try:
+            # Usar subsample para imágenes grandes (más rápido)
+            h, w = gray_img.shape
+            if h > 400 or w > 400:
+                factor = max(h//400, w//400)
+                gray_img = gray_img[::factor, ::factor]
+            
+            mean_brightness = float(np.mean(gray_img))
+            std_brightness = float(np.std(gray_img))
+            
+            # Detección más agresiva de pantallas
+            brightness_score = 1.0
+            if mean_brightness > 220 or mean_brightness < 40:  # Pantallas muy brillantes u oscuras
+                brightness_score = 0.1
+            elif mean_brightness > 180 or mean_brightness < 70:
+                brightness_score = 0.4
+            
+            # Contraste bajo indica pantalla
+            contrast_score = min(1.0, std_brightness / 80.0)
+            if std_brightness < 20:  # Muy poco contraste
+                contrast_score = 0.2
+            
+            return float((brightness_score + contrast_score) / 2)
+        except:
+            return 0.5
 
-def estimar_calidad_jpeg(img):
-    """Estima la calidad JPEG de la imagen"""
-    try:
-        # Convertir a escala de grises
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        
-        # Calcular gradientes
-        grad_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
-        grad_y = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)
-        
-        # Calcular magnitud del gradiente
-        magnitude = np.sqrt(grad_x**2 + grad_y**2)
-        
-        # Estimar calidad basada en la suavidad de gradientes
-        quality = 1.0 - min(1.0, np.std(magnitude) / 50.0)
-        
-        return float(quality)
-        
-    except:
-        return 0.5
+    @staticmethod
+    def _detectar_reflexiones_rapido(img):
+        """Detección optimizada de reflexiones de pantalla"""
+        try:
+            # Subsample para velocidad
+            h, w = img.shape[:2]
+            if h > 300 or w > 300:
+                factor = max(h//300, w//300)
+                img = img[::factor, ::factor]
+            
+            # Convertir a HSV solo el canal V
+            hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+            v_channel = hsv[:, :, 2]
+            
+            # Detectar píxeles excesivamente brillantes (reflexiones de pantalla)
+            very_bright = int(np.sum(v_channel > 250))
+            bright = int(np.sum(v_channel > 230))
+            total_pixels = int(v_channel.size)
+            
+            very_bright_ratio = float(very_bright / total_pixels)
+            bright_ratio = float(bright / total_pixels)
+            
+            # Penalización más severa para reflexiones
+            if very_bright_ratio > 0.03:  # Más del 3% muy brillante = pantalla
+                return 0.1
+            elif bright_ratio > 0.15:  # Más del 15% brillante = sospechoso
+                return 0.3
+            elif bright_ratio > 0.08:
+                return 0.6
+            else:
+                return 1.0
+        except:
+            return 0.5
 
-def calcular_ruido(gray_img):
-    """Calcula el nivel de ruido en la imagen"""
-    try:
-        # Usar desviación estándar del Laplaciano como medida de ruido
-        laplacian = cv2.Laplacian(gray_img, cv2.CV_64F)
-        noise_level = np.std(laplacian) / 100.0
-        
-        return float(min(1.0, noise_level))
-        
-    except:
-        return 0.5
+    @staticmethod
+    def _calcular_nitidez_rapido(gray_img):
+        """Cálculo optimizado de nitidez"""
+        try:
+            # Subsample para velocidad
+            h, w = gray_img.shape
+            if h > 400 or w > 400:
+                factor = max(h//400, w//400)
+                gray_img = gray_img[::factor, ::factor]
+            
+            # Usar Sobel en lugar de Laplaciano (más rápido)
+            sobel_x = cv2.Sobel(gray_img, cv2.CV_64F, 1, 0, ksize=3)
+            sobel_y = cv2.Sobel(gray_img, cv2.CV_64F, 0, 1, ksize=3)
+            
+            # Magnitud del gradiente
+            magnitude = np.sqrt(sobel_x**2 + sobel_y**2)
+            sharpness = np.mean(magnitude)
+            
+            # Normalizar (fotos impresas tienen menos nitidez)
+            normalized_sharpness = min(1.0, sharpness / 30.0)
+            
+            return normalized_sharpness
+        except:
+            return 0.5
 
-def validar_metadata_imagen(image_data):
-    """Valida metadatos de la imagen para detectar manipulación"""
+def validar_imagen_basica(image_data):
+    """Validación básica optimizada de imagen"""
     try:
-        # Convertir bytes a PIL Image
         img = Image.open(io.BytesIO(image_data))
-
-        # Verificar formato
-        if img.format not in ['JPEG', 'PNG']:
-            return False, "Formato de imagen no válido"
-
-        # Verificar dimensiones mínimas
+        
+        if img.format not in ['JPEG', 'PNG', 'WEBP']:
+            return False, "Formato no soportado"
+        
         warning = None
-        if img.width < 200 or img.height < 200:
-            warning = "Imagen pequeña, los resultados pueden no ser confiables"
-            logger.warning(f"{warning} ({img.width}x{img.height}px)")
-
-        # Verificar si tiene metadatos EXIF (fotos reales suelen tenerlos)
-        has_exif = hasattr(img, '_getexif') and img._getexif() is not None
-
+        if img.width < 150 or img.height < 150:
+            warning = "Imagen muy pequeña"
+        
         return True, {
-            "has_exif": "yes" if has_exif else "no", 
-            "format": img.format, 
-            "size": [int(img.width), int(img.height)],  # Asegurar que sean int
+            "format": img.format,
+            "size": [int(img.width), int(img.height)],
             "warning": warning
         }
-
-    except Exception as e:
-        return False, f"Error validando metadata: {e}"
+    except:
+        return False, "Imagen corrupta"
 
 @app.route('/', methods=['GET'])
 def health_check():
-    """Endpoint de health check"""
     return jsonify({
         "status": "ok",
-        "service": "Enhanced Face Verification Service",
-        "model_loaded": modelo is not None,
-        "features": ["face_verification", "liveness_detection", "anti_spoofing"]
+        "service": "Optimized Face Verification Service",
+        "version": "2.1.0"
     })
 
 @app.route('/verificar', methods=['POST'])
 def verificar():
-    """Endpoint principal para verificación facial con anti-spoofing"""
+    """Endpoint optimizado para verificación facial"""
     try:
-        # Verificar que el modelo esté cargado
-        if modelo is None:
-            return jsonify({"error": "Modelo no disponible"}), 500
-            
         data = request.get_json()
         if not data:
-            return jsonify({"error": "No se recibieron datos JSON"}), 400
+            return jsonify({"error": "No se recibieron datos"}), 400
             
-        img1_b64 = data.get("img1")  # Imagen de referencia (RENIEC)
-        img2_b64 = data.get("img2")  # Imagen a verificar (usuario)
+        img1_b64 = data.get("img1")  # Imagen de referencia (NO necesita liveness)
+        img2_b64 = data.get("img2")  # Imagen capturada (SÍ necesita liveness)
 
-        # Validación básica
         if not img1_b64 or not img2_b64:
-            return jsonify({"error": "Imágenes no recibidas correctamente"}), 400
+            return jsonify({"error": "Faltan imágenes"}), 400
 
-        # Validar que las imágenes base64 tengan formato correcto
         try:
-            # Remover prefijo data:image si existe
+            # Limpiar formato base64
             if img1_b64.startswith('data:image'):
                 img1_b64 = img1_b64.split(',')[1]
             if img2_b64.startswith('data:image'):
@@ -290,51 +224,46 @@ def verificar():
                 
             img1_data = base64.b64decode(img1_b64)
             img2_data = base64.b64decode(img2_b64)
-        except Exception as e:
-            return jsonify({"error": "Error al decodificar imágenes base64"}), 400
+        except:
+            return jsonify({"error": "Error decodificando imágenes"}), 400
 
-        # Validar metadata de las imágenes
-        metadata1_valid, metadata1_info = validar_metadata_imagen(img1_data)
-        metadata2_valid, metadata2_info = validar_metadata_imagen(img2_data)
+        # Validación básica en paralelo
+        future1 = executor.submit(validar_imagen_basica, img1_data)
+        future2 = executor.submit(validar_imagen_basica, img2_data)
         
-        if not metadata1_valid or not metadata2_valid:
-            return jsonify({
-                "error": "Imágenes no válidas",
-                "details": {
-                    "img1": metadata1_info if not metadata1_valid else "OK",
-                    "img2": metadata2_info if not metadata2_valid else "OK"
-                }
-            }), 400
+        valid1, info1 = future1.result()
+        valid2, info2 = future2.result()
+        
+        if not valid1 or not valid2:
+            return jsonify({"error": "Imágenes no válidas"}), 400
 
-        # Guardar temporalmente y procesar
-        temp_files = []
-        try:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f1, \
-                 tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f2:
+        # Crear archivos temporales
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f1, \
+             tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f2:
 
-                f1.write(img1_data)
-                f2.write(img2_data)
-                f1.flush()
-                f2.flush()
-                
-                temp_files = [f1.name, f2.name]
+            f1.write(img1_data)
+            f2.write(img2_data)
+            f1.flush()
+            f2.flush()
+            
+            temp_files = [f1.name, f2.name]
 
-                # PASO 1: Detección de liveness en la imagen del usuario (img2)
-                is_live, liveness_info = detectar_liveness(f2.name)
-                
-                # Asegurar que liveness_info sea un dict válido
-                if not isinstance(liveness_info, dict):
-                    liveness_info = {"error": str(liveness_info), "total_score": 0.0}
+            try:
+                # SOLO aplicar liveness a img2 (imagen capturada en vivo)
+                is_live, liveness_info = LivenessDetector.detectar_liveness_rapido(f2.name)
                 
                 if not is_live:
                     return jsonify({
-                        "resultado": "IMAGEN SOSPECHOSA",
-                        "motivo": "La imagen del usuario no parece ser una foto real",
+                        "resultado": "IMAGEN_SOSPECHOSA",
+                        "motivo": "La imagen capturada no parece real",
                         "liveness_score": float(liveness_info.get("total_score", 0)),
-                        "detalles_liveness": liveness_info
+                        "detalles": liveness_info
                     })
 
-                # PASO 2: Verificación facial solo si pasa el test de liveness
+                # Cargar modelo solo cuando se necesita
+                modelo_actual = cargar_modelo()
+                
+                # Verificación facial
                 result = DeepFace.verify(
                     img1_path=f1.name,
                     img2_path=f2.name,
@@ -342,87 +271,59 @@ def verificar():
                     enforce_detection=False
                 )
 
-            # Limpiar archivos temporales
-            for temp_file in temp_files:
-                try:
-                    os.unlink(temp_file)
-                except:
-                    pass
+                # Determinar resultado
+                face_match = bool(result["verified"])
+                confidence = float(result.get("distance", 0))
+                
+                resultado_final = "COINCIDE" if face_match else "NO_COINCIDE"
 
-            # Determinar resultado final
-            face_match = bool(result["verified"])
-            confidence = float(result.get("distance", 0))
-            threshold = float(result.get("threshold", 0))
-            
-            # Resultado final combinando verificación facial y liveness
-            if face_match and is_live:
-                resultado_final = "COINCIDE"
-            elif face_match and not is_live:
-                resultado_final = "SOSPECHOSA"
-            else:
-                resultado_final = "NO COINCIDE"
+                return jsonify({
+                    "resultado": resultado_final,
+                    "verificacion_facial": {
+                        "coincide": bool(face_match),
+                        "distancia": float(confidence),
+                        "threshold": float(result.get("threshold", 0))
+                    },
+                    "verificacion_liveness": {
+                        "es_real": bool(is_live),
+                        "score": float(liveness_info.get("total_score", 0)),
+                        "detalles": liveness_info
+                    },
+                    "nota": "Solo img2 fue analizada para liveness (imagen capturada)"
+                })
 
-            return jsonify({
-                "resultado": resultado_final,
-                "verificacion_facial": {
-                    "coincide": face_match,
-                    "confianza": confidence,
-                    "threshold": threshold
-                },
-                "verificacion_liveness": {
-                    "es_imagen_real": bool(is_live),
-                    "score": float(liveness_info.get("total_score", 0)),
-                    "detalles": liveness_info
-                },
-                "metadata": {
-                    "img1": metadata1_info,
-                    "img2": metadata2_info
-                }
-            })
-
-        except Exception as e:
-            # Limpiar archivos temporales en caso de error
-            for temp_file in temp_files:
-                try:
-                    os.unlink(temp_file)
-                except:
-                    pass
-            raise e
+            finally:
+                # Limpiar archivos
+                for temp_file in temp_files:
+                    try:
+                        os.unlink(temp_file)
+                    except:
+                        pass
 
     except Exception as e:
-        logger.error(f"Error en /verificar: {e}")
-        return jsonify({"error": "Error interno del servidor"}), 500
+        logger.error(f"Error en verificación: {e}")
+        return jsonify({"error": "Error interno"}), 500
 
 @app.route('/test-liveness', methods=['POST'])
 def test_liveness():
-    """Endpoint para probar solo la detección de liveness"""
+    """Test solo de liveness para imagen capturada"""
     try:
         data = request.get_json()
-        if not data:
-            return jsonify({"error": "No se recibieron datos JSON"}), 400
-            
         img_b64 = data.get("imagen")
+        
         if not img_b64:
-            return jsonify({"error": "Imagen no recibida"}), 400
+            return jsonify({"error": "Imagen requerida"}), 400
 
-        # Decodificar imagen
         if img_b64.startswith('data:image'):
             img_b64 = img_b64.split(',')[1]
-        img_data = base64.b64decode(img_b64)
-
-        # Validar metadata
-        metadata_valid, metadata_info = validar_metadata_imagen(img_data)
         
-        # Guardar temporalmente y analizar
+        img_data = base64.b64decode(img_b64)
+        
         with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f:
             f.write(img_data)
             f.flush()
             
-            is_live, liveness_info = detectar_liveness(f.name)
-            
-            # Asegurar que liveness_info sea un dict válido
-            if not isinstance(liveness_info, dict):
-                liveness_info = {"error": str(liveness_info), "total_score": 0.0}
+            is_live, liveness_info = LivenessDetector.detectar_liveness_rapido(f.name)
             
             try:
                 os.unlink(f.name)
@@ -430,38 +331,29 @@ def test_liveness():
                 pass
 
         return jsonify({
-            "es_imagen_real": "yes" if is_live else "no",
-            "detalles_liveness": liveness_info,
-            "metadata": metadata_info
+            "es_real": bool(is_live),
+            "score": float(liveness_info.get("total_score", 0)),
+            "detalles": liveness_info
         })
 
     except Exception as e:
-        logger.error(f"Error en /test-liveness: {e}")
-        return jsonify({"error": "Error interno del servidor"}), 500
+        logger.error(f"Error en test liveness: {e}")
+        return jsonify({"error": "Error interno"}), 500
 
 @app.route('/status', methods=['GET'])
 def status():
-    """Endpoint de estado del servicio"""
     return jsonify({
-        "service": "Enhanced Face Verification API",
-        "version": "2.0.0",
+        "service": "Optimized Face Verification API",
+        "version": "2.1.0",
         "status": "running",
-        "model_status": "loaded" if modelo is not None else "error",
-        "features": {
-            "face_verification": True,
-            "liveness_detection": True,
-            "anti_spoofing": True,
-            "metadata_validation": True
-        }
+        "optimizations": [
+            "Lazy model loading",
+            "Fast liveness detection (3 filters only)",
+            "Image subsampling for large images",
+            "Parallel validation",
+            "Only img2 analyzed for liveness"
+        ]
     })
-
-@app.errorhandler(404)
-def not_found(error):
-    return jsonify({"error": "Endpoint no encontrado"}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return jsonify({"error": "Error interno del servidor"}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
