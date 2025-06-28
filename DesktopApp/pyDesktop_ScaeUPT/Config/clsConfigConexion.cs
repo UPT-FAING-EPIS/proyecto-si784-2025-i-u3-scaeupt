@@ -14,7 +14,7 @@ namespace SCAE_UPT.Config
         {
             try
             {
-                string connectionString = "server=161.132.68.132;port=3306;database=dbscae;user=root;password=Upt2025"; //deploy
+                string connectionString = "server=161.132.53.179;port=3306;database=dbscae;user=root;password=Upt2025"; //deploy
                 //string connectionString = "server=localhost;port=3306;database=dbscae;user=root;password="; //localtesting
                 con = new MySqlConnection(connectionString);
                 con.Open();
