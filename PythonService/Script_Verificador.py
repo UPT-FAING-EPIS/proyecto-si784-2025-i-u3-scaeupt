@@ -30,7 +30,7 @@ def cargar_modelo():
             if modelo is None:  # Double-check locking
                 try:
                     logger.info("Cargando modelo Facenet...")
-                    modelo = DeepFace.build_model("Facenet")
+                    modelo = DeepFace.build_model("ArcFace")
                     logger.info("Modelo cargado exitosamente")
                 except Exception as e:
                     logger.error(f"Error al cargar modelo: {e}")
@@ -267,7 +267,7 @@ def verificar():
                 result = DeepFace.verify(
                     img1_path=f1.name,
                     img2_path=f2.name,
-                    model_name="Facenet",
+                    model_name="ArcFace",
                     enforce_detection=False
                 )
 
