@@ -51,12 +51,40 @@ namespace SCAE_UPT.Presentacion
         public frmRegistrarUpetino()
         {
             InitializeComponent();
+            ConfigurarEstilosAdicionales();
             ListarRegistroUpetino();
             LimpiarTexto();
             cargarCuadroVerde();
             InicializarDeteccionAutomatica(); // Nueva función
             this.FormClosing += new FormClosingEventHandler(OnFormClosing);
         }
+
+        
+        private void ConfigurarEstilosAdicionales()
+        {
+            // Configurar bordes redondeados para los PictureBox
+            pcbCamara.Paint += (s, e) => {
+                ControlPaint.DrawBorder(e.Graphics, pcbCamara.ClientRectangle,
+                    Color.FromArgb(52, 152, 219), 2, ButtonBorderStyle.Solid,
+                    Color.FromArgb(52, 152, 219), 2, ButtonBorderStyle.Solid,
+                    Color.FromArgb(52, 152, 219), 2, ButtonBorderStyle.Solid,
+                    Color.FromArgb(52, 152, 219), 2, ButtonBorderStyle.Solid);
+            };
+    
+            // Configurar el DataGridView con estilos adicionales
+            dgvHistorialRegistroUpetino.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
+            //dgvHistorialRegistroUpetino.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvHistorialRegistroUpetino.DefaultCellStyle.Padding = new Padding(1);
+    
+            // Configurar tooltips informativos
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(btnCargarCamaras, "Detecta y carga las cámaras disponibles");
+            toolTip.SetToolTip(btnPrenderCamara, "Inicia la cámara seleccionada");
+            toolTip.SetToolTip(btnCapturarFoto, "Captura una foto del rostro detectado");
+            toolTip.SetToolTip(btnApagarCamara, "Detiene la cámara activa");
+        }
+
+
 
         private void InicializarDeteccionAutomatica()
         {
@@ -112,14 +140,7 @@ namespace SCAE_UPT.Presentacion
 
             if (resultado == DialogResult.Yes)
             {
-                clsEntidadUsuarioRegistro objEntUsuarioRegistro = new clsEntidadUsuarioRegistro();
-                clsNegocioUsuarioRegistro objNegUsuarioRegistro = new clsNegocioUsuarioRegistro();
-                DateTime fechaHoraActual = DateTime.Now;
-
-                objEntUsuarioRegistro.ID_Empleado = frmLoginGuardiania.usuarioLogueado[0];
-                objEntUsuarioRegistro.FechaHora_Salida = fechaHoraActual;
-
-                objNegUsuarioRegistro.MtdGuardarSalida(objEntUsuarioRegistro);
+                
 
             }
             else

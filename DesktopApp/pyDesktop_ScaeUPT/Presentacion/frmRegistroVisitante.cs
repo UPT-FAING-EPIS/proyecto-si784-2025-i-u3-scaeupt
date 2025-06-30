@@ -38,14 +38,7 @@ namespace SCAE_UPT.Presentacion
 
             if (resultado == DialogResult.Yes)
             {
-                clsEntidadUsuarioRegistro objEntUsuarioRegistro = new clsEntidadUsuarioRegistro();
-                clsNegocioUsuarioRegistro objNegUsuarioRegistro = new clsNegocioUsuarioRegistro();
-                DateTime fechaHoraActual = DateTime.Now;
-
-                objEntUsuarioRegistro.ID_Empleado = frmLoginGuardiania.usuarioLogueado[0];
-                objEntUsuarioRegistro.FechaHora_Salida = fechaHoraActual;
-
-                objNegUsuarioRegistro.MtdGuardarSalida(objEntUsuarioRegistro);
+                //
 
             }
             else

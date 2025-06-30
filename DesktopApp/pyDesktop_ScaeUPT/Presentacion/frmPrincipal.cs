@@ -18,19 +18,42 @@ namespace SCAE_UPT.Presentacion
         public frmPrincipal()
         {
             InitializeComponent();
+            ConfigurarEstilosAdicionales();
 
-            switch (IdentificarUsuario())
-            {
-                case 1:
-                    btnRegistroUpetinos.Enabled = false;
-                    btnRegistroVisitantes.Enabled = false;
-                    this.FormClosing += new FormClosingEventHandler(OnFormClosing);
-                    break;
-                case 0:
-                    btnAdministrarUpetinos.Enabled=false;
-                    btnAdministrarUsuarios.Enabled = false;
-                    break;
-            }
+        }
+
+        private void ConfigurarEstilosAdicionales()
+        {
+            // Configurar sombras y efectos para los paneles
+            ConfigurarSombraPaneles();
+            
+            // Configurar tooltips informativos
+            ConfigurarTooltips();
+            
+            // Configurar efectos hover adicionales
+            ConfigurarEfectosHover();
+        }
+
+        private void ConfigurarSombraPaneles()
+        {
+            // Agregar bordes redondeados simulados con padding
+            panelRegistros.Padding = new Padding(5);
+            panelHistoriales.Padding = new Padding(5);
+        }
+
+        private void ConfigurarTooltips()
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(btnRegistroVisitantes, "Registrar entrada y salida de visitantes");
+            toolTip.SetToolTip(btnRegistroUpetinos, "Registrar entrada y salida de estudiantes UPT");
+            toolTip.SetToolTip(btnHistorialRegistroVisitantes, "Ver historial completo de visitantes");
+            toolTip.SetToolTip(btnHistorialRegistroUpetinos, "Ver historial completo de estudiantes");
+        }
+
+        private void ConfigurarEfectosHover()
+        {
+            // Los efectos hover ya están configurados en el Designer
+            // Aquí se pueden agregar efectos adicionales si es necesario
         }
 
         private void OnFormClosing(object sender, FormClosingEventArgs e)
@@ -44,14 +67,7 @@ namespace SCAE_UPT.Presentacion
 
             if(resultado == DialogResult.Yes)
             {
-                clsEntidadUsuarioRegistro objEntUsuarioRegistro = new clsEntidadUsuarioRegistro();
-                clsNegocioUsuarioRegistro objNegUsuarioRegistro = new clsNegocioUsuarioRegistro();
-                DateTime fechaHoraActual = DateTime.Now;
-
-                objEntUsuarioRegistro.ID_Empleado = frmLoginGuardiania.usuarioLogueado[0];
-                objEntUsuarioRegistro.FechaHora_Salida = fechaHoraActual;
-
-                objNegUsuarioRegistro.MtdGuardarSalida(objEntUsuarioRegistro);
+                
 
             }
             else
@@ -112,6 +128,11 @@ namespace SCAE_UPT.Presentacion
             {
                 return 0;
             }
+        }
+
+        private void lblFooter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

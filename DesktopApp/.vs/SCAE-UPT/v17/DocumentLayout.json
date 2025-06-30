@@ -1,18 +1,74 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmloginguardiania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmhistorialvisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmhistorialvisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmhistorialvisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmhistorialvisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmhistorialupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmhistorialupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmhistorialupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmhistorialupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmadministrarusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmadministrarusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmadministrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmadministrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\desktopapadsdasasdasdasdp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrovisitante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmregistrarupetino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmprincipal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\presentacion\\frmprincipal.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\presentacion\\frmprincipal.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|c:\\users\\administrator\\downloads\\scaeultimoo\\proyecto-si784-2025-i-u2-scae-upt\\desktopapp\\pydesktop_scaeupt\\config\\clsconfigconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{28C3B992-8647-4BAB-9CEE-BA47A5D5ADB5}|pyDesktop_ScaeUPT\\SCAE-UPT.csproj|solutionrelative:pydesktop_scaeupt\\config\\clsconfigconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,28 +78,163 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmRegistrarUpetino.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ViewState": "AQIAAEACAAAAAAAAAAAAAEwCAAA9AAAA",
+              "DocumentIndex": 2,
+              "Title": "frmLoginGuardiania.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAnwEAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T16:18:50.406Z",
+              "WhenOpened": "2025-06-30T04:28:31.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmHistorialVisitante.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:27.068Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "frmPrincipal.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T09:54:36.667Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmPrincipal.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAewFAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:18:03.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmHistorialVisitante.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialVisitante.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:25.938Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmHistorialUpetino.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAIA3wB8AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:11.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmLoginGuardiania.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmLoginGuardiania.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T01:40:57.401Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmHistorialUpetino.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmHistorialUpetino.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:08.744Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmAdministrarUsuario.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUsuario.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUsuario.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUsuario.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUsuario.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:07.851Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "frmAdministrarUpetino.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUpetino.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUpetino.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUpetino.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmAdministrarUpetino.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:28:06.5Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "frmRegistroVisitante.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs [Dise\u00F1o]",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T03:05:45.319Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "frmRegistrarUpetino.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
               "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
               "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-16T16:24:21.656Z",
@@ -51,14 +242,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmPrincipal.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DesktopApadsdasasdasdasdp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
-              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\Desktop\\vfi\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.cs [Dise\u00F1o]",
+              "DocumentIndex": 10,
+              "Title": "frmRegistrarUpetino.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistrarUpetino.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAcwI4AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-14T09:54:36.667Z"
+              "WhenOpened": "2025-06-16T16:18:50.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "frmPrincipal.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.Designer.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.Designer.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.Designer.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T04:17:50.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "frmRegistroVisitante.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmRegistroVisitante.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAAAGsAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T03:29:15.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "frmPrincipal.resx",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.resx",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.resx",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.resx",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Presentacion\\frmPrincipal.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-06-30T04:17:49.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "clsConfigConexion.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
+              "RelativeDocumentMoniker": "pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\scaeUltimoo\\proyecto-si784-2025-i-u2-scae-upt\\DesktopApp\\pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
+              "RelativeToolTip": "pyDesktop_ScaeUPT\\Config\\clsConfigConexion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T00:20:58.072Z",
+              "EditorCaption": ""
             }
           ]
         }
