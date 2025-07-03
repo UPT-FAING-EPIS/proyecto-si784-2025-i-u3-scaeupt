@@ -612,7 +612,7 @@ namespace SCAE_UPT.Presentacion
                         "application/json"
                     );
 
-                    HttpResponseMessage response = await client.PostAsync("http://127.0.0.1:5000/verificar", content);
+                    HttpResponseMessage response = await client.PostAsync("https://scae-upt-python-service.azurewebsites.net/verificar", content);
 
                     if (!response.IsSuccessStatusCode)
                     {
