@@ -2,33 +2,52 @@
 Sistema Integral de Control de Acceso Electrónico para la Universidad Privada de Tacna
 
 ## 📋 Descripción
-SCAE-UPT es un sistema moderno y completo de control de acceso diseñado específicamente para la Universidad Privada de Tacna. El sistema moderniza el proceso de ingreso al campus universitario mediante tecnología QR y autenticación institucional, proporcionando una solución segura, eficiente y fácil de usar.
+SCAE-UPT es un sistema moderno y completo de control de acceso diseñado específicamente para la Universidad Privada de Tacna. El sistema moderniza el proceso de ingreso al campus universitario mediante tecnología QR, verificación facial biométrica y autenticación institucional, proporcionando una solución segura, eficiente y fácil de usar.
 
 ### 🎯 Características Principales
-- 🔐 Autenticación Segura : Login con cuentas institucionales de Google
-- 📱 Códigos QR Dinámicos : Generación de códigos QR únicos con expiración de 5 minutos
-- 🖥️ Aplicación de Escritorio : Interface para personal de seguridad con escaneo QR
-- 🌐 Plataforma Web : Portal estudiantil para generación de códigos de acceso
-- 📊 Reportes y Auditoría : Historial completo de ingresos y salidas
-- ⚡ Tiempo Real : Verificación instantánea de credenciales
+- 🔐 **Autenticación Segura**: Login con cuentas institucionales de Google
+- 📱 **Códigos QR Dinámicos**: Generación de códigos QR únicos con expiración de 5 minutos
+- 👤 **Verificación Facial Biométrica**: Reconocimiento facial con OpenCV
+- 🛡️ **Detección Anti-Spoofing**: Prevención de suplantación con fotos o pantallas
+- 🖥️ **Aplicación de Escritorio**: Interface para personal de seguridad con escaneo QR y captura facial
+- 🌐 **Plataforma Web**: Portal estudiantil para generación de códigos de acceso
+- 📊 **Reportes y Auditoría**: Historial completo de ingresos y salidas
+- ⚡ **Tiempo Real**: Verificación instantánea de credenciales y rostros
+
+## 🔍 Proceso de Verificación Dual
+El sistema implementa un proceso de verificación en dos etapas para máxima seguridad:
+
+### 1️⃣ Escaneo de Código QR
+- Lectura del código QR generado por el estudiante
+- Validación de vigencia (5 minutos)
+- Extracción de datos del usuario
+
+### 2️⃣ Verificación Facial Biométrica
+- **Captura en Tiempo Real**: La cámara captura el rostro de la persona en la puerta
+- **Comparación Neural**: El sistema compara el rostro capturado con la foto almacenada en la base de datos
+- **Detección Anti-Spoofing**: Algoritmos avanzados detectan intentos de suplantación con fotos impresas o pantallas
+- **Validación Final**: Solo si ambas verificaciones son exitosas, se registra el acceso
+
 ## 🏗️ Arquitectura del Sistema
-El proyecto está estructurado en dos componentes principales:
+El proyecto está estructurado en tres componentes principales:
 
 ### 🖥️ Aplicación de Escritorio (DesktopApp)
-Tecnologías : C# .NET Framework 4.7.2, Windows Forms, MySQL
+**Tecnologías**: C# .NET Framework 4.7.2, Windows Forms, MySQL, OpenCV
 
-- Propósito : Interface para personal de vigilancia
-- Funcionalidades :
+- **Propósito**: Interface para personal de vigilancia
+- **Funcionalidades**:
   - Escaneo y validación de códigos QR
-  - Verificación de identidad en tiempo real
+  - Captura de imagen facial en tiempo real
+  - Verificación de identidad biométrica
   - Registro automático de ingresos/salidas
   - Gestión de visitantes
   - Generación de reportes
-### 🌐 Aplicación Web (WebApp)
-Tecnologías : ASP.NET Core 8.0, Entity Framework, MySQL, Docker
 
-- Propósito : Portal para estudiantes y administración
-- Funcionalidades :
+### 🌐 Aplicación Web (WebApp)
+**Tecnologías**: ASP.NET Core 8.0, Entity Framework, MySQL, Docker
+
+- **Propósito**: Portal para estudiantes y administración
+- **Funcionalidades**:
   - Autenticación con Google OAuth
   - Generación de códigos QR personales
   - Historial de accesos
@@ -54,13 +73,15 @@ Descarga : Enlace de descarga del instalador
 - .NET 8.0 SDK
 - .NET Framework 4.7.2
 - MySQL Server 8.0+
+- Python 3.9+
 - Visual Studio 2022 o VS Code
 - Docker (opcional)
+
 ### Configuración del Entorno
-1. Clona el repositorio :
-```
-git clone https://github.com/usuario/proyecto-si784-2025-i-u2-scae-upt.git
-cd proyecto-si784-2025-i-u2-scae-upt
+1. Clona el repositorio:
+```bash
+git clone https://github.com/UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt.git
+cd proyecto-si784-2025-i-u3-scaeupt
 ```
 2. Configura las variables de entorno :
 ```
@@ -70,13 +91,22 @@ GOOGLE_CLIENT_SECRET=tu_google_client_secret
 JWT_SECRET_KEY=tu_jwt_secret_key
 MYSQL_CONNECTION_STRING=tu_connection_string
 ```
-3. Ejecuta la aplicación web :
+3. Instala dependencias del servicio Python:
+```
+cd PythonService
+pip install -r requirements.txt
+```
+4. Ejecuta el servicio de verificación facial:
+```
+python Script_Verificador.py
+```
+5. Ejecuta la aplicación web :
 ```
 cd WebApp/pyWeb_ScaeUPT
 dotnet restore
 dotnet run
 ```
-4. Compila la aplicación de escritorio :
+6. Compila la aplicación de escritorio :
 ```
 cd DesktopApp
 nuget restore SCAE-UPT.sln
@@ -159,4 +189,8 @@ proyecto-si784-2025-i-u2-scae-upt/
 ## 👥 Equipo de Desarrollo
 - Antayhua Mamani, Renzo Antonio (2022074258)
 - Colque Ponce, Sergio Alberto (2022073503)
-Docente : Mag. Patrick Cuadros Quiroga Curso : Calidad y Pruebas de Software Universidad : Universidad Privada de Tacna Facultad : Ingeniería - Escuela Profesional de Ingeniería de Sistemas
+## 👨‍🏫 Información Académica
+Docente : Mag. Patrick Cuadros Quiroga 
+Curso : Calidad y Pruebas de Software 
+Universidad : Universidad Privada de Tacna 
+Facultad : Ingeniería - Escuela Profesional de Ingeniería de Sistemas
