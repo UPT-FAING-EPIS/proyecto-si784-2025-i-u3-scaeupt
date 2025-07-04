@@ -2,7 +2,7 @@
 
 > **Project:** `UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/terraform/plan.json`  
 > **Total Monthly Cost:** **`$29.82`**  
-> **Generated:** `2025-07-04 01:59:50`
+> **Generated:** `2025-07-04 02:15:05`
 
 ## 📊 Detailed Breakdown
 
@@ -64,7 +64,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 
 - **Tool:** Infracost `v0.10.41`
 - **Format:** Infrastructure as Code cost estimation
-- **Timestamp:** `2025-07-04T01:59:50Z`
+- **Timestamp:** `2025-07-04T02:15:05Z`
 
 </details>
 
