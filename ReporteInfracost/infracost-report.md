@@ -1,8 +1,8 @@
 # 💰 Infrastructure Cost Report
 
 > **Project:** `UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/terraform/plan.json`  
-> **Total Monthly Cost:** **`$29.82`**  
-> **Generated:** `2025-07-05 17:41:16`
+> **Total Monthly Cost:** **`$54.64`**  
+> **Generated:** `2025-07-05 17:53:27`
 
 ## 📊 Detailed Breakdown
 
@@ -11,6 +11,9 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 
  Name                                        Monthly Qty  Unit                    Monthly Cost   
                                                                                                  
+ azurerm_service_plan.main                                                                       
+ └─ Instance usage (B2)                              730  hours                         $24.82   
+                                                                                                 
  azurerm_service_plan.python                                                                     
  └─ Instance usage (B2)                              730  hours                         $24.82   
                                                                                                  
@@ -18,9 +21,6 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
  ├─ Registry usage (Basic)                            30  days                           $5.00   
  ├─ Storage (over 10GB)                Monthly cost depends on usage: $0.10 per GB               
  └─ Build vCPU                         Monthly cost depends on usage: $0.0001 per seconds        
-                                                                                                 
- azurerm_service_plan.main                                                                       
- └─ Instance usage (F1)                              730  hours                          $0.00   
                                                                                                  
  azurerm_application_insights.main                                                               
  └─ Data ingested                      Monthly cost depends on usage: $2.30 per GB               
@@ -40,7 +40,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
  azurerm_monitor_action_group.main                                                               
  └─ Email notifications (1)            Monthly cost depends on usage: $0.00002 per emails        
                                                                                                  
- OVERALL TOTAL                                                                         $29.82 
+ OVERALL TOTAL                                                                         $54.64 
 
 *Usage costs were estimated using infracost-usage.yml, see docs for other options.
 
@@ -52,7 +52,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
 ┃ Project                                                          ┃ Baseline cost ┃ Usage cost* ┃ Total cost ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━╋━━━━━━━━━━━━┫
-┃ UPT-FAING-EPIS/proyecto-si784-2...eb_ScaeUPT/terraform/plan.json ┃           $30 ┃       $0.00 ┃        $30 ┃
+┃ UPT-FAING-EPIS/proyecto-si784-2...eb_ScaeUPT/terraform/plan.json ┃           $55 ┃       $0.00 ┃        $55 ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━┛
 ```
 
@@ -63,7 +63,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 >  azurerm_monitor_action_group.main                                                               
 >  └─ Email notifications (1)            Monthly cost depends on usage: $0.00002 per emails        
 >                                                                                                  
->  OVERALL TOTAL                                                                         $29.82 
+>  OVERALL TOTAL                                                                         $54.64 
 > 
 > *Usage costs were estimated using infracost-usage.yml, see docs for other options.
 > 
@@ -82,7 +82,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 
 - **Tool:** Infracost `v0.10.41`
 - **Format:** Infrastructure as Code cost estimation
-- **Timestamp:** `2025-07-05T17:41:16Z`
+- **Timestamp:** `2025-07-05T17:53:27Z`
 
 </details>
 
