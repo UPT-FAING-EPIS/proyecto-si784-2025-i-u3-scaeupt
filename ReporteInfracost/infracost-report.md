@@ -2,7 +2,7 @@
 
 > **Project:** `UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/terraform/plan.json`  
 > **Total Monthly Cost:** **`$29.82`**  
-> **Generated:** `2025-07-05 17:05:34`
+> **Generated:** `2025-07-05 17:17:18`
 
 ## 📊 Detailed Breakdown
 
@@ -45,8 +45,8 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 *Usage costs were estimated using infracost-usage.yml, see docs for other options.
 
 ──────────────────────────────────
-12 cloud resources were detected:
-∙ 9 were estimated
+14 cloud resources were detected:
+∙ 11 were estimated
 ∙ 3 were free
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
@@ -68,8 +68,8 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 > *Usage costs were estimated using infracost-usage.yml, see docs for other options.
 > 
 > ──────────────────────────────────
-> 12 cloud resources were detected:
-> ∙ 9 were estimated
+> 14 cloud resources were detected:
+> ∙ 11 were estimated
 > ∙ 3 were free
 > 
 > ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
@@ -82,7 +82,7 @@ Project: UPT-FAING-EPIS/proyecto-si784-2025-i-u3-scaeupt/WebApp/pyWeb_ScaeUPT/te
 
 - **Tool:** Infracost `v0.10.41`
 - **Format:** Infrastructure as Code cost estimation
-- **Timestamp:** `2025-07-05T17:05:34Z`
+- **Timestamp:** `2025-07-05T17:17:18Z`
 
 </details>
 
