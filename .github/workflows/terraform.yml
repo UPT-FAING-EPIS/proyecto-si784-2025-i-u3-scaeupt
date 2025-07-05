@@ -56,8 +56,8 @@ jobs:
             -var="google_client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
             -var="google_client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
             -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
+            -var="admin_email=sercolquep@upt.pe" \
             -var="docker_image_tag=preview" \
-          -var="admin_email=sercolquep@upt.pe" \
             -var="python_docker_image_tag=preview" \
             -out=tfplan.binary
 
@@ -237,9 +237,9 @@ jobs:
           -var="google_client_id=${{ secrets.GOOGLE_CLIENT_ID }}" \
           -var="google_client_secret=${{ secrets.GOOGLE_CLIENT_SECRET }}" \
           -var="jwt_secret_key=${{ secrets.JWT_SECRET_KEY }}" \
+          -var="admin_email=sercolquep@upt.pe" \
           -var="docker_image_tag=${{ github.sha }}" \
           -var="python_docker_image_tag=${{ github.sha }}" \
-          -var="admin_email=sercolquep@upt.pe" \
           -out=tfplan
 
     - name: Get ACR Credentials
