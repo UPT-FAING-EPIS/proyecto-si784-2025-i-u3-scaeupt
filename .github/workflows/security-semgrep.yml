@@ -1,45 +1,46 @@
-name: Semgrep Code Analysis
-
+name: Semgrep Analysis and Publish the HTML Report
+env:
+  DOTNET_VERSION: '8.0'                     # la versión de .NET
 on: push
-# on: 
-#   workflow_dispatch:
-
 jobs:
-  semgrep:
+  security:
     runs-on: ubuntu-latest
-    name: Semgrep Security Scan
+    container:
+      # A Docker image with Semgrep installed. Do not change this.
+      image: semgrep/semgrep
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Run Semgrep
-      id: semgrep
-      uses: semgrep/semgrep-action@v1
-      with:
-        config: >
-          p/security-audit
-          p/secrets
-          p/csharp
-        generateSarif: "1"
-        
-    - name: Upload Semgrep results to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v3
-      if: always()
-      with:
-        sarif_file: semgrep.sarif
-        
-    - name: Generate Semgrep HTML Report
-      if: always()
-      run: |
-        pip install --upgrade semgrep
-        mkdir -p semgrep-report
-        semgrep scan --config=p/default --output-format=html --output=semgrep-report/index.html WebApp/ || true
-
-    - name: Deploy Semgrep report to GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: semgrep-report
-        destination_dir: ReporteSemgrep
-        keep_files: true
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@master
+      # - name: Configurando la versión de NET
+      #   uses: actions/setup-dotnet@v4
+      #   with:
+      #     dotnet-version: ${{ env.DOTNET_VERSION }}  
+      - name: Semgrep scan
+        run: semgrep scan --config="p/default" --sarif --output=report.sarif --metrics=off
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: report.sarif
+      - name: Semgrep scan for JSON
+        run: semgrep scan --config='p/default' . --json --output semgrep.json --metrics=off
+      - name: Install python and prospector-html
+        run: |
+          apk add --no-cache python3 py3-pip
+          python3 -m venv venv
+          . venv/bin/activate
+          pip install prospector2html
+      - name: Convert Semgrep report to HTML 
+        #semgrep-report.html -> index for Gh Paegs
+        run: |
+          . venv/bin/activate
+          mkdir -p semgrep-report
+          prospector-html --input semgrep.json --output semgrep-report/index.html --filter semgrep || true
+      - name: Cat semgrep html
+        run: cat semgrep-report/index.html
+      - name: Upload HTML report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: semgrep-report
+          destination_dir: ReporteSemgrep  # subdirectory for the report on ghpages
+          keep_files: true  # for dont cleaned any sites
