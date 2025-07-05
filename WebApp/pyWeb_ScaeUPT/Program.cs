@@ -1,97 +1,96 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using pyWeb_ScaeUPT.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using DotNetEnv;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
+using pyWeb_ScaeUPT.Services; // Agregar esta línea
 
 var builder = WebApplication.CreateBuilder(args);
 
-Env.Load();
-//google
-builder.Configuration["Authentication:Google:ClientId"] = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-builder.Configuration["Authentication:Google:ClientSecret"] = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-//jwt
-builder.Configuration["JWT:SecretKey"] = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Configurar CORS
-builder.Services.AddCors(options =>
+// Application Insights
+builder.Services.AddApplicationInsightsTelemetry(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder => builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    options.ConnectionString = builder.Configuration.GetConnectionString("ApplicationInsights") 
+        ?? Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING");
 });
 
-builder.Services.AddHttpClient();
+// Registrar TelemetryClient como singleton
+builder.Services.AddSingleton<TelemetryClient>();
 
-builder.Services.AddControllers();
+// Registrar MetricsService - AGREGAR ESTA LÍNEA
+builder.Services.AddScoped<IMetricsService, MetricsService>();
 
-// Configurar Entity Framework Core con MySQL
-// builder.Services.AddDbContext<pyWeb_ScaeUPT.Data.ApplicationDbContext>(options =>
-//     options.UseMySql(
-//         builder.Configuration.GetConnectionString("MySqlConnection"),
-//         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MySqlConnection"))
-//     ));
+// Database context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING");
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-builder.Services.AddDbContext<pyWeb_ScaeUPT.Data.ApplicationDbContext>(options =>
-    options.UseMySql(
-        Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING"),
-        ServerVersion.AutoDetect(Environment.GetEnvironmentVariable("MYSQL_CONNECTION_STRING"))
-    ));
+// JWT Authentication
+var jwtKey = builder.Configuration["JWT:SecretKey"] ?? Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
+var key = Encoding.ASCII.GetBytes(jwtKey);
 
-
-// Leer valores de configuración para JWT
-var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
-var issuer = builder.Configuration["JWT:Issuer"];
-var audience = builder.Configuration["JWT:Audience"];
-
-// ✅ Configurar autenticación JWT
-builder.Services.AddAuthentication(options =>
+builder.Services.AddAuthentication(x =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddJwtBearer(options =>
+.AddJwtBearer(x =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-
-        ValidIssuer = issuer,
-        ValidAudience = audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
     };
 });
 
-// Agregar autorización
-builder.Services.AddAuthorization();
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
+// HttpClient
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
-// Middleware pipeline
-if (!app.Environment.IsDevelopment())
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/api/Home/error");
-    app.UseHsts();
-
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 app.UseCors("AllowAll");
-
-app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 
 app.MapControllers();
-app.MapFallbackToFile("index.html"); //para malass reedirecciones
+
+// Configurar página de inicio
+app.MapFallbackToFile("index.html");
 
 app.Run();
 

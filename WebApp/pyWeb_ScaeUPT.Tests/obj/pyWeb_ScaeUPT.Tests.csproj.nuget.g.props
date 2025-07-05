@@ -27,6 +27,7 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgValidation Condition=" '$(PkgValidation)' == '' ">C:\Users\Administrator\.nuget\packages\validation\2.4.18</PkgValidation>
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\Administrator\.nuget\packages\xunit.analyzers\1.4.0</Pkgxunit_analyzers>
+    <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\Administrator\.nuget\packages\microsoft.extensions.apidescription.server\6.0.5</PkgMicrosoft_Extensions_ApiDescription_Server>
     <PkgBoDi Condition=" '$(PkgBoDi)' == '' ">C:\Users\Administrator\.nuget\packages\bodi\1.5.0</PkgBoDi>
     <PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets Condition=" '$(PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets)' == '' ">C:\Users\Administrator\.nuget\packages\microsoft.visualstudio.azure.containers.tools.targets\1.19.6</PkgMicrosoft_VisualStudio_Azure_Containers_Tools_Targets>
   </PropertyGroup>

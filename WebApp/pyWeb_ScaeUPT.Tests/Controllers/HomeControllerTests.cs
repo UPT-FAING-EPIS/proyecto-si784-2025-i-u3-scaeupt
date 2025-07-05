@@ -8,7 +8,7 @@ using Xunit;
 using pyWeb_ScaeUPT.Controllers;
 using pyWeb_ScaeUPT.Data;
 using pyWeb_ScaeUPT.Models;
-
+using pyWeb_ScaeUPT.Services;
 namespace pyWeb_ScaeUPT.Tests.Controllers
 {
     public class HomeControllerTests : IDisposable
@@ -26,8 +26,8 @@ namespace pyWeb_ScaeUPT.Tests.Controllers
             _context = new ApplicationDbContext(options);
 
             _mockLogger = new Mock<ILogger<HomeController>>();
-            _controller = new HomeController(_mockLogger.Object, _context);
-
+            var mockMetricsService = new Mock<IMetricsService>();
+            _controller = new HomeController(_mockLogger.Object, _context,mockMetricsService.Object);
             // Seed test data
             SeedTestData();
         }

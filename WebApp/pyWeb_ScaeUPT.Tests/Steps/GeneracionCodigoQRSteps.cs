@@ -5,9 +5,11 @@ using Microsoft.Extensions.Logging;
 using pyWeb_ScaeUPT.Controllers;
 using pyWeb_ScaeUPT.Data;
 using pyWeb_ScaeUPT.Models;
+using pyWeb_ScaeUPT.Services; // AGREGAR ESTA LÍNEA
 using System.Security.Claims;
 using TechTalk.SpecFlow;
 using Xunit;
+using Moq; // AGREGAR ESTA LÍNEA
 
 namespace pyWeb_ScaeUPT.Tests.Steps
 {
@@ -41,8 +43,11 @@ namespace pyWeb_ScaeUPT.Tests.Steps
             var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
             _logger = loggerFactory.CreateLogger<HomeController>();
 
-            // Crear controlador
-            _controller = new HomeController(_logger, _context);
+            // CREAR MOCK DEL METRICS SERVICE
+            var mockMetricsService = new Mock<IMetricsService>();
+
+            // Crear controlador CON EL TERCER PARÁMETRO
+            _controller = new HomeController(_logger, _context, mockMetricsService.Object);
         }
 
         [AfterScenario]

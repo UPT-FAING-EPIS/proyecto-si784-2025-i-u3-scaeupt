@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using QRCoder;
 using System.IO;
+using pyWeb_ScaeUPT.Services;
 
 namespace pyWeb_ScaeUPT.Controllers
 {
@@ -18,12 +19,14 @@ namespace pyWeb_ScaeUPT.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMetricsService _metricsService;
         private readonly string _encryptionKey = "ScaeUPT2024SecretKey123456789012345";
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext, IMetricsService metricsService)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _metricsService = metricsService;
         }
 
         [HttpGet]
@@ -44,6 +47,8 @@ namespace pyWeb_ScaeUPT.Controllers
         [Authorize]
         public IActionResult GetUserInfo()
         {
+            var stopwatch = Stopwatch.StartNew();
+            
             try
             {
                 // Obtener el ID del usuario desde el token JWT
@@ -69,10 +74,22 @@ namespace pyWeb_ScaeUPT.Controllers
                     matricula = estudiante.Matricula
                 };
 
+                stopwatch.Stop();
+                
+                // Registrar métricas
+                _metricsService.TrackUserInfoView(id.ToString(), email, estudiante.Matricula);
+                _metricsService.TrackPerformance("GetUserInfo", stopwatch.ElapsedMilliseconds);
+
                 return Ok(userInfo);
             }
             catch (Exception ex)
             {
+                stopwatch.Stop();
+                _metricsService.TrackCustomEvent("UserInfoViewFailed", new Dictionary<string, string>
+                {
+                    ["Error"] = ex.Message
+                });
+                
                 _logger.LogError(ex, "Error al obtener información del usuario");
                 return StatusCode(500, "Error interno del servidor");
             }
@@ -82,10 +99,13 @@ namespace pyWeb_ScaeUPT.Controllers
         [Authorize]
         public IActionResult GenerateQR()
         {
+            var stopwatch = Stopwatch.StartNew();
+            string userId = null; // Declarar aquí para que esté disponible en el catch
+            
             try
             {
                 // Obtener el ID del usuario desde el token JWT
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
                 {
                     return BadRequest("ID de usuario no válido");
@@ -97,6 +117,10 @@ namespace pyWeb_ScaeUPT.Controllers
 
                 // Para este ejemplo, usaremos el DNI (Id_Persona) como dato a encriptar
                 string dniToEncrypt = estudiante.Id_Persona;
+
+                // Verificar si es regeneración
+                var existingToken = _dbContext.token.FirstOrDefault(t => t.DNI_token == dniToEncrypt);
+                bool isRegeneration = existingToken != null;
 
                 // Generar timestamp con mayor precisión y GUID único
                 DateTime limaTime;
@@ -122,7 +146,6 @@ namespace pyWeb_ScaeUPT.Controllers
                 string encryptedToken = EncryptData(dataToEncrypt);
 
                 // Crear o actualizar el registro en la tabla de tokens
-                var existingToken = _dbContext.token.FirstOrDefault(t => t.DNI_token == dniToEncrypt);
                 if (existingToken != null)
                 {
                     // Actualizar token existente
@@ -142,6 +165,17 @@ namespace pyWeb_ScaeUPT.Controllers
                 // Generar el código QR
                 string qrCodeBase64 = GenerateQRCodeBase64(encryptedToken);
 
+                stopwatch.Stop();
+                
+                // Registrar métricas
+                _metricsService.TrackQRGeneration(
+                    id.ToString(), 
+                    dniToEncrypt, 
+                    estudiante.Matricula, 
+                    isRegeneration, 
+                    stopwatch.ElapsedMilliseconds
+                );
+
                 return Ok(new { 
                     success = true, 
                     timestamp = limaTime.ToString("dd/MM/yyyy HH:mm:ss"),
@@ -151,7 +185,54 @@ namespace pyWeb_ScaeUPT.Controllers
             }
             catch (Exception ex)
             {
+                stopwatch.Stop();
+                _metricsService.TrackQRGenerationFailure(userId ?? "Unknown", ex.Message);
                 _logger.LogError(ex, "Error al generar código QR");
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+        
+        [HttpGet("history")]
+        [Authorize]
+        public IActionResult GetUserHistory()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out int id))
+                {
+                    return BadRequest("ID de usuario no válido");
+                }
+
+                var estudiante = _dbContext.estudiante.Find(id);
+                if (estudiante == null) return NotFound("Estudiante no encontrado");
+
+                // Obtener historial de tokens del usuario
+                var tokens = _dbContext.token
+                    .Where(t => t.DNI_token == estudiante.Id_Persona)
+                    .OrderByDescending(t => t.Id_codigoqr)
+                    .Take(10) // Últimos 10 registros
+                    .ToList();
+
+                stopwatch.Stop();
+                
+                // Registrar métricas
+                _metricsService.TrackUserHistoryView(id.ToString(), estudiante.Id_Persona, tokens.Count);
+                _metricsService.TrackPerformance("GetUserHistory", stopwatch.ElapsedMilliseconds);
+
+                return Ok(new { history = tokens, count = tokens.Count });
+            }
+            catch (Exception ex)
+            {
+                stopwatch.Stop();
+                _metricsService.TrackCustomEvent("HistoryViewFailed", new Dictionary<string, string>
+                {
+                    ["Error"] = ex.Message
+                });
+                
+                _logger.LogError(ex, "Error al obtener historial del usuario");
                 return StatusCode(500, "Error interno del servidor");
             }
         }

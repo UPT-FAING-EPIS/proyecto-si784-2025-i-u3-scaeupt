@@ -115,3 +115,8 @@ variable "tags" {
     project     = "scae-upt"
   }
 }
+
+variable "admin_email" {
+  description = "Email del administrador para recibir alertas"
+  type        = string
+}

@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = pyWeb_ScaeUPT.Tests
-build_property.ProjectDir = C:\Users\Administrator\Desktop\ga\vfiina solo test y 3 yaml\proyecto-si784-2025-i-u2-scae-upt\WebApp\pyWeb_ScaeUPT.Tests\
+build_property.ProjectDir = C:\Users\Administrator\Desktop\metricas\proyecto-si784-2025-i-u3-scaeupt\WebApp\pyWeb_ScaeUPT.Tests\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

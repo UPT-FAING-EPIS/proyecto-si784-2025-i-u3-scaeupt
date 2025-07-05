@@ -14,6 +14,7 @@ using Xunit;
 using pyWeb_ScaeUPT.Controllers;
 using pyWeb_ScaeUPT.Data;
 using pyWeb_ScaeUPT.Models;
+using pyWeb_ScaeUPT.Services;
 
 namespace pyWeb_ScaeUPT.Tests.Controllers
 {
@@ -54,12 +55,13 @@ namespace pyWeb_ScaeUPT.Tests.Controllers
                 .Returns("pyWeb_ScaeUPT_Clients");
             _mockConfiguration.Setup(x => x["Authentication:Google:ClientId"])
                 .Returns("test-client-id");
-
+            var mockMetricsService = new Mock<IMetricsService>();
             _controller = new AuthController(
                 _mockConfiguration.Object,
                 _context,
                 _mockLogger.Object,
-                _mockHttpClientFactory.Object
+                _mockHttpClientFactory.Object,
+                mockMetricsService.Object
             );
 
             // Seed test data

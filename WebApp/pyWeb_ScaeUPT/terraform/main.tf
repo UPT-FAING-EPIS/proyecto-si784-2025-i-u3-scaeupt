@@ -77,7 +77,122 @@ resource "azurerm_service_plan" "python" {
   }
 }
 
-# Linux Web App para ASP.NET (existente)
+# Log Analytics Workspace
+resource "azurerm_log_analytics_workspace" "main" {
+  name                = "scae-upt-logs"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Application Insights para ASP.NET App
+resource "azurerm_application_insights" "main" {
+  name                = "scae-upt-app-insights"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  workspace_id        = azurerm_log_analytics_workspace.main.id
+  application_type    = "web"
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Application Insights para Python Service
+resource "azurerm_application_insights" "python" {
+  name                = "scae-upt-python-insights"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  workspace_id        = azurerm_log_analytics_workspace.main.id
+  application_type    = "web"
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Action Group para alertas
+resource "azurerm_monitor_action_group" "main" {
+  name                = "scae-upt-alerts"
+  resource_group_name = azurerm_resource_group.main.name
+  short_name          = "scaeupt"
+  
+  email_receiver {
+    name          = "admin"
+    email_address = var.admin_email
+  }
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Alerta de CPU alta
+resource "azurerm_monitor_metric_alert" "cpu_alert" {
+  name                = "scae-upt-high-cpu"
+  resource_group_name = azurerm_resource_group.main.name
+  scopes              = [azurerm_service_plan.main.id, azurerm_service_plan.python.id]
+  description         = "Alerta cuando el CPU supera el 80%"
+  
+  criteria {
+    metric_namespace = "Microsoft.Web/serverfarms"
+    metric_name      = "CpuPercentage"
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = 80
+  }
+  
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+  }
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Alerta de errores HTTP 5xx
+resource "azurerm_monitor_metric_alert" "http_5xx_alert" {
+  name                = "scae-upt-http-5xx"
+  resource_group_name = azurerm_resource_group.main.name
+  scopes              = [azurerm_linux_web_app.main.id, azurerm_linux_web_app.python_service.id]
+  description         = "Alerta cuando hay más de 5 errores HTTP 5xx en 5 minutos"
+  
+  criteria {
+    metric_namespace = "Microsoft.Web/sites"
+    metric_name      = "Http5xx"
+    aggregation      = "Total"
+    operator         = "GreaterThan"
+    threshold        = 5
+  }
+  
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+  }
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Actualizar Linux Web App para ASP.NET con Application Insights
 resource "azurerm_linux_web_app" "main" {
   name                = "scae-upt-app"
   resource_group_name = azurerm_resource_group.main.name
@@ -87,7 +202,7 @@ resource "azurerm_linux_web_app" "main" {
   https_only = true
   
   site_config {
-    always_on                         = false  # F1 plan no soporta always_on
+    always_on                         = false
     container_registry_use_managed_identity = false
     
     application_stack {
@@ -110,6 +225,12 @@ resource "azurerm_linux_web_app" "main" {
     "GOOGLE_CLIENT_SECRET"                = var.google_client_secret
     "JWT_SECRET_KEY"                      = var.jwt_secret_key
     "DOCKER_IMAGE_TAG"                    = var.docker_image_tag
+    
+    # Application Insights Configuration
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.main.connection_string
+    "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3"
+    "APPINSIGHTS_PROFILERFEATURE_VERSION" = "1.0.0"
+    "APPINSIGHTS_SNAPSHOTFEATURE_VERSION" = "1.0.0"
   }
   
   tags = {
@@ -119,7 +240,7 @@ resource "azurerm_linux_web_app" "main" {
   }
 }
 
-# Linux Web App para Python (nuevo microservicio)
+# Actualizar Linux Web App para Python con Application Insights
 resource "azurerm_linux_web_app" "python_service" {
   name                = "scae-upt-python-service"
   resource_group_name = azurerm_resource_group.main.name
@@ -132,7 +253,7 @@ resource "azurerm_linux_web_app" "python_service" {
   ]
   
   site_config {
-    always_on                         = true  # F1 plan no soporta always_on
+    always_on                         = true
     container_registry_use_managed_identity = false
     
     application_stack {
@@ -142,7 +263,6 @@ resource "azurerm_linux_web_app" "python_service" {
       docker_registry_password = azurerm_container_registry.main.admin_password
     }
     
-    # Health check para el servicio Python
     health_check_path = "/verificar"
   }
   
@@ -154,6 +274,9 @@ resource "azurerm_linux_web_app" "python_service" {
     "DOCKER_IMAGE_TAG"                    = var.python_docker_image_tag
     "WEBSITES_PORT"                       = "5000"
     "FLASK_ENV"                          = "production"
+    
+    # Application Insights Configuration
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.python.connection_string
   }
   
   tags = {

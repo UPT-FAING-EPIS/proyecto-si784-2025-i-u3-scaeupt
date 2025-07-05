@@ -9,8 +9,9 @@ using System;
 using System.Text.Json;
 using pyWeb_ScaeUPT.Models;
 using pyWeb_ScaeUPT.Data;
-
 using Microsoft.AspNetCore.Authorization;
+using pyWeb_ScaeUPT.Services;
+using System.Diagnostics;
 
 namespace pyWeb_ScaeUPT.Controllers
 {
@@ -22,19 +23,23 @@ namespace pyWeb_ScaeUPT.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<AuthController> _logger;
         private readonly HttpClient _httpClient;
+        private readonly IMetricsService _metricsService;
 
         public AuthController(IConfiguration configuration, ApplicationDbContext dbContext, 
-            ILogger<AuthController> logger, IHttpClientFactory httpClientFactory)
+            ILogger<AuthController> logger, IHttpClientFactory httpClientFactory, IMetricsService metricsService)
         {
             _configuration = configuration;
             _dbContext = dbContext;
             _logger = logger;
             _httpClient = httpClientFactory.CreateClient();
+            _metricsService = metricsService;
         }
 
         [HttpPost("google")]
         public async Task<IActionResult> Google([FromBody] GoogleAuthRequest request)
         {
+            var stopwatch = Stopwatch.StartNew();
+            
             try
             {
                 _logger.LogInformation($"Received Google ID token: {request.IdToken}");
@@ -43,12 +48,14 @@ namespace pyWeb_ScaeUPT.Controllers
                 var payload = await VerifyGoogleToken(request.IdToken);
                 if (payload == null)
                 {
+                    _metricsService.TrackLoginFailure("Token de Google inválido", "Google");
                     return BadRequest(new { error = "Token de Google inválido" });
                 }
 
                 // Verificar si el correo pertenece al dominio institucional
                 if (!payload.Email.EndsWith("@virtual.upt.pe"))
                 {
+                    _metricsService.TrackLoginFailure("Dominio no autorizado", "Google");
                     return BadRequest(new { error = "Solo se permite el acceso con cuentas del dominio virtual.upt.pe" });
                 }
 
@@ -57,11 +64,24 @@ namespace pyWeb_ScaeUPT.Controllers
 
                 if (usuario == null)
                 {
+                    _metricsService.TrackLoginFailure("Usuario no registrado", "Google");
                     return BadRequest(new { error = "El correo no está registrado en el sistema" });
                 }
 
                 // Generar token JWT
                 var token = GenerarJWT(usuario);
+
+                stopwatch.Stop();
+                
+                // Registrar métricas de login exitoso
+                _metricsService.TrackUserLogin(
+                    usuario.Id_Estudiante.ToString(), 
+                    payload.Email, 
+                    "Google", 
+                    usuario.Semestre.ToString()
+                );
+                
+                _metricsService.TrackPerformance("GoogleLogin", stopwatch.ElapsedMilliseconds);
 
                 return Ok(new
                 {
@@ -77,6 +97,8 @@ namespace pyWeb_ScaeUPT.Controllers
             }
             catch (Exception ex)
             {
+                stopwatch.Stop();
+                _metricsService.TrackLoginFailure(ex.Message, "Google");
                 _logger.LogError(ex, "Error en la autenticación con Google");
                 return StatusCode(500, new { error = "Error en la autenticación", message = ex.Message });
             }
@@ -86,8 +108,35 @@ namespace pyWeb_ScaeUPT.Controllers
         [Authorize]
         public IActionResult ValidateToken()
         {
-            // validación se hace autoamticamente por el middleware de auth
+            // validación se hace automáticamente por el middleware de auth
             return Ok(new { valid = true });
+        }
+        
+        [HttpPost("logout")]
+        [Authorize]
+        public IActionResult Logout()
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var email = User.FindFirst(ClaimTypes.Email)?.Value;
+                
+                // Calcular duración de sesión (simplificado - en producción podrías almacenar el tiempo de login)
+                var sessionDuration = TimeSpan.FromMinutes(30); // Valor por defecto
+                
+                _metricsService.TrackUserLogout(userId ?? "Unknown", email ?? "Unknown", sessionDuration);
+                
+                return Ok(new { message = "Sesión cerrada exitosamente" });
+            }
+            catch (Exception ex)
+            {
+                _metricsService.TrackCustomEvent("LogoutFailed", new Dictionary<string, string>
+                {
+                    ["Error"] = ex.Message
+                });
+                
+                return StatusCode(500, "Error al cerrar sesión");
+            }
         }
 
         private async Task<GoogleTokenPayload> VerifyGoogleToken(string idToken)
