@@ -140,12 +140,12 @@ resource "azurerm_monitor_action_group" "main" {
   }
 }
 
-# Alerta de CPU alta
-resource "azurerm_monitor_metric_alert" "cpu_alert" {
-  name                = "scae-upt-high-cpu"
+# Alerta de CPU alta para ASP.NET App Service Plan
+resource "azurerm_monitor_metric_alert" "cpu_alert_main" {
+  name                = "scae-upt-high-cpu-main"
   resource_group_name = azurerm_resource_group.main.name
-  scopes              = [azurerm_service_plan.main.id, azurerm_service_plan.python.id]
-  description         = "Alerta cuando el CPU supera el 80%"
+  scopes              = [azurerm_service_plan.main.id]
+  description         = "Alerta cuando el CPU supera el 80% en el plan principal"
   
   criteria {
     metric_namespace = "Microsoft.Web/serverfarms"
@@ -166,12 +166,64 @@ resource "azurerm_monitor_metric_alert" "cpu_alert" {
   }
 }
 
-# Alerta de errores HTTP 5xx
-resource "azurerm_monitor_metric_alert" "http_5xx_alert" {
-  name                = "scae-upt-http-5xx"
+# Alerta de CPU alta para Python App Service Plan
+resource "azurerm_monitor_metric_alert" "cpu_alert_python" {
+  name                = "scae-upt-high-cpu-python"
   resource_group_name = azurerm_resource_group.main.name
-  scopes              = [azurerm_linux_web_app.main.id, azurerm_linux_web_app.python_service.id]
-  description         = "Alerta cuando hay más de 5 errores HTTP 5xx en 5 minutos"
+  scopes              = [azurerm_service_plan.python.id]
+  description         = "Alerta cuando el CPU supera el 80% en el plan de Python"
+  
+  criteria {
+    metric_namespace = "Microsoft.Web/serverfarms"
+    metric_name      = "CpuPercentage"
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = 80
+  }
+  
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+  }
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Alerta de errores HTTP 5xx para ASP.NET Web App
+resource "azurerm_monitor_metric_alert" "http_5xx_alert_main" {
+  name                = "scae-upt-http-5xx-main"
+  resource_group_name = azurerm_resource_group.main.name
+  scopes              = [azurerm_linux_web_app.main.id]
+  description         = "Alerta cuando hay más de 5 errores HTTP 5xx en 5 minutos en la app principal"
+  
+  criteria {
+    metric_namespace = "Microsoft.Web/sites"
+    metric_name      = "Http5xx"
+    aggregation      = "Total"
+    operator         = "GreaterThan"
+    threshold        = 5
+  }
+  
+  action {
+    action_group_id = azurerm_monitor_action_group.main.id
+  }
+  
+  tags = {
+    environment = "production"
+    project     = "scae-upt"
+    managed_by  = "terraform"
+  }
+}
+
+# Alerta de errores HTTP 5xx para Python Web App
+resource "azurerm_monitor_metric_alert" "http_5xx_alert_python" {
+  name                = "scae-upt-http-5xx-python"
+  resource_group_name = azurerm_resource_group.main.name
+  scopes              = [azurerm_linux_web_app.python_service.id]
+  description         = "Alerta cuando hay más de 5 errores HTTP 5xx en 5 minutos en el servicio Python"
   
   criteria {
     metric_namespace = "Microsoft.Web/sites"
