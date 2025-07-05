@@ -213,13 +213,14 @@ var assemblies = [
   {
     "name": "pyWeb_ScaeUPT",
     "classes": [
-      { "name": "pyWeb_ScaeUPT.Controllers.AuthController", "rp": "pyWeb_ScaeUPT_AuthController.html", "cl": 291, "ucl": 40, "cal": 331, "tl": 518, "cb": 61, "tb": 90, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "pyWeb_ScaeUPT.Controllers.GoogleAuthRequest", "rp": "pyWeb_ScaeUPT_GoogleAuthRequest.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 528, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "pyWeb_ScaeUPT.Controllers.GoogleTokenPayload", "rp": "pyWeb_ScaeUPT_GoogleTokenPayload.html", "cl": 38, "ucl": 4, "cal": 42, "tl": 560, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "pyWeb_ScaeUPT.Controllers.HomeController", "rp": "pyWeb_ScaeUPT_HomeController.html", "cl": 360, "ucl": 177, "cal": 537, "tl": 802, "cb": 49, "tb": 70, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "pyWeb_ScaeUPT.Controllers.AuthController", "rp": "pyWeb_ScaeUPT_AuthController.html", "cl": 303, "ucl": 58, "cal": 361, "tl": 567, "cb": 61, "tb": 98, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "pyWeb_ScaeUPT.Controllers.GoogleAuthRequest", "rp": "pyWeb_ScaeUPT_GoogleAuthRequest.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 577, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "pyWeb_ScaeUPT.Controllers.GoogleTokenPayload", "rp": "pyWeb_ScaeUPT_GoogleTokenPayload.html", "cl": 38, "ucl": 4, "cal": 42, "tl": 609, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "pyWeb_ScaeUPT.Controllers.HomeController", "rp": "pyWeb_ScaeUPT_HomeController.html", "cl": 376, "ucl": 212, "cal": 588, "tl": 883, "cb": 49, "tb": 80, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "pyWeb_ScaeUPT.Data.ApplicationDbContext", "rp": "pyWeb_ScaeUPT_ApplicationDbContext.html", "cl": 15, "ucl": 0, "cal": 15, "tl": 50, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "pyWeb_ScaeUPT.Models.estudianteModel", "rp": "pyWeb_ScaeUPT_estudianteModel.html", "cl": 15, "ucl": 0, "cal": 15, "tl": 43, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "pyWeb_ScaeUPT.Models.tokenModel", "rp": "pyWeb_ScaeUPT_tokenModel.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 43, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "pyWeb_ScaeUPT.Services.MetricsService", "rp": "pyWeb_ScaeUPT_MetricsService.html", "cl": 17, "ucl": 154, "cal": 171, "tl": 239, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -228,9 +229,23 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
+      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
+      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
+  {
+    "assembly": "pyWeb_ScaeUPT", "class": "pyWeb_ScaeUPT.Controllers.AuthController", "reportPath": "pyWeb_ScaeUPT_AuthController.html", "methodName": "Logout()", "methodShortName": "Logout()", "fileIndex": 0, "line": 118,
+    "metrics": [
+      { "value": 72, "exceeded": true },
+      { "value": 8, "exceeded": false },
+    ]},
+  {
+    "assembly": "pyWeb_ScaeUPT", "class": "pyWeb_ScaeUPT.Controllers.HomeController", "reportPath": "pyWeb_ScaeUPT_HomeController.html", "methodName": "GetUserHistory()", "methodShortName": "GetUserHistory()", "fileIndex": 0, "line": 198,
+    "metrics": [
+      { "value": 72, "exceeded": true },
+      { "value": 8, "exceeded": false },
+    ]},
 ];
 
 var branchCoverageAvailable = true;
