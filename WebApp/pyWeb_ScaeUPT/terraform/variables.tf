@@ -19,7 +19,7 @@ variable "app_name" {
 variable "app_service_sku" {
   description = "SKU del plan de App Service"
   type        = string
-  default     = "F1"  # Cambiar de F1 a B1 (Basic)
+  default     = "B2"  # Cambiar de F1 a B1 (Basic)
 }
 
 variable "python_app_service_sku" {
