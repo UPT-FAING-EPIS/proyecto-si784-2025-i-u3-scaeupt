@@ -35,6 +35,193 @@ def inicializar_modelo():
         modelo = None
         return False
 
+class FaceValidator:
+    """Clase para validación estricta de rostros"""
+    
+    @staticmethod
+    def validar_rostro_detectado(image_path):
+        """Valida que haya al menos un rostro bien detectado"""
+        try:
+            # Usar múltiples backends para detección
+            backends = ['opencv', 'retinaface', 'mtcnn']
+            rostros_detectados = []
+            
+            for backend in backends:
+                try:
+                    faces = DeepFace.extract_faces(
+                        img_path=image_path,
+                        detector_backend=backend,
+                        enforce_detection=False,
+                        align=True
+                    )
+                    if faces and len(faces) > 0:
+                        rostros_detectados.append({
+                            'backend': backend,
+                            'count': len(faces),
+                            'faces': faces
+                        })
+                except Exception as e:
+                    logger.debug(f"Backend {backend} falló: {e}")
+                    continue
+            
+            if not rostros_detectados:
+                return False, "No se detectaron rostros en la imagen"
+            
+            # Validar calidad de los rostros detectados
+            mejor_deteccion = max(rostros_detectados, key=lambda x: x['count'])
+            
+            if mejor_deteccion['count'] > 1:
+                return False, f"Se detectaron múltiples rostros ({mejor_deteccion['count']})"
+            
+            # Validar tamaño del rostro detectado
+            face = mejor_deteccion['faces'][0]
+            if face.shape[0] < 64 or face.shape[1] < 64:
+                return False, "Rostro detectado muy pequeño"
+            
+            return True, {
+                'backend_usado': mejor_deteccion['backend'],
+                'rostros_detectados': mejor_deteccion['count'],
+                'tamaño_rostro': face.shape
+            }
+            
+        except Exception as e:
+            logger.error(f"Error en validación de rostro: {e}")
+            return False, f"Error en validación: {str(e)}"
+
+    @staticmethod
+    def calcular_similitud_facial(img1_path, img2_path):
+        """Calcula similitud facial con múltiples métodos"""
+        try:
+            results = {}
+            
+            # Método 1: ArcFace (principal)
+            try:
+                result_arcface = DeepFace.verify(
+                    img1_path=img1_path,
+                    img2_path=img2_path,
+                    model_name="ArcFace",
+                    detector_backend="opencv",
+                    enforce_detection=True,
+                    align=True,
+                    normalization="base"
+                )
+                results['arcface'] = {
+                    'verified': result_arcface['verified'],
+                    'distance': result_arcface['distance'],
+                    'threshold': result_arcface['threshold']
+                }
+            except Exception as e:
+                logger.warning(f"ArcFace falló: {e}")
+                results['arcface'] = None
+            
+            # Método 2: Facenet (respaldo)
+            try:
+                result_facenet = DeepFace.verify(
+                    img1_path=img1_path,
+                    img2_path=img2_path,
+                    model_name="Facenet",
+                    detector_backend="opencv",
+                    enforce_detection=True,
+                    align=True,
+                    normalization="base"
+                )
+                results['facenet'] = {
+                    'verified': result_facenet['verified'],
+                    'distance': result_facenet['distance'],
+                    'threshold': result_facenet['threshold']
+                }
+            except Exception as e:
+                logger.warning(f"Facenet falló: {e}")
+                results['facenet'] = None
+            
+            # Método 3: VGG-Face (adicional)
+            try:
+                result_vgg = DeepFace.verify(
+                    img1_path=img1_path,
+                    img2_path=img2_path,
+                    model_name="VGG-Face",
+                    detector_backend="opencv",
+                    enforce_detection=True,
+                    align=True,
+                    normalization="base"
+                )
+                results['vgg'] = {
+                    'verified': result_vgg['verified'],
+                    'distance': result_vgg['distance'],
+                    'threshold': result_vgg['threshold']
+                }
+            except Exception as e:
+                logger.warning(f"VGG-Face falló: {e}")
+                results['vgg'] = None
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error en cálculo de similitud: {e}")
+            return None
+
+    @staticmethod
+    def decision_final_verificacion(results):
+        """Toma decisión final basada en múltiples métodos"""
+        if not results:
+            return False, 0.0, "Error en verificación"
+        
+        # Contar métodos exitosos
+        metodos_exitosos = []
+        total_distance = 0.0
+        
+        for metodo, resultado in results.items():
+            if resultado is not None:
+                metodos_exitosos.append({
+                    'metodo': metodo,
+                    'verified': resultado['verified'],
+                    'distance': resultado['distance'],
+                    'threshold': resultado['threshold']
+                })
+                total_distance += resultado['distance']
+        
+        if not metodos_exitosos:
+            return False, 0.0, "Ningún método de verificación funcionó"
+        
+        # Calcular estadísticas
+        verificados = sum(1 for m in metodos_exitosos if m['verified'])
+        total_metodos = len(metodos_exitosos)
+        promedio_distance = total_distance / total_metodos
+        
+        # Lógica de decisión estricta
+        if total_metodos == 1:
+            # Solo un método funcionó - ser más estricto
+            metodo = metodos_exitosos[0]
+            # Reducir threshold para ser más estricto
+            threshold_estricto = metodo['threshold'] * 0.85
+            coincide = metodo['distance'] < threshold_estricto
+            confianza = 1.0 - (metodo['distance'] / metodo['threshold'])
+            
+        elif total_metodos == 2:
+            # Dos métodos - requiere al menos 2 coincidencias
+            coincide = verificados >= 2
+            confianza = verificados / total_metodos
+            
+        else:
+            # Tres métodos - requiere mayoría (al menos 2)
+            coincide = verificados >= 2
+            confianza = verificados / total_metodos
+        
+        # Ajustar confianza basada en distancia promedio
+        if coincide:
+            # Penalizar distancias altas aunque estén bajo el threshold
+            factor_distancia = max(0.1, 1.0 - (promedio_distance / 0.5))
+            confianza = min(confianza, factor_distancia)
+        
+        detalle = {
+            'metodos_exitosos': total_metodos,
+            'verificados': verificados,
+            'promedio_distance': promedio_distance,
+            'detalles_metodos': metodos_exitosos
+        }
+        
+        return coincide, confianza, detalle
+
 class LivenessDetector:
     """Clase optimizada para detección de liveness SIN recorte de imagen"""
     
@@ -42,7 +229,7 @@ class LivenessDetector:
     def detectar_liveness_sin_recorte(image_path):
         """
         Detección de liveness SIN recortar las imágenes
-        Procesa la imagen completa manteniendo toda la información
+        Procesamiento más estricto para evitar falsos positivos
         """
         try:
             img = cv2.imread(image_path)
@@ -51,28 +238,31 @@ class LivenessDetector:
             
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             
-            # Análisis completo SIN recorte
-            brightness_score = LivenessDetector._analizar_brillo_contraste_completo(gray)
-            reflection_score = LivenessDetector._detectar_reflexiones_completo(img)
-            sharpness_score = LivenessDetector._calcular_nitidez_completo(gray)
+            # Análisis mejorado con umbrales más estrictos
+            brightness_score = LivenessDetector._analizar_brillo_contraste_mejorado(gray)
+            reflection_score = LivenessDetector._detectar_reflexiones_mejorado(img)
+            sharpness_score = LivenessDetector._calcular_nitidez_mejorado(gray)
+            texture_score = LivenessDetector._analizar_textura_piel(gray)
             
-            # Pesos para los 3 filtros principales
+            # Nuevos pesos más estrictos
             total_score = (
-                brightness_score * 0.4 +
-                reflection_score * 0.35 +
-                sharpness_score * 0.25
+                brightness_score * 0.25 +
+                reflection_score * 0.30 +
+                sharpness_score * 0.25 +
+                texture_score * 0.20
             )
             
-            # Umbral para determinar si es real
-            is_live = total_score > 0.55
+            # Umbral más estricto para determinar si es real
+            is_live = total_score > 0.65
             
             return is_live, {
                 "total_score": float(total_score),
                 "brightness_score": float(brightness_score),
                 "reflection_score": float(reflection_score),
                 "sharpness_score": float(sharpness_score),
+                "texture_score": float(texture_score),
                 "is_live": bool(is_live),
-                "imagen_procesada": "completa_sin_recorte"
+                "umbral_usado": 0.65
             }
             
         except Exception as e:
@@ -80,129 +270,200 @@ class LivenessDetector:
             return False, {"error": str(e), "total_score": 0.0}
 
     @staticmethod
-    def _analizar_brillo_contraste_completo(gray_img):
-        """Análisis de brillo y contraste SIN recorte"""
+    def _analizar_brillo_contraste_mejorado(gray_img):
+        """Análisis mejorado de brillo y contraste"""
         try:
-            # Procesar imagen completa
             mean_brightness = float(np.mean(gray_img))
             std_brightness = float(np.std(gray_img))
             
-            # Análisis de histograma completo
+            # Análisis de histograma
             hist = cv2.calcHist([gray_img], [0], None, [256], [0, 256])
             hist_norm = hist.flatten() / gray_img.size
             
-            # Detección de patrones de pantalla
+            # Detección más estricta de patrones artificiales
             brightness_score = 1.0
-            if mean_brightness > 220 or mean_brightness < 40:
-                brightness_score = 0.1
-            elif mean_brightness > 180 or mean_brightness < 70:
-                brightness_score = 0.4
             
-            # Análisis de contraste mejorado
-            contrast_score = min(1.0, std_brightness / 80.0)
-            if std_brightness < 20:
-                contrast_score = 0.2
+            # Penalizar extremos más fuertemente
+            if mean_brightness > 210 or mean_brightness < 50:
+                brightness_score = 0.05
+            elif mean_brightness > 190 or mean_brightness < 70:
+                brightness_score = 0.2
+            elif mean_brightness > 170 or mean_brightness < 90:
+                brightness_score = 0.6
             
-            # Análisis de distribución de intensidades
-            # Detectar distribuciones artificiales típicas de pantallas
+            # Contraste más estricto
+            if std_brightness < 25:
+                contrast_score = 0.1
+            elif std_brightness < 35:
+                contrast_score = 0.4
+            else:
+                contrast_score = min(1.0, std_brightness / 70.0)
+            
+            # Análisis de distribución más detallado
             entropy = -np.sum(hist_norm * np.log(hist_norm + 1e-10))
-            entropy_score = min(1.0, entropy / 7.0)  # Normalizar entropia
+            
+            # Detectar distribuciones muy uniformes (típicas de pantallas)
+            if entropy < 5.5:
+                entropy_score = 0.1
+            elif entropy < 6.5:
+                entropy_score = 0.5
+            else:
+                entropy_score = min(1.0, entropy / 7.5)
             
             return float((brightness_score + contrast_score + entropy_score) / 3)
         except:
-            return 0.5
+            return 0.3
 
     @staticmethod
-    def _detectar_reflexiones_completo(img):
-        """Detección de reflexiones SIN recorte"""
+    def _detectar_reflexiones_mejorado(img):
+        """Detección mejorada de reflexiones"""
         try:
-            # Procesar imagen completa
             hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             v_channel = hsv[:, :, 2]
             
-            # Análisis completo de píxeles brillantes
-            very_bright = int(np.sum(v_channel > 250))
-            bright = int(np.sum(v_channel > 230))
-            medium_bright = int(np.sum(v_channel > 200))
+            # Análisis más detallado de píxeles brillantes
+            very_bright = int(np.sum(v_channel > 245))
+            bright = int(np.sum(v_channel > 220))
+            medium_bright = int(np.sum(v_channel > 190))
             total_pixels = int(v_channel.size)
             
             very_bright_ratio = float(very_bright / total_pixels)
             bright_ratio = float(bright / total_pixels)
             medium_bright_ratio = float(medium_bright / total_pixels)
             
-            # Análisis de patrones de reflexión
-            # Detectar regiones conectadas brillantes (típicas de pantallas)
-            _, thresh = cv2.threshold(v_channel, 240, 255, cv2.THRESH_BINARY)
+            # Análisis de patrones geométricos (típicos de pantallas)
+            _, thresh = cv2.threshold(v_channel, 235, 255, cv2.THRESH_BINARY)
             contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             
-            large_bright_regions = sum(1 for c in contours if cv2.contourArea(c) > 100)
+            # Detectar regiones rectangulares brillantes
+            rectangular_regions = 0
+            large_regions = 0
             
-            # Penalización por reflexiones
-            if very_bright_ratio > 0.03 or large_bright_regions > 5:
-                return 0.1
-            elif bright_ratio > 0.15 or large_bright_regions > 3:
-                return 0.3
-            elif medium_bright_ratio > 0.25:
-                return 0.6
+            for contour in contours:
+                area = cv2.contourArea(contour)
+                if area > 50:
+                    large_regions += 1
+                    
+                    # Verificar si es rectangular (típico de pantallas)
+                    epsilon = 0.02 * cv2.arcLength(contour, True)
+                    approx = cv2.approxPolyDP(contour, epsilon, True)
+                    if len(approx) == 4:
+                        rectangular_regions += 1
+            
+            # Penalización más estricta
+            if very_bright_ratio > 0.02 or rectangular_regions > 2:
+                return 0.05
+            elif bright_ratio > 0.08 or large_regions > 4:
+                return 0.2
+            elif medium_bright_ratio > 0.15 or large_regions > 2:
+                return 0.5
             else:
                 return 1.0
         except:
-            return 0.5
+            return 0.3
 
     @staticmethod
-    def _calcular_nitidez_completo(gray_img):
-        """Cálculo de nitidez SIN recorte"""
+    def _calcular_nitidez_mejorado(gray_img):
+        """Cálculo mejorado de nitidez"""
         try:
-            # Procesar imagen completa
-            # Usar múltiples métodos para mejor precisión
-            
-            # Método 1: Varianza del Laplaciano
+            # Método 1: Varianza del Laplaciano mejorado
             laplacian = cv2.Laplacian(gray_img, cv2.CV_64F)
             laplacian_var = np.var(laplacian)
             
-            # Método 2: Gradiente Sobel
+            # Método 2: Gradiente Sobel mejorado
             sobel_x = cv2.Sobel(gray_img, cv2.CV_64F, 1, 0, ksize=3)
             sobel_y = cv2.Sobel(gray_img, cv2.CV_64F, 0, 1, ksize=3)
             magnitude = np.sqrt(sobel_x**2 + sobel_y**2)
             sobel_mean = np.mean(magnitude)
             
-            # Método 3: Análisis de frecuencias altas
-            f_transform = np.fft.fft2(gray_img)
-            f_shift = np.fft.fftshift(f_transform)
-            magnitude_spectrum = np.abs(f_shift)
+            # Método 3: Análisis de bordes con Canny
+            edges = cv2.Canny(gray_img, 50, 150)
+            edge_ratio = np.sum(edges > 0) / edges.size
             
-            # Analizar frecuencias altas (bordes y detalles)
-            h, w = gray_img.shape
-            center_h, center_w = h // 2, w // 2
-            high_freq_mask = np.zeros((h, w), dtype=np.uint8)
-            cv2.circle(high_freq_mask, (center_w, center_h), min(h, w) // 4, 255, -1)
-            high_freq_mask = 255 - high_freq_mask  # Invertir para obtener frecuencias altas
+            # Umbrales más estrictos para nitidez
+            laplacian_score = min(1.0, laplacian_var / 600.0)
+            sobel_score = min(1.0, sobel_mean / 45.0)
+            edge_score = min(1.0, edge_ratio * 15.0)
             
-            high_freq_energy = np.sum(magnitude_spectrum * (high_freq_mask / 255.0))
-            total_energy = np.sum(magnitude_spectrum)
-            freq_ratio = high_freq_energy / (total_energy + 1e-10)
+            # Si la nitidez es muy baja, penalizar fuertemente
+            if laplacian_var < 100:
+                laplacian_score = 0.1
+            if sobel_mean < 15:
+                sobel_score = 0.1
+            if edge_ratio < 0.02:
+                edge_score = 0.1
             
-            # Combinar métricas
-            laplacian_score = min(1.0, laplacian_var / 500.0)
-            sobel_score = min(1.0, sobel_mean / 40.0)
-            freq_score = min(1.0, freq_ratio * 10.0)
+            return float((laplacian_score + sobel_score + edge_score) / 3)
+        except:
+            return 0.3
+
+    @staticmethod
+    def _analizar_textura_piel(gray_img):
+        """Nuevo: Análisis de textura de piel real"""
+        try:
+            # Análisis de patrones locales binarios (LBP)
+            def local_binary_pattern(img, radius=3, n_points=24):
+                """Implementación simple de LBP"""
+                h, w = img.shape
+                lbp = np.zeros((h, w), dtype=np.uint8)
+                
+                for i in range(radius, h - radius):
+                    for j in range(radius, w - radius):
+                        center = img[i, j]
+                        code = 0
+                        for k in range(n_points):
+                            angle = 2 * np.pi * k / n_points
+                            x = int(i + radius * np.cos(angle))
+                            y = int(j + radius * np.sin(angle))
+                            if 0 <= x < h and 0 <= y < w:
+                                if img[x, y] >= center:
+                                    code |= (1 << k)
+                        lbp[i, j] = code
+                
+                return lbp
             
-            # Promedio ponderado
-            sharpness_final = (laplacian_score * 0.4 + sobel_score * 0.4 + freq_score * 0.2)
+            # Calcular LBP
+            lbp = local_binary_pattern(gray_img, radius=2, n_points=16)
             
-            return float(sharpness_final)
+            # Histograma de patrones LBP
+            hist_lbp = cv2.calcHist([lbp], [0], None, [256], [0, 256])
+            hist_lbp_norm = hist_lbp.flatten() / lbp.size
+            
+            # Análisis de uniformidad (piel real tiene patrones más uniformes)
+            uniformity = np.sum(hist_lbp_norm ** 2)
+            
+            # Análisis de varianza local
+            kernel = np.ones((5, 5), np.float32) / 25
+            local_mean = cv2.filter2D(gray_img.astype(np.float32), -1, kernel)
+            local_var = cv2.filter2D((gray_img.astype(np.float32) - local_mean) ** 2, -1, kernel)
+            avg_local_var = np.mean(local_var)
+            
+            # Puntaje de textura
+            uniformity_score = min(1.0, uniformity * 20.0)
+            variance_score = min(1.0, avg_local_var / 200.0)
+            
+            # Piel real tiene cierta uniformidad pero también varianza
+            if uniformity < 0.02:  # Muy uniforme (posible pantalla)
+                texture_score = 0.2
+            elif avg_local_var < 50:  # Muy poca varianza (posible imagen procesada)
+                texture_score = 0.3
+            else:
+                texture_score = (uniformity_score + variance_score) / 2
+            
+            return float(texture_score)
+            
         except:
             return 0.5
 
 def validar_imagen_completa(image_data):
-    """Validación completa de imagen SIN recorte"""
+    """Validación completa de imagen con análisis mejorado"""
     try:
         img = Image.open(io.BytesIO(image_data))
         
         if img.format not in ['JPEG', 'PNG', 'WEBP']:
             return False, "Formato no soportado"
         
-        # Información detallada SIN limitaciones de tamaño
+        # Información detallada
         info = {
             "format": img.format,
             "size": [int(img.width), int(img.height)],
@@ -210,38 +471,52 @@ def validar_imagen_completa(image_data):
             "megapixels": round((img.width * img.height) / 1000000, 2)
         }
         
-        # Solo advertencias, no limitaciones
+        # Validaciones más estrictas
         warnings = []
-        if img.width < 150 or img.height < 150:
-            warnings.append("Imagen muy pequeña (recomendado: >150px)")
-        if img.width > 4000 or img.height > 4000:
-            warnings.append("Imagen muy grande (puede ser lenta)")
+        if img.width < 200 or img.height < 200:
+            warnings.append("Imagen muy pequeña (recomendado: >200px)")
+        if img.width > 3000 or img.height > 3000:
+            warnings.append("Imagen muy grande")
+        
+        # Análisis de calidad básico
+        img_array = np.array(img)
+        if len(img_array.shape) == 3:
+            # Verificar que no sea imagen muy oscura o muy clara
+            mean_brightness = np.mean(img_array)
+            if mean_brightness < 30:
+                warnings.append("Imagen muy oscura")
+            elif mean_brightness > 225:
+                warnings.append("Imagen muy clara")
         
         info["warnings"] = warnings
+        info["quality_check"] = {
+            "brightness": float(mean_brightness) if 'mean_brightness' in locals() else None
+        }
         
         return True, info
-    except:
-        return False, "Imagen corrupta"
+    except Exception as e:
+        return False, f"Imagen corrupta: {str(e)}"
 
 @app.route('/', methods=['GET'])
 def health_check():
     model_status = "cargado" if modelo is not None else "no_cargado"
     return jsonify({
         "status": "ok",
-        "service": "Face Verification Service - Sin Recorte",
-        "version": "3.0.0",
+        "service": "Face Verification Service - Mejorado",
+        "version": "4.0.0",
         "modelo": model_status,
-        "optimizaciones": [
-            "Modelo precargado al inicio",
-            "Procesamiento de imagen completa",
-            "Sin recorte de imagen",
-            "Análisis de liveness mejorado"
+        "mejoras": [
+            "Verificación con múltiples modelos",
+            "Validación estricta de rostros",
+            "Análisis de textura de piel",
+            "Umbrales más estrictos",
+            "Detección mejorada de falsos positivos"
         ]
     })
 
 @app.route('/verificar', methods=['POST'])
 def verificar():
-    """Endpoint para verificación facial SIN recorte"""
+    """Endpoint mejorado para verificación facial"""
     try:
         # Verificar que el modelo esté cargado
         if modelo is None:
@@ -291,7 +566,25 @@ def verificar():
             temp_files = [f1.name, f2.name]
 
             try:
-                # Liveness detection SIN recorte en img2
+                # 1. Validar rostros en ambas imágenes
+                valid_face1, face_info1 = FaceValidator.validar_rostro_detectado(f1.name)
+                valid_face2, face_info2 = FaceValidator.validar_rostro_detectado(f2.name)
+                
+                if not valid_face1:
+                    return jsonify({
+                        "resultado": "ERROR_IMAGEN_REFERENCIA",
+                        "motivo": f"Imagen de referencia inválida: {face_info1}",
+                        "info_imagenes": {"img1": info1, "img2": info2}
+                    })
+                
+                if not valid_face2:
+                    return jsonify({
+                        "resultado": "ERROR_IMAGEN_CAPTURADA",
+                        "motivo": f"Imagen capturada inválida: {face_info2}",
+                        "info_imagenes": {"img1": info1, "img2": info2}
+                    })
+                
+                # 2. Detección de liveness mejorada
                 is_live, liveness_info = LivenessDetector.detectar_liveness_sin_recorte(f2.name)
                 
                 if not is_live:
@@ -300,23 +593,21 @@ def verificar():
                         "motivo": "La imagen capturada no parece real",
                         "liveness_score": float(liveness_info.get("total_score", 0)),
                         "detalles": liveness_info,
-                        "info_imagenes": {
-                            "img1": info1,
-                            "img2": info2
-                        }
+                        "info_imagenes": {"img1": info1, "img2": info2}
                     })
 
-                # Verificación facial con modelo precargado
-                result = DeepFace.verify(
-                    img1_path=f1.name,
-                    img2_path=f2.name,
-                    model_name="ArcFace",
-                    enforce_detection=False
-                )
+                # 3. Verificación facial con múltiples métodos
+                similarity_results = FaceValidator.calcular_similitud_facial(f1.name, f2.name)
+                
+                if not similarity_results:
+                    return jsonify({
+                        "resultado": "ERROR_VERIFICACION",
+                        "motivo": "No se pudo realizar la verificación facial",
+                        "info_imagenes": {"img1": info1, "img2": info2}
+                    })
 
-                # Determinar resultado
-                face_match = bool(result["verified"])
-                confidence = float(result.get("distance", 0))
+                # 4. Decisión final
+                face_match, confidence, decision_details = FaceValidator.decision_final_verificacion(similarity_results)
                 
                 resultado_final = "COINCIDE" if face_match else "NO_COINCIDE"
 
@@ -324,19 +615,23 @@ def verificar():
                     "resultado": resultado_final,
                     "verificacion_facial": {
                         "coincide": bool(face_match),
-                        "distancia": float(confidence),
-                        "threshold": float(result.get("threshold", 0))
+                        "confianza": float(confidence),
+                        "detalles": decision_details
                     },
                     "verificacion_liveness": {
                         "es_real": bool(is_live),
                         "score": float(liveness_info.get("total_score", 0)),
                         "detalles": liveness_info
                     },
+                    "validacion_rostros": {
+                        "img1": face_info1,
+                        "img2": face_info2
+                    },
                     "info_imagenes": {
                         "img1": info1,
                         "img2": info2
                     },
-                    "procesamiento": "imagen_completa_sin_recorte"
+                    "version": "4.0.0_mejorado"
                 })
 
             finally:
@@ -349,11 +644,11 @@ def verificar():
 
     except Exception as e:
         logger.error(f"Error en verificación: {e}")
-        return jsonify({"error": "Error interno"}), 500
+        return jsonify({"error": "Error interno del servidor"}), 500
 
 @app.route('/test-liveness', methods=['POST'])
 def test_liveness():
-    """Test de liveness SIN recorte"""
+    """Test de liveness mejorado"""
     try:
         data = request.get_json()
         img_b64 = data.get("imagen")
@@ -375,6 +670,15 @@ def test_liveness():
             f.write(img_data)
             f.flush()
             
+            # Validar rostro
+            valid_face, face_info = FaceValidator.validar_rostro_detectado(f.name)
+            if not valid_face:
+                return jsonify({
+                    "error": f"Rostro no válido: {face_info}",
+                    "info_imagen": info
+                })
+            
+            # Análisis de liveness
             is_live, liveness_info = LivenessDetector.detectar_liveness_sin_recorte(f.name)
             
             try:
@@ -386,8 +690,9 @@ def test_liveness():
             "es_real": bool(is_live),
             "score": float(liveness_info.get("total_score", 0)),
             "detalles": liveness_info,
+            "validacion_rostro": face_info,
             "info_imagen": info,
-            "procesamiento": "imagen_completa_sin_recorte"
+            "version": "4.0.0_mejorado"
         })
 
     except Exception as e:
@@ -399,19 +704,131 @@ def status():
     model_status = "cargado_y_listo" if modelo is not None else "error_no_cargado"
     
     return jsonify({
-        "service": "Face Verification API - Sin Recorte",
-        "version": "3.0.0",
+        "service": "Face Verification API - Mejorado",
+        "version": "4.0.0",
         "status": "running",
         "modelo": model_status,
-        "optimizaciones": [
-            "Modelo ArcFace precargado al inicio",
-            "Procesamiento de imagen completa (sin recorte)",
-            "Análisis de liveness mejorado",
-            "Validación completa en paralelo",
-            "Análisis de frecuencias para nitidez",
-            "Detección de patrones de reflexión avanzada"
+        "mejoras_v4": [
+            "Verificación con múltiples modelos (ArcFace, Facenet, VGG-Face)",
+            "Validación estricta de detección de rostros",
+            "Análisis de textura de piel real",
+            "Umbrales más estrictos para liveness",
+            "Detección mejorada de patrones de pantalla",
+            "Lógica de decisión basada en consenso de múltiples métodos",
+            "Análisis de calidad de imagen mejorado",
+            "Manejo de errores más robusto"
         ]
     })
+
+@app.route('/test-face-detection', methods=['POST'])
+def test_face_detection():
+    """Endpoint para probar solo la detección de rostros"""
+    try:
+        data = request.get_json()
+        img_b64 = data.get("imagen")
+        
+        if not img_b64:
+            return jsonify({"error": "Imagen requerida"}), 400
+
+        if img_b64.startswith('data:image'):
+            img_b64 = img_b64.split(',')[1]
+        
+        img_data = base64.b64decode(img_b64)
+        
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f:
+            f.write(img_data)
+            f.flush()
+            
+            valid_face, face_info = FaceValidator.validar_rostro_detectado(f.name)
+            
+            try:
+                os.unlink(f.name)
+            except:
+                pass
+
+        return jsonify({
+            "rostro_detectado": bool(valid_face),
+            "detalles": face_info,
+            "version": "4.0.0_mejorado"
+        })
+
+    except Exception as e:
+        logger.error(f"Error en test detección: {e}")
+        return jsonify({"error": "Error interno"}), 500
+
+@app.route('/verificar-solo-rostros', methods=['POST'])
+def verificar_solo_rostros():
+    """Endpoint para verificar solo rostros sin liveness"""
+    try:
+        data = request.get_json()
+        img1_b64 = data.get("img1")
+        img2_b64 = data.get("img2")
+
+        if not img1_b64 or not img2_b64:
+            return jsonify({"error": "Faltan imágenes"}), 400
+
+        # Decodificar imágenes
+        if img1_b64.startswith('data:image'):
+            img1_b64 = img1_b64.split(',')[1]
+        if img2_b64.startswith('data:image'):
+            img2_b64 = img2_b64.split(',')[1]
+            
+        img1_data = base64.b64decode(img1_b64)
+        img2_data = base64.b64decode(img2_b64)
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f1, \
+             tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as f2:
+
+            f1.write(img1_data)
+            f2.write(img2_data)
+            f1.flush()
+            f2.flush()
+            
+            temp_files = [f1.name, f2.name]
+
+            try:
+                # Validar rostros
+                valid_face1, face_info1 = FaceValidator.validar_rostro_detectado(f1.name)
+                valid_face2, face_info2 = FaceValidator.validar_rostro_detectado(f2.name)
+                
+                if not valid_face1 or not valid_face2:
+                    return jsonify({
+                        "resultado": "ERROR_ROSTROS",
+                        "img1_valido": bool(valid_face1),
+                        "img2_valido": bool(valid_face2),
+                        "detalles": {
+                            "img1": face_info1,
+                            "img2": face_info2
+                        }
+                    })
+
+                # Verificación facial
+                similarity_results = FaceValidator.calcular_similitud_facial(f1.name, f2.name)
+                face_match, confidence, decision_details = FaceValidator.decision_final_verificacion(similarity_results)
+                
+                resultado_final = "COINCIDE" if face_match else "NO_COINCIDE"
+
+                return jsonify({
+                    "resultado": resultado_final,
+                    "coincide": bool(face_match),
+                    "confianza": float(confidence),
+                    "detalles_verificacion": decision_details,
+                    "rostros_detectados": {
+                        "img1": face_info1,
+                        "img2": face_info2
+                    }
+                })
+
+            finally:
+                for temp_file in temp_files:
+                    try:
+                        os.unlink(temp_file)
+                    except:
+                        pass
+
+    except Exception as e:
+        logger.error(f"Error en verificación solo rostros: {e}")
+        return jsonify({"error": "Error interno"}), 500
 
 @app.route('/reload-model', methods=['POST'])
 def reload_model():
@@ -426,14 +843,14 @@ def reload_model():
         return jsonify({"error": str(e)}), 500
 
 # Inicializar modelo al arrancar
-logger.info("Iniciando aplicación...")
+logger.info("Iniciando aplicación mejorada v4.0.0...")
 modelo_cargado = inicializar_modelo()
 
 if not modelo_cargado:
     logger.warning("⚠️  ADVERTENCIA: No se pudo cargar el modelo al inicio")
     logger.warning("⚠️  El servicio funcionará pero será más lento en la primera consulta")
 else:
-    logger.info("✅ Servicio listo con modelo precargado")
+    logger.info("✅ Servicio listo con modelo precargado y mejoras v4.0.0")
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
