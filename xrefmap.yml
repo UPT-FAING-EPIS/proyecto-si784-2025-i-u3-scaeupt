@@ -13,15 +13,15 @@ references:
   commentId: T:pyWeb_ScaeUPT.Controllers.AuthController
   fullName: pyWeb_ScaeUPT.Controllers.AuthController
   nameWithType: AuthController
-- uid: pyWeb_ScaeUPT.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,pyWeb_ScaeUPT.Data.ApplicationDbContext,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.AuthController},System.Net.Http.IHttpClientFactory)
-  name: AuthController(IConfiguration, ApplicationDbContext, ILogger<AuthController>, IHttpClientFactory)
-  href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController__ctor_Microsoft_Extensions_Configuration_IConfiguration_pyWeb_ScaeUPT_Data_ApplicationDbContext_Microsoft_Extensions_Logging_ILogger_pyWeb_ScaeUPT_Controllers_AuthController__System_Net_Http_IHttpClientFactory_
-  commentId: M:pyWeb_ScaeUPT.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,pyWeb_ScaeUPT.Data.ApplicationDbContext,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.AuthController},System.Net.Http.IHttpClientFactory)
-  name.vb: New(IConfiguration, ApplicationDbContext, ILogger(Of AuthController), IHttpClientFactory)
-  fullName: pyWeb_ScaeUPT.Controllers.AuthController.AuthController(Microsoft.Extensions.Configuration.IConfiguration, pyWeb_ScaeUPT.Data.ApplicationDbContext, Microsoft.Extensions.Logging.ILogger<pyWeb_ScaeUPT.Controllers.AuthController>, System.Net.Http.IHttpClientFactory)
-  fullName.vb: pyWeb_ScaeUPT.Controllers.AuthController.New(Microsoft.Extensions.Configuration.IConfiguration, pyWeb_ScaeUPT.Data.ApplicationDbContext, Microsoft.Extensions.Logging.ILogger(Of pyWeb_ScaeUPT.Controllers.AuthController), System.Net.Http.IHttpClientFactory)
-  nameWithType: AuthController.AuthController(IConfiguration, ApplicationDbContext, ILogger<AuthController>, IHttpClientFactory)
-  nameWithType.vb: AuthController.New(IConfiguration, ApplicationDbContext, ILogger(Of AuthController), IHttpClientFactory)
+- uid: pyWeb_ScaeUPT.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,pyWeb_ScaeUPT.Data.ApplicationDbContext,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.AuthController},System.Net.Http.IHttpClientFactory,pyWeb_ScaeUPT.Services.IMetricsService)
+  name: AuthController(IConfiguration, ApplicationDbContext, ILogger<AuthController>, IHttpClientFactory, IMetricsService)
+  href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController__ctor_Microsoft_Extensions_Configuration_IConfiguration_pyWeb_ScaeUPT_Data_ApplicationDbContext_Microsoft_Extensions_Logging_ILogger_pyWeb_ScaeUPT_Controllers_AuthController__System_Net_Http_IHttpClientFactory_pyWeb_ScaeUPT_Services_IMetricsService_
+  commentId: M:pyWeb_ScaeUPT.Controllers.AuthController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,pyWeb_ScaeUPT.Data.ApplicationDbContext,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.AuthController},System.Net.Http.IHttpClientFactory,pyWeb_ScaeUPT.Services.IMetricsService)
+  name.vb: New(IConfiguration, ApplicationDbContext, ILogger(Of AuthController), IHttpClientFactory, IMetricsService)
+  fullName: pyWeb_ScaeUPT.Controllers.AuthController.AuthController(Microsoft.Extensions.Configuration.IConfiguration, pyWeb_ScaeUPT.Data.ApplicationDbContext, Microsoft.Extensions.Logging.ILogger<pyWeb_ScaeUPT.Controllers.AuthController>, System.Net.Http.IHttpClientFactory, pyWeb_ScaeUPT.Services.IMetricsService)
+  fullName.vb: pyWeb_ScaeUPT.Controllers.AuthController.New(Microsoft.Extensions.Configuration.IConfiguration, pyWeb_ScaeUPT.Data.ApplicationDbContext, Microsoft.Extensions.Logging.ILogger(Of pyWeb_ScaeUPT.Controllers.AuthController), System.Net.Http.IHttpClientFactory, pyWeb_ScaeUPT.Services.IMetricsService)
+  nameWithType: AuthController.AuthController(IConfiguration, ApplicationDbContext, ILogger<AuthController>, IHttpClientFactory, IMetricsService)
+  nameWithType.vb: AuthController.New(IConfiguration, ApplicationDbContext, ILogger(Of AuthController), IHttpClientFactory, IMetricsService)
 - uid: pyWeb_ScaeUPT.Controllers.AuthController.#ctor*
   name: AuthController
   href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController__ctor_
@@ -45,6 +45,19 @@ references:
   isSpec: "True"
   fullName: pyWeb_ScaeUPT.Controllers.AuthController.Google
   nameWithType: AuthController.Google
+- uid: pyWeb_ScaeUPT.Controllers.AuthController.Logout
+  name: Logout()
+  href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController_Logout
+  commentId: M:pyWeb_ScaeUPT.Controllers.AuthController.Logout
+  fullName: pyWeb_ScaeUPT.Controllers.AuthController.Logout()
+  nameWithType: AuthController.Logout()
+- uid: pyWeb_ScaeUPT.Controllers.AuthController.Logout*
+  name: Logout
+  href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController_Logout_
+  commentId: Overload:pyWeb_ScaeUPT.Controllers.AuthController.Logout
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Controllers.AuthController.Logout
+  nameWithType: AuthController.Logout
 - uid: pyWeb_ScaeUPT.Controllers.AuthController.ValidateToken
   name: ValidateToken()
   href: docs/pyWeb_ScaeUPT.Controllers.AuthController.html#pyWeb_ScaeUPT_Controllers_AuthController_ValidateToken
@@ -245,15 +258,15 @@ references:
   commentId: T:pyWeb_ScaeUPT.Controllers.HomeController
   fullName: pyWeb_ScaeUPT.Controllers.HomeController
   nameWithType: HomeController
-- uid: pyWeb_ScaeUPT.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.HomeController},pyWeb_ScaeUPT.Data.ApplicationDbContext)
-  name: HomeController(ILogger<HomeController>, ApplicationDbContext)
-  href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController__ctor_Microsoft_Extensions_Logging_ILogger_pyWeb_ScaeUPT_Controllers_HomeController__pyWeb_ScaeUPT_Data_ApplicationDbContext_
-  commentId: M:pyWeb_ScaeUPT.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.HomeController},pyWeb_ScaeUPT.Data.ApplicationDbContext)
-  name.vb: New(ILogger(Of HomeController), ApplicationDbContext)
-  fullName: pyWeb_ScaeUPT.Controllers.HomeController.HomeController(Microsoft.Extensions.Logging.ILogger<pyWeb_ScaeUPT.Controllers.HomeController>, pyWeb_ScaeUPT.Data.ApplicationDbContext)
-  fullName.vb: pyWeb_ScaeUPT.Controllers.HomeController.New(Microsoft.Extensions.Logging.ILogger(Of pyWeb_ScaeUPT.Controllers.HomeController), pyWeb_ScaeUPT.Data.ApplicationDbContext)
-  nameWithType: HomeController.HomeController(ILogger<HomeController>, ApplicationDbContext)
-  nameWithType.vb: HomeController.New(ILogger(Of HomeController), ApplicationDbContext)
+- uid: pyWeb_ScaeUPT.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.HomeController},pyWeb_ScaeUPT.Data.ApplicationDbContext,pyWeb_ScaeUPT.Services.IMetricsService)
+  name: HomeController(ILogger<HomeController>, ApplicationDbContext, IMetricsService)
+  href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController__ctor_Microsoft_Extensions_Logging_ILogger_pyWeb_ScaeUPT_Controllers_HomeController__pyWeb_ScaeUPT_Data_ApplicationDbContext_pyWeb_ScaeUPT_Services_IMetricsService_
+  commentId: M:pyWeb_ScaeUPT.Controllers.HomeController.#ctor(Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Controllers.HomeController},pyWeb_ScaeUPT.Data.ApplicationDbContext,pyWeb_ScaeUPT.Services.IMetricsService)
+  name.vb: New(ILogger(Of HomeController), ApplicationDbContext, IMetricsService)
+  fullName: pyWeb_ScaeUPT.Controllers.HomeController.HomeController(Microsoft.Extensions.Logging.ILogger<pyWeb_ScaeUPT.Controllers.HomeController>, pyWeb_ScaeUPT.Data.ApplicationDbContext, pyWeb_ScaeUPT.Services.IMetricsService)
+  fullName.vb: pyWeb_ScaeUPT.Controllers.HomeController.New(Microsoft.Extensions.Logging.ILogger(Of pyWeb_ScaeUPT.Controllers.HomeController), pyWeb_ScaeUPT.Data.ApplicationDbContext, pyWeb_ScaeUPT.Services.IMetricsService)
+  nameWithType: HomeController.HomeController(ILogger<HomeController>, ApplicationDbContext, IMetricsService)
+  nameWithType.vb: HomeController.New(ILogger(Of HomeController), ApplicationDbContext, IMetricsService)
 - uid: pyWeb_ScaeUPT.Controllers.HomeController.#ctor*
   name: HomeController
   href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController__ctor_
@@ -306,6 +319,19 @@ references:
   isSpec: "True"
   fullName: pyWeb_ScaeUPT.Controllers.HomeController.GetEstudiante
   nameWithType: HomeController.GetEstudiante
+- uid: pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory
+  name: GetUserHistory()
+  href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController_GetUserHistory
+  commentId: M:pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory
+  fullName: pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory()
+  nameWithType: HomeController.GetUserHistory()
+- uid: pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory*
+  name: GetUserHistory
+  href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController_GetUserHistory_
+  commentId: Overload:pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Controllers.HomeController.GetUserHistory
+  nameWithType: HomeController.GetUserHistory
 - uid: pyWeb_ScaeUPT.Controllers.HomeController.GetUserInfo
   name: GetUserInfo()
   href: docs/pyWeb_ScaeUPT.Controllers.HomeController.html#pyWeb_ScaeUPT_Controllers_HomeController_GetUserInfo
@@ -498,6 +524,363 @@ references:
   isSpec: "True"
   fullName: pyWeb_ScaeUPT.Models.tokenModel.Token
   nameWithType: tokenModel.Token
+- uid: pyWeb_ScaeUPT.Services
+  name: pyWeb_ScaeUPT.Services
+  href: docs/pyWeb_ScaeUPT.Services.html
+  commentId: N:pyWeb_ScaeUPT.Services
+  fullName: pyWeb_ScaeUPT.Services
+  nameWithType: pyWeb_ScaeUPT.Services
+- uid: pyWeb_ScaeUPT.Services.IMetricsService
+  name: IMetricsService
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html
+  commentId: T:pyWeb_ScaeUPT.Services.IMetricsService
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService
+  nameWithType: IMetricsService
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  name: TrackCustomEvent(string, Dictionary<string, string>)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackCustomEvent_System_String_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: TrackCustomEvent(String, Dictionary(Of String, String))
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent(string, System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent(String, System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: IMetricsService.TrackCustomEvent(string, Dictionary<string, string>)
+  nameWithType.vb: IMetricsService.TrackCustomEvent(String, Dictionary(Of String, String))
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent*
+  name: TrackCustomEvent
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackCustomEvent_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomEvent
+  nameWithType: IMetricsService.TrackCustomEvent
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric(System.String,System.Double,System.Collections.Generic.Dictionary{System.String,System.String})
+  name: TrackCustomMetric(string, double, Dictionary<string, string>)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackCustomMetric_System_String_System_Double_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric(System.String,System.Double,System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: TrackCustomMetric(String, Double, Dictionary(Of String, String))
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric(string, double, System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric(String, Double, System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: IMetricsService.TrackCustomMetric(string, double, Dictionary<string, string>)
+  nameWithType.vb: IMetricsService.TrackCustomMetric(String, Double, Dictionary(Of String, String))
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric*
+  name: TrackCustomMetric
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackCustomMetric_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackCustomMetric
+  nameWithType: IMetricsService.TrackCustomMetric
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure(System.String,System.String)
+  name: TrackLoginFailure(string, string)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackLoginFailure_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure(System.String,System.String)
+  name.vb: TrackLoginFailure(String, String)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure(string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure(String, String)
+  nameWithType: IMetricsService.TrackLoginFailure(string, string)
+  nameWithType.vb: IMetricsService.TrackLoginFailure(String, String)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure*
+  name: TrackLoginFailure
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackLoginFailure_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackLoginFailure
+  nameWithType: IMetricsService.TrackLoginFailure
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance(System.String,System.Int64)
+  name: TrackPerformance(string, long)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackPerformance_System_String_System_Int64_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance(System.String,System.Int64)
+  name.vb: TrackPerformance(String, Long)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance(string, long)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance(String, Long)
+  nameWithType: IMetricsService.TrackPerformance(string, long)
+  nameWithType.vb: IMetricsService.TrackPerformance(String, Long)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance*
+  name: TrackPerformance
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackPerformance_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackPerformance
+  nameWithType: IMetricsService.TrackPerformance
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration(System.String,System.String,System.String,System.Boolean,System.Int64)
+  name: TrackQRGeneration(string, string, string, bool, long)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackQRGeneration_System_String_System_String_System_String_System_Boolean_System_Int64_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration(System.String,System.String,System.String,System.Boolean,System.Int64)
+  name.vb: TrackQRGeneration(String, String, String, Boolean, Long)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration(string, string, string, bool, long)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration(String, String, String, Boolean, Long)
+  nameWithType: IMetricsService.TrackQRGeneration(string, string, string, bool, long)
+  nameWithType.vb: IMetricsService.TrackQRGeneration(String, String, String, Boolean, Long)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration*
+  name: TrackQRGeneration
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackQRGeneration_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGeneration
+  nameWithType: IMetricsService.TrackQRGeneration
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure(System.String,System.String)
+  name: TrackQRGenerationFailure(string, string)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackQRGenerationFailure_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure(System.String,System.String)
+  name.vb: TrackQRGenerationFailure(String, String)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure(string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure(String, String)
+  nameWithType: IMetricsService.TrackQRGenerationFailure(string, string)
+  nameWithType.vb: IMetricsService.TrackQRGenerationFailure(String, String)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure*
+  name: TrackQRGenerationFailure
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackQRGenerationFailure_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackQRGenerationFailure
+  nameWithType: IMetricsService.TrackQRGenerationFailure
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView(System.String,System.String,System.Int32)
+  name: TrackUserHistoryView(string, string, int)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserHistoryView_System_String_System_String_System_Int32_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView(System.String,System.String,System.Int32)
+  name.vb: TrackUserHistoryView(String, String, Integer)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView(string, string, int)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView(String, String, Integer)
+  nameWithType: IMetricsService.TrackUserHistoryView(string, string, int)
+  nameWithType.vb: IMetricsService.TrackUserHistoryView(String, String, Integer)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView*
+  name: TrackUserHistoryView
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserHistoryView_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserHistoryView
+  nameWithType: IMetricsService.TrackUserHistoryView
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView(System.String,System.String,System.String)
+  name: TrackUserInfoView(string, string, string)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserInfoView_System_String_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView(System.String,System.String,System.String)
+  name.vb: TrackUserInfoView(String, String, String)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView(string, string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView(String, String, String)
+  nameWithType: IMetricsService.TrackUserInfoView(string, string, string)
+  nameWithType.vb: IMetricsService.TrackUserInfoView(String, String, String)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView*
+  name: TrackUserInfoView
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserInfoView_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserInfoView
+  nameWithType: IMetricsService.TrackUserInfoView
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin(System.String,System.String,System.String,System.String)
+  name: TrackUserLogin(string, string, string, string)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserLogin_System_String_System_String_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin(System.String,System.String,System.String,System.String)
+  name.vb: TrackUserLogin(String, String, String, String)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin(string, string, string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin(String, String, String, String)
+  nameWithType: IMetricsService.TrackUserLogin(string, string, string, string)
+  nameWithType.vb: IMetricsService.TrackUserLogin(String, String, String, String)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin*
+  name: TrackUserLogin
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserLogin_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogin
+  nameWithType: IMetricsService.TrackUserLogin
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout(System.String,System.String,System.TimeSpan)
+  name: TrackUserLogout(string, string, TimeSpan)
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserLogout_System_String_System_String_System_TimeSpan_
+  commentId: M:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout(System.String,System.String,System.TimeSpan)
+  name.vb: TrackUserLogout(String, String, TimeSpan)
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout(string, string, System.TimeSpan)
+  fullName.vb: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout(String, String, System.TimeSpan)
+  nameWithType: IMetricsService.TrackUserLogout(string, string, TimeSpan)
+  nameWithType.vb: IMetricsService.TrackUserLogout(String, String, TimeSpan)
+- uid: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout*
+  name: TrackUserLogout
+  href: docs/pyWeb_ScaeUPT.Services.IMetricsService.html#pyWeb_ScaeUPT_Services_IMetricsService_TrackUserLogout_
+  commentId: Overload:pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.IMetricsService.TrackUserLogout
+  nameWithType: IMetricsService.TrackUserLogout
+- uid: pyWeb_ScaeUPT.Services.MetricsService
+  name: MetricsService
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html
+  commentId: T:pyWeb_ScaeUPT.Services.MetricsService
+  fullName: pyWeb_ScaeUPT.Services.MetricsService
+  nameWithType: MetricsService
+- uid: pyWeb_ScaeUPT.Services.MetricsService.#ctor(Microsoft.ApplicationInsights.TelemetryClient,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Services.MetricsService})
+  name: MetricsService(TelemetryClient, ILogger<MetricsService>)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService__ctor_Microsoft_ApplicationInsights_TelemetryClient_Microsoft_Extensions_Logging_ILogger_pyWeb_ScaeUPT_Services_MetricsService__
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.#ctor(Microsoft.ApplicationInsights.TelemetryClient,Microsoft.Extensions.Logging.ILogger{pyWeb_ScaeUPT.Services.MetricsService})
+  name.vb: New(TelemetryClient, ILogger(Of MetricsService))
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.MetricsService(Microsoft.ApplicationInsights.TelemetryClient, Microsoft.Extensions.Logging.ILogger<pyWeb_ScaeUPT.Services.MetricsService>)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.New(Microsoft.ApplicationInsights.TelemetryClient, Microsoft.Extensions.Logging.ILogger(Of pyWeb_ScaeUPT.Services.MetricsService))
+  nameWithType: MetricsService.MetricsService(TelemetryClient, ILogger<MetricsService>)
+  nameWithType.vb: MetricsService.New(TelemetryClient, ILogger(Of MetricsService))
+- uid: pyWeb_ScaeUPT.Services.MetricsService.#ctor*
+  name: MetricsService
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService__ctor_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.MetricsService
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.New
+  nameWithType: MetricsService.MetricsService
+  nameWithType.vb: MetricsService.New
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  name: TrackCustomEvent(string, Dictionary<string, string>)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackCustomEvent_System_String_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent(System.String,System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: TrackCustomEvent(String, Dictionary(Of String, String))
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent(string, System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent(String, System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: MetricsService.TrackCustomEvent(string, Dictionary<string, string>)
+  nameWithType.vb: MetricsService.TrackCustomEvent(String, Dictionary(Of String, String))
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent*
+  name: TrackCustomEvent
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackCustomEvent_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomEvent
+  nameWithType: MetricsService.TrackCustomEvent
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric(System.String,System.Double,System.Collections.Generic.Dictionary{System.String,System.String})
+  name: TrackCustomMetric(string, double, Dictionary<string, string>)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackCustomMetric_System_String_System_Double_System_Collections_Generic_Dictionary_System_String_System_String__
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric(System.String,System.Double,System.Collections.Generic.Dictionary{System.String,System.String})
+  name.vb: TrackCustomMetric(String, Double, Dictionary(Of String, String))
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric(string, double, System.Collections.Generic.Dictionary<string, string>)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric(String, Double, System.Collections.Generic.Dictionary(Of String, String))
+  nameWithType: MetricsService.TrackCustomMetric(string, double, Dictionary<string, string>)
+  nameWithType.vb: MetricsService.TrackCustomMetric(String, Double, Dictionary(Of String, String))
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric*
+  name: TrackCustomMetric
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackCustomMetric_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackCustomMetric
+  nameWithType: MetricsService.TrackCustomMetric
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure(System.String,System.String)
+  name: TrackLoginFailure(string, string)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackLoginFailure_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure(System.String,System.String)
+  name.vb: TrackLoginFailure(String, String)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure(string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure(String, String)
+  nameWithType: MetricsService.TrackLoginFailure(string, string)
+  nameWithType.vb: MetricsService.TrackLoginFailure(String, String)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure*
+  name: TrackLoginFailure
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackLoginFailure_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackLoginFailure
+  nameWithType: MetricsService.TrackLoginFailure
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance(System.String,System.Int64)
+  name: TrackPerformance(string, long)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackPerformance_System_String_System_Int64_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance(System.String,System.Int64)
+  name.vb: TrackPerformance(String, Long)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance(string, long)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance(String, Long)
+  nameWithType: MetricsService.TrackPerformance(string, long)
+  nameWithType.vb: MetricsService.TrackPerformance(String, Long)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance*
+  name: TrackPerformance
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackPerformance_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackPerformance
+  nameWithType: MetricsService.TrackPerformance
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration(System.String,System.String,System.String,System.Boolean,System.Int64)
+  name: TrackQRGeneration(string, string, string, bool, long)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackQRGeneration_System_String_System_String_System_String_System_Boolean_System_Int64_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration(System.String,System.String,System.String,System.Boolean,System.Int64)
+  name.vb: TrackQRGeneration(String, String, String, Boolean, Long)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration(string, string, string, bool, long)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration(String, String, String, Boolean, Long)
+  nameWithType: MetricsService.TrackQRGeneration(string, string, string, bool, long)
+  nameWithType.vb: MetricsService.TrackQRGeneration(String, String, String, Boolean, Long)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration*
+  name: TrackQRGeneration
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackQRGeneration_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGeneration
+  nameWithType: MetricsService.TrackQRGeneration
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure(System.String,System.String)
+  name: TrackQRGenerationFailure(string, string)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackQRGenerationFailure_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure(System.String,System.String)
+  name.vb: TrackQRGenerationFailure(String, String)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure(string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure(String, String)
+  nameWithType: MetricsService.TrackQRGenerationFailure(string, string)
+  nameWithType.vb: MetricsService.TrackQRGenerationFailure(String, String)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure*
+  name: TrackQRGenerationFailure
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackQRGenerationFailure_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackQRGenerationFailure
+  nameWithType: MetricsService.TrackQRGenerationFailure
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView(System.String,System.String,System.Int32)
+  name: TrackUserHistoryView(string, string, int)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserHistoryView_System_String_System_String_System_Int32_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView(System.String,System.String,System.Int32)
+  name.vb: TrackUserHistoryView(String, String, Integer)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView(string, string, int)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView(String, String, Integer)
+  nameWithType: MetricsService.TrackUserHistoryView(string, string, int)
+  nameWithType.vb: MetricsService.TrackUserHistoryView(String, String, Integer)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView*
+  name: TrackUserHistoryView
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserHistoryView_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserHistoryView
+  nameWithType: MetricsService.TrackUserHistoryView
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView(System.String,System.String,System.String)
+  name: TrackUserInfoView(string, string, string)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserInfoView_System_String_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView(System.String,System.String,System.String)
+  name.vb: TrackUserInfoView(String, String, String)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView(string, string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView(String, String, String)
+  nameWithType: MetricsService.TrackUserInfoView(string, string, string)
+  nameWithType.vb: MetricsService.TrackUserInfoView(String, String, String)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView*
+  name: TrackUserInfoView
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserInfoView_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserInfoView
+  nameWithType: MetricsService.TrackUserInfoView
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin(System.String,System.String,System.String,System.String)
+  name: TrackUserLogin(string, string, string, string)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserLogin_System_String_System_String_System_String_System_String_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin(System.String,System.String,System.String,System.String)
+  name.vb: TrackUserLogin(String, String, String, String)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin(string, string, string, string)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin(String, String, String, String)
+  nameWithType: MetricsService.TrackUserLogin(string, string, string, string)
+  nameWithType.vb: MetricsService.TrackUserLogin(String, String, String, String)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin*
+  name: TrackUserLogin
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserLogin_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogin
+  nameWithType: MetricsService.TrackUserLogin
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout(System.String,System.String,System.TimeSpan)
+  name: TrackUserLogout(string, string, TimeSpan)
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserLogout_System_String_System_String_System_TimeSpan_
+  commentId: M:pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout(System.String,System.String,System.TimeSpan)
+  name.vb: TrackUserLogout(String, String, TimeSpan)
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout(string, string, System.TimeSpan)
+  fullName.vb: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout(String, String, System.TimeSpan)
+  nameWithType: MetricsService.TrackUserLogout(string, string, TimeSpan)
+  nameWithType.vb: MetricsService.TrackUserLogout(String, String, TimeSpan)
+- uid: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout*
+  name: TrackUserLogout
+  href: docs/pyWeb_ScaeUPT.Services.MetricsService.html#pyWeb_ScaeUPT_Services_MetricsService_TrackUserLogout_
+  commentId: Overload:pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout
+  isSpec: "True"
+  fullName: pyWeb_ScaeUPT.Services.MetricsService.TrackUserLogout
+  nameWithType: MetricsService.TrackUserLogout
 - uid: pyWeb_ScaeUPT.Tests.Controllers
   name: pyWeb_ScaeUPT.Tests.Controllers
   href: docs/pyWeb_ScaeUPT.Tests.Controllers.html

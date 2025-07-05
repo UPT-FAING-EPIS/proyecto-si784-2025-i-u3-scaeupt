@@ -172,6 +172,48 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "docs/pyWeb_ScaeUPT.Services.IMetricsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/pyWeb_ScaeUPT.Services.IMetricsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "pyWeb_ScaeUPT.Services.IMetricsService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/pyWeb_ScaeUPT.Services.MetricsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/pyWeb_ScaeUPT.Services.MetricsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "pyWeb_ScaeUPT.Services.MetricsService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "docs/pyWeb_ScaeUPT.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/pyWeb_ScaeUPT.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "pyWeb_ScaeUPT.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "docs/pyWeb_ScaeUPT.Tests.Controllers.AuthControllerTests.yml",
       "output": {
         ".html": {
