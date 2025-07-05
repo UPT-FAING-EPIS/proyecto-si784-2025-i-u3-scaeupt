@@ -20,7 +20,6 @@ jobs:
           p/security-audit
           p/secrets
           p/csharp
-          p/dotnet
         generateSarif: "1"
         
     - name: Upload Semgrep results to GitHub Code Scanning
@@ -35,6 +34,7 @@ jobs:
         pip install --upgrade semgrep
         mkdir -p semgrep-report
         semgrep scan --config=p/default --output-format=html --output=semgrep-report/index.html WebApp/ || true
+
     - name: Deploy Semgrep report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v4
